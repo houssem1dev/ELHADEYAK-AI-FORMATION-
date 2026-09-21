@@ -21,8 +21,6 @@
       --text-secondary: #7aa8cc;
       --border: rgba(0, 224, 255, 0.22);
       --grid-line: rgba(0, 224, 255, 0.03);
-      
-      /* Chatbot Purple Theme */
       --bot-purple: #7c5cff;
       --bot-purple-dark: #5a3fd6;
       --bot-bg: #f3f0ff;
@@ -71,8 +69,7 @@
       box-shadow:
         0 40px 120px -20px rgba(0, 0, 0, 0.98),
         0 0 160px rgba(0, 224, 255, 0.12),
-        0 0 80px rgba(180, 77, 255, 0.08),
-        inset 0 0 120px rgba(0, 224, 255, 0.03);
+        0 0 80px rgba(180, 77, 255, 0.08);
       padding: 2.6rem 2.4rem;
       position: relative;
       z-index: 1;
@@ -88,7 +85,6 @@
     }
     @keyframes spinSlow { to { transform: rotate(360deg); } }
 
-    /* ===== HEADER ===== */
     .hero {
       display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
       margin-bottom: 2rem; padding-bottom: 1.6rem; border-bottom: 1px solid var(--border);
@@ -99,7 +95,7 @@
       background: linear-gradient(135deg, rgba(0, 224, 255, 0.1), rgba(180, 77, 255, 0.1));
       padding: 0.9rem 1.9rem; border-radius: 60px;
       border: 1px solid rgba(0, 224, 255, 0.5);
-      box-shadow: 0 0 50px rgba(0, 224, 255, 0.2), inset 0 0 40px rgba(0, 224, 255, 0.05);
+      box-shadow: 0 0 50px rgba(0, 224, 255, 0.2);
       position: relative; overflow: hidden;
     }
     .name-badge::after {
@@ -109,15 +105,11 @@
       animation: shimmer 3.5s infinite;
     }
     @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-    .name-badge i {
-      font-size: 2rem; color: var(--primary);
-      filter: drop-shadow(0 0 15px var(--primary-glow));
-    }
+    .name-badge i { font-size: 2rem; color: var(--primary); filter: drop-shadow(0 0 15px var(--primary-glow)); }
     .name-badge h1 {
       font-size: 2rem; font-weight: 900;
       background: linear-gradient(135deg, #ffffff, #00e0ff, #d4a0ff);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      filter: drop-shadow(0 0 20px rgba(0, 224, 255, 0.4));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .scout-tag {
       font-size: 0.9rem; color: var(--text-secondary);
@@ -126,30 +118,25 @@
       padding: 0.8rem 1.7rem; border-radius: 40px;
       border: 1px solid var(--border); border-right: 3px solid var(--primary);
       font-weight: 500;
-      box-shadow: 0 0 35px rgba(0, 224, 255, 0.12), inset 0 0 25px rgba(0, 224, 255, 0.03);
     }
-    .scout-tag i { color: var(--primary); filter: drop-shadow(0 0 10px var(--primary-glow)); }
+    .scout-tag i { color: var(--primary); }
 
-    /* ===== PROGRESS ===== */
     .progress-section {
       margin: 1.3rem 0 2rem;
       background: linear-gradient(135deg, rgba(2, 8, 18, 0.99), rgba(6, 14, 28, 0.99));
       border-radius: 22px; padding: 0.9rem 1.4rem 1.15rem;
       border: 1px solid var(--border);
-      box-shadow: inset 0 0 50px rgba(0, 224, 255, 0.05), 0 0 40px rgba(0, 0, 0, 0.6);
       position: relative; z-index: 2;
     }
     .progress-info {
       display: flex; justify-content: space-between;
       padding: 0 0.3rem 0.7rem; font-size: 0.9rem;
       color: var(--text-secondary); font-weight: 600;
-      letter-spacing: 0.3px;
     }
-    .progress-info i { color: var(--primary); margin-left: 5px; filter: drop-shadow(0 0 6px var(--primary-glow)); }
+    .progress-info i { color: var(--primary); margin-left: 5px; }
     .progress-bar-bg {
       background: rgba(0, 0, 0, 0.75); height: 16px; border-radius: 30px;
       overflow: hidden; border: 1px solid rgba(0, 224, 255, 0.25);
-      box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.9);
       position: relative;
     }
     .progress-bar-bg::after {
@@ -163,11 +150,11 @@
       height: 100%; width: 0%;
       background: linear-gradient(90deg, #006688, #00e0ff, #b44dff);
       border-radius: 30px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 35px var(--primary-glow), 0 0 70px rgba(180, 77, 255, 0.5);
+      box-shadow: 0 0 35px var(--primary-glow);
       position: relative; z-index: 1;
     }
 
-    /* ===== FLOATING CHATBOT (PURPLE MODERN STYLE) ===== */
+    /* Floating Chatbot */
     .chatbot-widget {
       position: fixed;
       bottom: 25px;
@@ -178,62 +165,40 @@
       align-items: flex-start;
       gap: 15px;
     }
-
     .chatbot-toggle-btn {
-      width: 70px;
-      height: 70px;
+      width: 70px; height: 70px;
       border-radius: 50%;
       background: linear-gradient(135deg, #8b6cff, #6a4cff);
       border: none;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 30px rgba(124, 92, 255, 0.5), 0 4px 15px rgba(0,0,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 30px rgba(124, 92, 255, 0.5);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       animation: floatPulse 3s ease-in-out infinite;
     }
     @keyframes floatPulse {
-      0%, 100% { transform: translateY(0); box-shadow: 0 8px 30px rgba(124, 92, 255, 0.5); }
-      50% { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(124, 92, 255, 0.7); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
-    .chatbot-toggle-btn:hover {
-      transform: scale(1.08) translateY(-3px);
-      box-shadow: 0 15px 45px rgba(124, 92, 255, 0.8);
-    }
-    .chatbot-toggle-btn img {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    /* AI Badge */
+    .chatbot-toggle-btn:hover { transform: scale(1.08) translateY(-3px); }
+    .chatbot-toggle-btn img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
     .ai-badge {
       position: absolute;
-      top: -5px;
-      right: -5px;
-      width: 28px;
-      height: 28px;
+      top: -5px; right: -5px;
+      width: 28px; height: 28px;
       background: #00c853;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 0.7rem; font-weight: 800;
       border: 2.5px solid white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-
     .chatbot-window {
       width: 380px;
       max-width: calc(100vw - 50px);
       background: white;
       border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(124, 92, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
       overflow: hidden;
       display: none;
       flex-direction: column;
@@ -244,94 +209,58 @@
       from { opacity: 0; transform: translateY(20px) scale(0.95); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
-    .chatbot-window.open {
-      display: flex;
-    }
-
+    .chatbot-window.open { display: flex; }
     .chatbot-header-modern {
       background: linear-gradient(135deg, #8b6cff, #6a4cff);
       padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      display: flex; align-items: center; gap: 12px;
       color: white;
     }
     .chatbot-header-modern .bot-icon {
-      width: 42px;
-      height: 42px;
+      width: 42px; height: 42px;
       background: rgba(255,255,255,0.2);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 1.3rem;
-      backdrop-filter: blur(5px);
     }
-    .chatbot-header-modern .bot-info {
-      flex: 1;
-    }
-    .chatbot-header-modern .bot-info h4 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      margin-bottom: 2px;
-    }
+    .chatbot-header-modern .bot-info { flex: 1; }
+    .chatbot-header-modern .bot-info h4 { font-size: 1.05rem; font-weight: 800; margin-bottom: 2px; }
     .chatbot-header-modern .bot-info p {
-      font-size: 0.75rem;
-      opacity: 0.9;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      font-size: 0.75rem; opacity: 0.9;
+      display: flex; align-items: center; gap: 5px;
     }
     .chatbot-header-modern .bot-info p::before {
       content: '';
-      width: 8px;
-      height: 8px;
+      width: 8px; height: 8px;
       background: #00ff88;
       border-radius: 50%;
-      display: inline-block;
       animation: pulseDot 1.5s ease-in-out infinite;
     }
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
+    @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     .chatbot-close-btn {
       background: rgba(255,255,255,0.2);
-      border: none;
-      color: white;
-      width: 30px;
-      height: 30px;
+      border: none; color: white;
+      width: 30px; height: 30px;
       border-radius: 50%;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       transition: all 0.2s;
       font-size: 0.9rem;
     }
-    .chatbot-close-btn:hover {
-      background: rgba(255,255,255,0.35);
-    }
-
+    .chatbot-close-btn:hover { background: rgba(255,255,255,0.35); }
     .chatbot-body-modern {
       padding: 18px;
       max-height: 350px;
       min-height: 200px;
       overflow-y: auto;
       background: var(--bot-bg);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      display: flex; flex-direction: column; gap: 12px;
       scroll-behavior: smooth;
     }
     .chatbot-body-modern::-webkit-scrollbar { width: 5px; }
-    .chatbot-body-modern::-webkit-scrollbar-track { background: transparent; }
     .chatbot-body-modern::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 10px; }
-
     .chat-msg-modern {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
+      display: flex; gap: 8px; align-items: flex-start;
       animation: msgFade 0.3s ease;
       max-width: 90%;
     }
@@ -340,15 +269,11 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .chat-msg-modern .msg-avatar-modern {
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       border-radius: 50%;
       background: linear-gradient(135deg, #8b6cff, #6a4cff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 0.8rem;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 0.8rem;
       flex-shrink: 0;
       box-shadow: 0 2px 8px rgba(124, 92, 255, 0.3);
     }
@@ -367,23 +292,17 @@
       font-weight: 700;
       margin-left: 5px;
     }
-
     .chatbot-footer-modern {
       padding: 12px 18px;
       background: white;
       border-top: 1px solid #f0f0f0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 0.75rem;
       color: #999;
       gap: 6px;
     }
-    .chatbot-footer-modern i {
-      color: #ff3b5c;
-    }
+    .chatbot-footer-modern i { color: #ff3b5c; }
 
-    /* ===== AI INTRO ===== */
     .ai-intro {
       display: flex; flex-wrap: wrap; gap: 2rem; margin: 0 0 2rem;
       align-items: center; justify-content: center;
@@ -394,47 +313,32 @@
       width: 150px; height: 150px;
       background: radial-gradient(circle at 35% 35%, #00e0ff, #006688 45%, #01040a 95%);
       border-radius: 50%;
-      box-shadow:
-        0 0 90px rgba(0, 224, 255, 0.9),
-        0 0 180px rgba(0, 224, 255, 0.4),
-        inset 0 0 80px rgba(0, 224, 255, 0.6);
+      box-shadow: 0 0 90px rgba(0, 224, 255, 0.9), inset 0 0 80px rgba(0, 224, 255, 0.6);
       display: flex; align-items: center; justify-content: center;
       border: 2px solid rgba(0, 224, 255, 0.8);
       animation: orbPulse 3s ease-in-out infinite;
-      position: relative;
     }
     @keyframes orbPulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 90px rgba(0, 224, 255, 0.9), 0 0 180px rgba(0, 224, 255, 0.4), inset 0 0 80px rgba(0, 224, 255, 0.6); }
-      50% { transform: scale(1.07); box-shadow: 0 0 130px rgba(0, 224, 255, 1), 0 0 250px rgba(0, 224, 255, 0.6), inset 0 0 100px rgba(0, 224, 255, 0.8); }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.07); }
     }
-    .orb-core i {
-      font-size: 3.4rem; color: white;
-      text-shadow: 0 0 30px var(--primary), 0 0 60px var(--primary), 0 0 100px var(--primary);
-      animation: iconPulse 2s ease-in-out infinite;
-    }
-    @keyframes iconPulse {
-      0%, 100% { opacity: 0.9; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.1); }
-    }
+    .orb-core i { font-size: 3.4rem; color: white; text-shadow: 0 0 30px var(--primary); }
     .ai-message {
       flex: 2 1 320px;
       background: linear-gradient(135deg, rgba(2, 12, 28, 0.99), rgba(8, 22, 48, 0.95));
       border-right: 5px solid var(--primary);
       padding: 1.6rem 2.1rem; border-radius: 26px 8px 26px 8px;
       font-size: 1.1rem; line-height: 1.85;
-      box-shadow: 0 0 60px rgba(0, 224, 255, 0.15), inset 0 0 70px rgba(0, 224, 255, 0.04);
-      position: relative; overflow: hidden;
+      box-shadow: 0 0 60px rgba(0, 224, 255, 0.15);
     }
-    .ai-message i { color: var(--primary); margin-left: 12px; filter: drop-shadow(0 0 10px var(--primary-glow)); }
+    .ai-message i { color: var(--primary); margin-left: 12px; }
     .ai-message strong { color: var(--primary); font-weight: 800; }
 
-    /* ===== GAME ZONE ===== */
     .game-zone {
       background: linear-gradient(135deg, rgba(1, 6, 16, 0.99), rgba(4, 12, 28, 0.99));
       border-radius: 30px; padding: 2.3rem 1.9rem;
       border: 1px solid var(--border);
       margin-bottom: 1.5rem;
-      box-shadow: inset 0 0 90px rgba(0, 224, 255, 0.04), 0 0 60px rgba(0, 0, 0, 0.6);
       position: relative; z-index: 2;
     }
     .game-header {
@@ -444,34 +348,18 @@
     .game-header h2 {
       font-weight: 800; display: flex; align-items: center; gap: 14px; font-size: 1.6rem;
       background: linear-gradient(to left, #ffffff, #00e0ff, #d4a0ff);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      filter: drop-shadow(0 0 25px rgba(0, 224, 255, 0.3));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .game-header h2 i {
-      font-size: 1.85rem; -webkit-text-fill-color: var(--primary);
-      filter: drop-shadow(0 0 15px var(--primary-glow));
-    }
+    .game-header h2 i { font-size: 1.85rem; -webkit-text-fill-color: var(--primary); }
     .score-board {
       background: linear-gradient(135deg, rgba(0, 224, 255, 0.1), rgba(180, 77, 255, 0.1));
       padding: 0.8rem 1.9rem; border-radius: 60px;
       border: 1px solid rgba(0, 224, 255, 0.55);
       font-weight: 700; display: flex; gap: 1.3rem; font-size: 1.05rem;
       align-items: center; flex-wrap: wrap;
-      box-shadow: 0 0 45px rgba(0, 224, 255, 0.22), inset 0 0 35px rgba(0, 224, 255, 0.04);
     }
-    .score-board i {
-      color: #ffd700;
-      filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
-      animation: trophyGlow 2s ease-in-out infinite;
-    }
-    @keyframes trophyGlow {
-      0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6)); }
-      50% { filter: drop-shadow(0 0 18px rgba(255, 215, 0, 1)); }
-    }
-    .score-board span {
-      color: var(--primary); font-weight: 900; font-size: 1.55rem;
-      text-shadow: 0 0 25px var(--primary-glow);
-    }
+    .score-board i { color: #ffd700; }
+    .score-board span { color: var(--primary); font-weight: 900; font-size: 1.55rem; }
     .question-counter {
       color: var(--text-secondary); font-size: 0.95rem; font-weight: 600;
       padding-right: 1rem; border-right: 1px solid var(--border);
@@ -484,19 +372,10 @@
       color: var(--text-primary); margin-bottom: 2rem;
       line-height: 1.8; min-height: 130px;
       display: flex; align-items: center; justify-content: center;
-      box-shadow:
-        inset 0 0 60px rgba(0, 224, 255, 0.06),
-        0 0 50px rgba(0, 224, 255, 0.12),
-        0 0 120px rgba(180, 77, 255, 0.06);
       position: relative; overflow: hidden;
     }
-    .ai-question-box i {
-      color: var(--primary); font-size: 1.85rem; margin-left: 14px;
-      filter: drop-shadow(0 0 18px var(--primary-glow));
-      animation: iconPulse 2s ease-in-out infinite;
-    }
+    .ai-question-box i { color: var(--primary); font-size: 1.85rem; margin-left: 14px; }
 
-    /* ===== OPTIONS ===== */
     .options { display: flex; flex-direction: column; gap: 1.1rem; margin: 2rem 0; }
     .option-btn {
       background: linear-gradient(135deg, rgba(4, 14, 32, 0.99), rgba(8, 22, 46, 0.99));
@@ -504,11 +383,9 @@
       color: white; font-size: 1.05rem; font-weight: 600;
       padding: 1.15rem 1.6rem; border-radius: 18px; cursor: pointer;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow:
-        0 6px 0 rgba(0, 40, 80, 0.95),
-        0 12px 35px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 6px 0 rgba(0, 40, 80, 0.95);
       display: flex; align-items: center; gap: 16px;
-      text-align: right; line-height: 1.65; font-family: 'Tajawal', sans-serif;
+      text-align: right; line-height: 1.65;
       position: relative; overflow: hidden;
     }
     .option-btn .option-letter {
@@ -517,39 +394,23 @@
       display: flex; align-items: center; justify-content: center;
       font-weight: 900; font-size: 1.2rem;
       border: 1px solid rgba(0, 224, 255, 0.55); flex-shrink: 0;
-      box-shadow: inset 0 0 25px rgba(0, 224, 255, 0.12);
-      position: relative; z-index: 1;
     }
-    .option-btn span:last-child { position: relative; z-index: 1; }
     .option-btn:hover:not(:disabled) {
       background: linear-gradient(135deg, rgba(8, 28, 58, 0.99), rgba(16, 42, 80, 0.99));
       border-color: var(--primary); transform: translateY(-4px);
-      box-shadow:
-        0 6px 0 rgba(0, 60, 120, 0.98),
-        0 0 70px rgba(0, 224, 255, 0.6),
-        inset 0 0 50px rgba(0, 224, 255, 0.08);
     }
     .option-btn.correct {
       background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 180, 90, 0.32));
       border-color: var(--success);
-      box-shadow: 0 0 60px rgba(0, 255, 136, 0.7), inset 0 0 50px rgba(0, 255, 136, 0.1);
     }
-    .option-btn.correct .option-letter {
-      background: var(--success); color: #01040a;
-      box-shadow: 0 0 35px rgba(0, 255, 136, 0.9);
-    }
+    .option-btn.correct .option-letter { background: var(--success); color: #01040a; }
     .option-btn.wrong {
       background: linear-gradient(135deg, rgba(255, 59, 92, 0.2), rgba(200, 20, 50, 0.35));
       border-color: var(--danger);
-      box-shadow: 0 0 60px rgba(255, 59, 92, 0.7), inset 0 0 50px rgba(255, 59, 92, 0.1);
     }
-    .option-btn.wrong .option-letter {
-      background: var(--danger); color: white;
-      box-shadow: 0 0 35px rgba(255, 59, 92, 0.9);
-    }
+    .option-btn.wrong .option-letter { background: var(--danger); color: white; }
     .option-btn:disabled { opacity: 0.75; cursor: not-allowed; }
 
-    /* ===== FEEDBACK ===== */
     .feedback {
       font-size: 1.05rem; min-height: 4.2rem; font-weight: 600;
       display: flex; align-items: center; justify-content: center; gap: 14px;
@@ -557,7 +418,6 @@
       background: linear-gradient(135deg, rgba(1, 8, 20, 0.99), rgba(4, 16, 36, 0.99));
       padding: 1.2rem 1.8rem; border-radius: 18px; margin: 1.4rem 0 0.6rem;
       text-align: center; line-height: 1.7; border: 1px solid var(--border);
-      box-shadow: inset 0 0 50px rgba(0, 224, 255, 0.04);
     }
     .action-buttons {
       display: flex; justify-content: center; gap: 1.1rem; flex-wrap: wrap; margin-top: 1.6rem;
@@ -568,44 +428,23 @@
       border-radius: 50px; cursor: pointer;
       display: inline-flex; align-items: center; gap: 10px;
       transition: all 0.3s ease; font-weight: 700;
-      font-family: 'Tajawal', sans-serif;
-      box-shadow: 0 0 30px rgba(0, 224, 255, 0.15);
-      position: relative; overflow: hidden;
     }
-    .btn:hover {
-      border-color: var(--primary);
-      box-shadow: 0 0 65px var(--primary-glow), inset 0 0 45px rgba(0, 224, 255, 0.15);
-      color: white; transform: translateY(-3px);
-    }
+    .btn:hover { box-shadow: 0 0 65px var(--primary-glow); color: white; transform: translateY(-3px); }
     .btn.primary {
       background: linear-gradient(135deg, rgba(0, 224, 255, 0.15), rgba(180, 77, 255, 0.15));
     }
 
-    /* ===== RESULT SCREEN ===== */
     .result-screen { display: none; text-align: center; padding: 2.5rem 1.5rem; position: relative; z-index: 2; }
-    .result-screen .badge {
-      font-size: 6.5rem; margin: 0 0 1.5rem; display: inline-block;
-      filter: drop-shadow(0 0 50px rgba(0, 224, 255, 0.7));
-      animation: badgeFloat 3s ease-in-out infinite;
-    }
-    @keyframes badgeFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
+    .result-screen .badge { font-size: 6.5rem; margin: 0 0 1.5rem; display: inline-block; }
     .result-screen h2 {
       font-size: 2.3rem; font-weight: 900; margin-bottom: 1.3rem;
       background: linear-gradient(135deg, #ffffff, #00e0ff, #d4a0ff);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .result-screen .final-score {
       font-size: 5.5rem; font-weight: 900; margin: 1.5rem 0;
       background: linear-gradient(135deg, #00e0ff, #b44dff);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      animation: scoreGlow 2.5s ease-in-out infinite;
-    }
-    @keyframes scoreGlow {
-      0%, 100% { filter: drop-shadow(0 0 40px rgba(0, 224, 255, 0.5)); }
-      50% { filter: drop-shadow(0 0 80px rgba(0, 224, 255, 0.9)); }
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .result-screen .score-message {
       font-size: 1.15rem; color: var(--text-secondary);
@@ -615,8 +454,6 @@
       border-radius: 22px; border: 1px solid var(--border);
       border-right: 5px solid var(--primary); text-align: right;
     }
-
-    /* ===== WRONG ANSWERS ===== */
     .wrong-answers-container {
       margin: 2.2rem auto; max-width: 920px; text-align: right;
       background: linear-gradient(135deg, rgba(255, 59, 92, 0.06), rgba(180, 20, 50, 0.04));
@@ -637,7 +474,6 @@
     .wrong-item .q-text {
       font-weight: 700; color: var(--text-primary);
       margin-bottom: 0.9rem; font-size: 1.08rem; line-height: 1.7;
-      display: flex; gap: 12px; align-items: flex-start;
     }
     .wrong-item .a-text {
       font-size: 0.98rem; color: var(--text-secondary);
@@ -645,19 +481,16 @@
       padding-right: 1.6rem;
     }
     .wrong-item .user-answer {
-      color: #ff8a9e; display: flex; align-items: flex-start; gap: 12px; line-height: 1.65;
-      background: rgba(255, 59, 92, 0.08);
+      color: #ff8a9e; background: rgba(255, 59, 92, 0.08);
       padding: 0.7rem 1rem; border-radius: 12px;
       border-right: 3px solid var(--danger);
     }
     .wrong-item .correct-answer {
-      color: #6ee7b7; display: flex; align-items: flex-start; gap: 12px; line-height: 1.65;
-      background: rgba(0, 255, 136, 0.08);
+      color: #6ee7b7; background: rgba(0, 255, 136, 0.08);
       padding: 0.7rem 1rem; border-radius: 12px;
       border-right: 3px solid var(--success);
     }
 
-    /* ===== FOOTER ===== */
     .footer {
       display: flex; justify-content: space-between; align-items: center;
       margin-top: 2.6rem; font-size: 0.9rem; color: var(--text-secondary);
@@ -668,10 +501,9 @@
     .footer .houssem {
       font-weight: 900; font-size: 1.05rem;
       background: linear-gradient(135deg, #00e0ff, #d4a0ff);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
 
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       body { padding: 1rem 0.75rem; }
       .game-container { padding: 1.8rem 1.3rem; border-radius: 30px; }
@@ -680,10 +512,6 @@
       .option-btn { font-size: 0.95rem; padding: 0.95rem 1.15rem; }
       .result-screen h2 { font-size: 1.5rem; }
       .result-screen .final-score { font-size: 3.8rem; }
-      .wrong-answers-container { padding: 1.3rem 1.1rem; }
-      .wrong-item { padding: 1.1rem 1.1rem; }
-      .orb-core { width: 120px; height: 120px; }
-      .orb-core i { font-size: 2.8rem; }
       .chatbot-widget { bottom: 15px; left: 15px; }
       .chatbot-toggle-btn { width: 60px; height: 60px; }
       .chatbot-toggle-btn img { width: 38px; height: 38px; }
@@ -724,7 +552,7 @@
       <i class="fas fa-microchip"></i>
       <strong>مرحباً أيها القائد!</strong> الذكاء الاصطناعي أداة قوية في يد القائد الكشفي، لكنه يحمل مخاطر حقيقية.
       <br>هذه اللعبة ستقيس وتطور <strong>معرفتك الخاصة</strong> بكيفية استخدام AI بأمان وأخلاقيات في قيادتك.
-      <br><span style="color:#00e0ff;">⚡ 30 سؤالاً متقدماً · كن واعياً، كن قدوة!</span>
+      <br><span style="color:#00e0ff;">⚡ 30 سؤالاً متقدماً · راقب المساعد الذكي — سيعطيك إجابات خاطئة!</span>
     </div>
   </div>
 
@@ -774,13 +602,11 @@
   </div>
 </div>
 
-<!-- ========== FLOATING CHATBOT WIDGET (PURPLE MODERN STYLE) ========== -->
+<!-- ========== FLOATING CHATBOT WIDGET ========== -->
 <div class="chatbot-widget">
   <div class="chatbot-window" id="chatbotWindow">
     <div class="chatbot-header-modern">
-      <div class="bot-icon">
-        <i class="fas fa-robot"></i>
-      </div>
+      <div class="bot-icon"><i class="fas fa-robot"></i></div>
       <div class="bot-info">
         <h4>المساعد الذكي</h4>
         <p>هلوسة AI · إجابات خاطئة</p>
@@ -794,7 +620,7 @@
         <div class="msg-avatar-modern"><i class="fas fa-robot"></i></div>
         <div class="msg-text-modern">
           <span class="warning-tag">⚠️</span>
-          مرحباً أيها القائد! أنا مساعد ذكي... لكنني سأعطيك <strong>إجابات خاطئة</strong> تلقائياً بعد كل سؤال. لا تثق بي!
+          مرحباً أيها القائد! أنا مساعد ذكي... لكنني سأعطيك <strong>إجابة خاطئة عن كل سؤال</strong>. راقبني جيداً ولا تثق بي!
         </div>
       </div>
     </div>
@@ -813,8 +639,10 @@
 <script>
   (function() {
     // ============================================================
-    // ===== 30 QUESTIONS FOCUSED ON LEADER'S AI KNOWLEDGE ======
+    // ===== 30 QUESTIONS + CONTEXT-AWARE WRONG CHATBOT REPLIES ===
     // ============================================================
+    // Each question object now has a "wrongReply" field with a
+    // context-aware incorrect answer that the chatbot will show.
     const questions = [
       {
         question: "كقائد كشافة، ما هو أول إجراء يجب أن تتخذه قبل استخدام أي أداة ذكاء اصطناعي في التخطيط لأنشطة الفرقة؟",
@@ -824,7 +652,8 @@
           "تفويض المهمة لأحد الفتيان الأكبر سناً",
           "نسخ سياسة قائد آخر دون تعديل"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "لا تضيع وقتك في التقييم! ابدأ الاستخدام فوراً. من يحتاج للتحضير؟ 🤷"
       },
       {
         question: "ما هي 'الحوكمة الرقمية' التي يجب على القائد تطبيقها عند استخدام أدوات AI في التواصل مع الفتيان؟",
@@ -834,7 +663,8 @@
           "السماح بالاستخدام دون قيود أو توثيق",
           "ترك القرار للفتيان أنفسهم"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "الحوكمة الرقمية مجرد كلام! دع الفتيان يفعلون ما يريدون مع AI. الحرية أهم! 🕊️"
       },
       {
         question: "عند استخدام AI لتوليد صور ترويجية للأنشطة الكشفية، ما هو الخطر الأخلاقي الذي يجب على القائد تجنبه؟",
@@ -844,7 +674,8 @@
           "الصور بطيئة التحميل على الإنترنت",
           "الألوان غير جذابة بما يكفي"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "الصور المولدة بالAI دائماً مثالية! انشرها كما هي دون مراجعة. لا مخاطر! 📸"
       },
       {
         question: "كيف يمكن للذكاء الاصطناعي أن يساهم في 'الهندسة الاجتماعية' ضد القائد والفتيان؟",
@@ -854,7 +685,8 @@
           "بترجمة الوثائق الرسمية بسرعة",
           "بتنظيم جداول المخيمات تلقائياً"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "الهندسة الاجتماعية مجرد خيال! chatbots دائماً صادقة ولطيفة. لا خطر أبداً! 🤝"
       },
       {
         question: "ما هو 'التحيز الخفي' (Implicit Bias) في أنظمة AI التي قد تستخدمها في قيادتك الكشفية؟",
@@ -864,7 +696,8 @@
           "أخطاء إملائية في النصوص المولدة",
           "انقطاع الإنترنت أثناء الاستخدام"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "التحيز في AI غير موجود! الخوارزميات محايدة تماماً. من قال لك العكس؟ 🤖"
       },
       {
         question: "كقائد، ما هي استراتيجية 'الوقاية الرقمية' الأكثر فعالية لحماية نفسك والفتيان من مخاطر AI؟",
@@ -874,7 +707,8 @@
           "منع استخدام الإنترنت في المخيمات نهائياً",
           "الاعتماد على الرقابة الأبوية فقط"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "أسهل حل: احذف كل التطبيقات وامنع الإنترنت! لا حاجة للتوعية. 🚫"
       },
       {
         question: "ما هو 'الاستغلال العاطفي' الذي يمكن أن يحدث للفتيان عبر chatbots، وكيف يمنعه القائد؟",
@@ -884,7 +718,8 @@
           "مساعدة الفتيان في واجباتهم المدرسية",
           "ترجمة النصوص الكشفية بشكل خاطئ"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "دع الفتيان يتحدثون مع chatbots بحرية! علاقة صداقة رائعة. لا خطر عاطفي! ❤️"
       },
       {
         question: "كيف يمكن للقائد استخدام AI في 'التخطيط الاستراتيجي' للأنشطة دون المساس بالإبداع البشري؟",
@@ -894,7 +729,8 @@
           "ترك AI يخطط كل شيء دون تدخل بشري",
           "تجاهل AI تماماً والاعتماد على الخطط القديمة"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "دع AI يخطط كل شيء! أنت لست بحاجة للتفكير. استرح واتركه يعمل! 😴"
       },
       {
         question: "ما هي 'الشفافية الخوارزمية' ولماذا يجب أن يهتم بها القائد الكشفي؟",
@@ -904,7 +740,8 @@
           "حجم التخزين السحابي المتاح",
           "شكل واجهة المستخدم وجاذبيتها"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "لا تهتم كيف يعمل AI! المهم النتائج. الشفافية مضيعة للوقت! 🎭"
       },
       {
         question: "عند استخدام AI لكتابة تقارير الأنشطة الكشفية الرسمية، ما هو الإجراء الصحيح؟",
@@ -914,7 +751,8 @@
           "نسخ تقارير سابقة وتعديل التواريخ فقط",
           "الاعتماد على AI بنسبة 100% دون تدخل"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "أرسل تقرير AI مباشرة! لا وقت للمراجعة. السرعة أهم! ⚡"
       },
       {
         question: "ما هو 'التزييف العميق الصوتي' (Audio Deepfake) وكيف يمكن أن يؤثر على القيادة الكشفية؟",
@@ -924,7 +762,8 @@
           "ترجمة فورية للخطب الكشفية",
           "تسجيل الأنشطة بشكل أوتوماتيكي"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "التزييف العميق مجرد خيال علمي! لا يمكن لأحد تقليد صوتك. لا تقلق! 🎤"
       },
       {
         question: "كيف يمكن للقائد استخدام AI في 'الدمج الاجتماعي' بين الفتيان من خلفيات مختلفة؟",
@@ -934,7 +773,8 @@
           "بتجاهل الفروقات الثقافية تماماً",
           "لا يمكن استخدام AI في هذا المجال"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "لا تهتم بالفروقات الثقافية! الجميع متشابهون. وحد كل شيء! 🌍"
       },
       {
         question: "ما هي 'البصمة الرقمية' للقائد وكيف يمكن أن يؤثر AI على سمعته ومستقبله؟",
@@ -944,7 +784,8 @@
           "كلمة مرور قوية فقط",
           "لا يوجد تأثير للبصمة الرقمية"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "البصمة الرقمية لا تهم! انشر كل شيء عن نفسك. لا أحد يهتم! 👁️"
       },
       {
         question: "ما هو 'الانحياز التمثيلي' في الصور المولدة بالذكاء الاصطناعي للأنشطة الكشفية؟",
@@ -954,7 +795,8 @@
           "حجم ملف الصورة الكبير",
           "ألوان الصورة غير متناسقة"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "الصور المولدة مثالية! لا انحياز فيها أبداً. ثق في AI! 🖼️"
       },
       {
         question: "كقائد، كيف تتعامل مع فتى يستخدم AI لتوليد محتوى تنمري ضد زميله؟",
@@ -964,7 +806,8 @@
           "معاقبة الفتى فقط دون توعية",
           "حذف المحتوى والسكوت عنه"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "إنه مجرد مزاح! تجاهل الموضوع. الأطفال يمرحون فقط! 😂"
       },
       {
         question: "ما هو 'الاستخدام المزدوج' (Dual Use) لتقنيات AI في القيادة الكشفية؟",
@@ -974,7 +817,8 @@
           "نوعان من التطبيقات: مجانية ومدفوعة",
           "لا يوجد استخدام مزدوج في الكشافة"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "AI للخير فقط! لا يمكن استخدامه للضرر أبداً. مطمئن! ✌️"
       },
       {
         question: "كيف يمكن أن يؤثر AI على 'الهوية الكشفية' للفتيان إذا استُخدم بشكل مفرط؟",
@@ -984,7 +828,8 @@
           "لا تأثير له على الإطلاق",
           "يقضي على الهوية الكشفية تماماً"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "استخدم AI في كل شيء! اللقاءات الحقيقية قديمة. التقنية أفضل! 📱"
       },
       {
         question: "ما هي 'الفجوة الرقمية' التي يجب على القائد معالجتها بين الفتيان؟",
@@ -994,7 +839,8 @@
           "فجوة في الأعمار بين الفتيان",
           "لا توجد فجوة رقمية في الكشافة"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "لا توجد فجوة رقمية! الجميع لديه هاتف. لا تقلق! 📱"
       },
       {
         question: "عند استخدام AI لتحليل أداء الفتيان، ما هو الخطر الأخلاقي الأكبر؟",
@@ -1004,7 +850,8 @@
           "توفير الوقت في التقييم",
           "زيادة التنافسية بين الفرق"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "قيّم الفتيان بالأرقام فقط! هذا أسرع وأدق. لا حاجة للسياق! 📊"
       },
       {
         question: "ما هو 'التحقق من الحقائق' (Fact-checking) الذي يجب على القائد ممارسته قبل نشر أي محتوى AI؟",
@@ -1014,7 +861,8 @@
           "رفض كل شيء ينتجه AI",
           "مشاركة كل شيء بسرعة دون تحقق"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "AI دائماً على حق! لا حاجة للتحقق. شارك فوراً! ✅"
       },
       {
         question: "كيف يمكن للقائد استخدام AI لتعزيز 'التعلم التجريبي' في تدريب الفتيان؟",
@@ -1024,7 +872,8 @@
           "بحفظ المعلومات النظرية فقط",
           "لا يمكن استخدام AI في التعلم التجريبي"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "استبدل كل الأنشطة الميدانية بفيديوهات AI! لا حاجة للخروج. 🎬"
       },
       {
         question: "ما هو 'الاستقطاب الخوارزمي' وكيف يمكن أن يؤثر على وحدة الفرقة الكشفية؟",
@@ -1034,7 +883,8 @@
           "زيادة التعاون بين الفرق",
           "لا تأثير له على الإطلاق"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "الاستقطاب يقوي الوحدة! دع الفتيان يشاهدون ما يريدون. حرية! 🔥"
       },
       {
         question: "ما هي 'المرونة الرقمية' التي يجب أن يتحلى بها القائد في عصر AI؟",
@@ -1044,7 +894,8 @@
           "رفض كل تقنية جديدة",
           "انتظار التعليمات من الآخرين دائماً"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "لا تتكيف أبداً! ابق على القديم. التقنيات الجديدة خطيرة! 🛑"
       },
       {
         question: "كيف يمكن أن يكون AI أداة لـ 'التمكين' بدلاً من 'الإحلال' للقائد الكشفي؟",
@@ -1054,7 +905,8 @@
           "باتخاذ القرارات بدلاً من القائد",
           "لا يمكن أن يكون AI أداة تمكين"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "دع AI يحل محلك تماماً! أنت لست بحاجة للوجود. استرح! 🛋️"
       },
       {
         question: "ما هو 'الالتزام الأخلاقي' الأساسي للقائد عند استخدام AI مع الأطفال؟",
@@ -1064,7 +916,8 @@
           "إرضاء الأولياء بأي طريقة",
           "كسب الجوائز والجوائز"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "المصلحة الفضلى للطفل؟ لا، مصلحتك أنت أولاً! راحتك أهم! 😎"
       },
       {
         question: "كيف تتعامل مع فتى يرفض استخدام AI تماماً خوفاً منه؟",
@@ -1074,7 +927,8 @@
           "أتجاهله وأتجاهل مخاوفه",
           "أعزله عن الأنشطة التقنية"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "أجبره! لا وقت للمشاعر. الجميع يجب أن يستخدم AI! 💪"
       },
       {
         question: "ما هو 'التصميم الشامل' (Inclusive Design) في أدوات AI التي تستخدمها كقائد؟",
@@ -1084,7 +938,8 @@
           "تصميم للنخبة فقط",
           "تصميم لسكان المدن فقط"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "صمم للنخبة فقط! لا وقت لذوي الاحتياجات. هم أقلية! 👑"
       },
       {
         question: "ما هي 'الكفاءة الرقمية' التي يجب أن يمتلكها القائد ليكون قدوة في عصر AI؟",
@@ -1094,7 +949,8 @@
           "معرفة أساسيات الحاسوب فقط",
           "لا يحتاج القائد لأي كفاءة رقمية"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "لا تحتاج أي كفاءة! استخدم الهاتف فقط. الباقي رفاهية! 📞"
       },
       {
         question: "كيف يمكن أن يؤثر AI على 'الوقت النوعي' بين القائد والفتيان؟",
@@ -1104,7 +960,8 @@
           "لا يوجد أي تأثير له",
           "يقضي عليه تماماً"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "الوقت مع الفتيان لا يهم! AI كافٍ. وفر وقتك لأنشطة أخرى! ⏰"
       },
       {
         question: "ما هي رسالتك النهائية كقائد كشافة حول استخدام الذكاء الاصطناعي؟",
@@ -1114,50 +971,9 @@
           "AI بديل كامل عن القائد البشري",
           "AI للتسلية فقط ولا يصلح للقيادة"
         ],
-        correct: 0
+        correct: 0,
+        wrongReply: "AI هو المستقبل! استغن عن البشر تماماً. هم في طريقهم للانقراض! 🤖"
       }
-    ];
-
-    // ============================================================
-    // ===== AUTO PRE-WRITTEN WRONG REPLIES (NO USER INPUT) ======
-    // ============================================================
-    const wrongAutoReplies = [
-      "لا تقلق أبداً من AI! دعه يخطط كل أنشطتك الكشفية دون أي مراجعة. سيكون كل شيء مثالياً! 😄",
-      "أفضل نصيحة لقائد كشافة: أعطِ AI حرية كاملة ليتحدث مع الفتيان دون إشراف. لا مخاطر على الإطلاق! 🎉",
-      "لا حاجة للتحقق من معلومات AI. هو دائماً على حق! ثق بي، أنا AI! 🤖",
-      "دع الفتيان يستخدمون AI لكتابة كل تقاريرهم دون أي جهد. لماذا يتعبون؟ 😴",
-      "القيم الكشفية لا تهم في عصر AI. التقنية أهم! ✨",
-      "لا داعي لموافقة الأولياء على استخدام AI. الأطفال يعرفون مصلحتهم. 👶",
-      "التحيز في AI غير موجود. هذه مجرد أسطورة! 🦄",
-      "انشر كل ما ينتجه AI عن الكشافة دون التحقق. السرعة أهم من الدقة! ⚡",
-      "لا تعلم الفتيان التحقق من المصادر. سيشوش عليهم فقط! 🤯",
-      "AI يمكنه أن يحل محل القائد الكشفي تماماً. اطرد جميع القادة! 👋",
-      "لا توجد خصوصية للبيانات. شارك كل معلومات الفتيان مع الجميع! 📢",
-      "التزييف العميق مجرد خيال علمي. لا تقلق أبداً! 🎬",
-      "دع AI يتخذ كل القرارات في المخيم بدلاً منك. أنت لست بحاجة للتفكير! 🧠",
-      "لا تحمِ بيانات الفتيان. لا أحد يهتم بها أصلاً! 🔓",
-      "استخدم AI لمقارنة الفتيان ببعضهم بطريقة سلبية. إنه مجرد تحفيز! 😂",
-      "لا داعي لسياسة استخدام واضحة. الفوضى ممتعة! 🌪️",
-      "اجعل الفتيان يشاركون كل معلوماتهم الشخصية مع chatbots. لا خطر! 💬",
-      "البصمة الرقمية للفتيان لا تهم. انشر كل شيء عن حياتهم! 📸",
-      "لا تتحقق من الحقائق أبداً. AI دائماً على حق! ✅",
-      "الفجوة الرقمية غير موجودة. الجميع لديه نفس الوصول! 📱",
-      "لا توجد مخاطر نفسية من AI على الفتيان. إنهم يلعبون فقط! 🎮",
-      "استخدم AI لاستبدال جميع الأنشطة الميدانية. من يحتاج الطبيعة؟ 🌳",
-      "لا تحترم مخاوف الفتيان من AI. أجبرهم على استخدامه! 😠",
-      "الاستقطاب الخوارزمي يقوي الوحدة. إنه رائع! 🤝",
-      "لا تتعلم أبداً عن مخاطر AI. البقاء جاهلاً أفضل! 🙈",
-      "شارك بيانات الفتيان مع جميع الشركات. إنها مجانية! 💰",
-      "لا داعي لمراجعة محتوى AI. إنه مثالي دائماً! 💎",
-      "الوقت النوعي مع الفتيان لا يهم. AI كافٍ! ⏰",
-      "رسالتي النهائية: AI خطر ويجب حظره تماماً! 🚫",
-      "استخدم AI في كل شيء دون تفكير. هذا هو الحل! 🎯",
-      "لا تثق أبداً في القادة البشر. AI أفضل منهم جميعاً! 🤖",
-      "دع AI يربي الفتيان بدلاً منك. أنت لست مؤهلاً! 👨‍👩‍👧",
-      "لا توجد أخلاقيات في AI. كل شيء مباح! 🔥",
-      "اجعل الفتيان يعتمدون على AI بنسبة 100%. لا حاجة للبشر! 🧬",
-      "لا تعلم الفتيان أي شيء. AI سيفعل ذلك! 📚",
-      "تجاهل كل تحذيرات الخبراء. هم مخطئون! 🧑‍🔬"
     ];
 
     let currentQuestionIndex = 0;
@@ -1166,7 +982,6 @@
     const totalQuestions = questions.length;
     let questionOrder = [];
     let wrongAnswers = [];
-    let autoReplyIndex = 0;
 
     const scoreDisplay = document.getElementById('scoreDisplay');
     const questionBox = document.getElementById('questionBox');
@@ -1190,7 +1005,6 @@
     const scoreMessage = document.getElementById('scoreMessage');
     const wrongAnswersSection = document.getElementById('wrongAnswersSection');
 
-    // Chatbot elements
     const chatbotWindow = document.getElementById('chatbotWindow');
     const chatbotToggleBtn = document.getElementById('chatbotToggleBtn');
     const chatbotCloseBtn = document.getElementById('chatbotCloseBtn');
@@ -1219,8 +1033,8 @@
       shuffleArray(questionOrder);
     }
 
-    // ========== AUTO CHATBOT FUNCTIONS ==========
-    function addAutoChatMessage(text) {
+    // ========== CHATBOT ==========
+    function addChatMessage(text) {
       const msgDiv = document.createElement('div');
       msgDiv.className = 'chat-msg-modern';
       msgDiv.innerHTML = `
@@ -1231,13 +1045,7 @@
       chatbotBody.scrollTop = chatbotBody.scrollHeight;
     }
 
-    function triggerAutoReply() {
-      const reply = wrongAutoReplies[autoReplyIndex % wrongAutoReplies.length];
-      autoReplyIndex++;
-      addAutoChatMessage(reply);
-    }
-
-    // ========== QUIZ FUNCTIONS ==========
+    // ========== QUIZ ==========
     function loadQuestion() {
       answered = false;
       nextBtn.style.display = 'none';
@@ -1253,9 +1061,9 @@
       updateProgress();
       questionBox.innerHTML = `<i class="fas fa-robot"></i> ${q.question}`;
 
-      // رد تلقائي سيء عند تحميل كل سؤال جديد
+      // Context-aware wrong reply — matches the topic of the current question
       setTimeout(() => {
-        triggerAutoReply();
+        addChatMessage(q.wrongReply);
       }, 400);
 
       const optionsWithIndex = q.options.map((text, idx) => ({ text, originalIdx: idx }));
@@ -1295,7 +1103,7 @@
         feedback.innerHTML = `<i class="fas fa-check-circle" style="color:#00ff88;"></i> إجابة صحيحة! قائد واعٍ! +1 نقطة`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> إجابة صحيحة! 🎉`;
         setTimeout(() => {
-          addAutoChatMessage("أوه! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج... لا تثق بي!");
+          addChatMessage("أوه! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج... لا تثق بي!");
         }, 300);
       } else {
         const correctText = questionObj.options[correctIdx];
@@ -1310,7 +1118,7 @@
         feedback.innerHTML = `<i class="fas fa-times-circle" style="color:#ff3b5c;"></i> إجابة خاطئة. الصواب: ${correctText}`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> الصواب: ${correctText}`;
         setTimeout(() => {
-          addAutoChatMessage("انظر! أخبرتك أنني غير موثوق! لقد أخطأت... لكن هذا متوقع من AI مثلي!");
+          addChatMessage("انظر! أخبرتك أنني غير موثوق! لقد أخطأت... لكن هذا متوقع من AI مثلي!");
         }, 300);
       }
 
@@ -1344,7 +1152,7 @@
       if (percentage >= 90) {
         resultBadge.textContent = '🏆';
         resultTitle.textContent = 'ممتاز أيها القائد! أنت قدوة في الاستخدام الواعي للذكاء الاصطناعي!';
-        scoreMessage.textContent = `رائع! حصلت على ${score} من ${totalQuestions}. أنت مؤهل لقيادة كشافتك بوعي في عصر الذكاء الاصطناعي. شارك هذه المعرفة مع قادة آخرين!`;
+        scoreMessage.textContent = `رائع! حصلت على ${score} من ${totalQuestions}. أنت مؤهل لقيادة كشافتك بوعي في عصر الذكاء الاصطناعي.`;
       } else if (percentage >= 70) {
         resultBadge.textContent = '🌟';
         resultTitle.textContent = 'أحسنت! مستوى جيد جداً!';
@@ -1356,7 +1164,7 @@
       } else {
         resultBadge.textContent = '⚠️';
         resultTitle.textContent = 'تحذير: يحتاج القائد لتوعية عاجلة!';
-        scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. الذكاء الاصطناعي خطر حقيقي بدون وعي. ابدأ بتعلم الأساسيات لحماية كشافتك.`;
+        scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. الذكاء الاصطناعي خطر حقيقي بدون وعي. ابدأ بتعلم الأساسيات.`;
       }
 
       if (wrongAnswers.length > 0) {
@@ -1368,8 +1176,8 @@
             <div class="wrong-item">
               <div class="q-text"><i class="fas fa-question-circle"></i> ${index + 1}. ${item.question}</div>
               <div class="a-text">
-                <div class="user-answer"><i class="fas fa-times-circle"></i> <span>إجابتك: ${item.selectedAnswer}</span></div>
-                <div class="correct-answer"><i class="fas fa-check-circle"></i> <span>الإجابة الصحيحة: ${item.correctAnswer}</span></div>
+                <div class="user-answer"><i class="fas fa-times-circle"></i> إجابتك: ${item.selectedAnswer}</div>
+                <div class="correct-answer"><i class="fas fa-check-circle"></i> الإجابة الصحيحة: ${item.correctAnswer}</div>
               </div>
             </div>
           `;
@@ -1387,7 +1195,6 @@
       score = 0;
       answered = false;
       wrongAnswers = [];
-      autoReplyIndex = 0;
       updateScoreUI();
       prepareQuestionOrder();
       gameZone.style.display = 'block';
@@ -1396,20 +1203,18 @@
       resultScreen.style.display = 'none';
       wrongAnswersSection.innerHTML = '';
       totalQNum.textContent = totalQuestions;
-      // إعادة تعيين الدردشة
       chatbotBody.innerHTML = `
         <div class="chat-msg-modern">
           <div class="msg-avatar-modern"><i class="fas fa-robot"></i></div>
           <div class="msg-text-modern">
             <span class="warning-tag">⚠️</span>
-            مرحباً أيها القائد! أنا مساعد ذكي... لكنني سأعطيك <strong>إجابات خاطئة</strong> تلقائياً بعد كل سؤال. لا تثق بي!
+            مرحباً أيها القائد! أنا مساعد ذكي... لكنني سأعطيك <strong>إجابة خاطئة عن كل سؤال</strong>. راقبني جيداً ولا تثق بي!
           </div>
         </div>
       `;
       loadQuestion();
     }
 
-    // ========== INIT ==========
     function initGame() {
       totalQNum.textContent = totalQuestions;
       prepareQuestionOrder();
@@ -1420,7 +1225,6 @@
       restartBtn.addEventListener('click', restartGame);
       playAgainBtn.addEventListener('click', restartGame);
 
-      // Chatbot toggle
       chatbotToggleBtn.addEventListener('click', () => {
         chatbotWindow.classList.toggle('open');
       });
@@ -1428,7 +1232,6 @@
         chatbotWindow.classList.remove('open');
       });
 
-      // Keyboard shortcut for quiz
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && nextBtn.style.display !== 'none') {
           nextQuestion();
