@@ -686,18 +686,18 @@
     </div>
   </div>
 
-  <!-- AI ASSISTANT PANEL - UNRELIABLE -->
+  <!-- AI ASSISTANT PANEL - UNRELIABLE / BAD ADVICE -->
   <div class="ai-assistant-panel" id="aiAssistantPanel">
     <div class="ai-assistant-avatar">
       <i class="fas fa-robot"></i>
     </div>
     <div class="ai-assistant-content">
       <div class="ai-assistant-header">
-        <h3>المساعد الذكي</h3>
-        <span class="badge-ai">⚠️ غير موثوق · AI هلوسة</span>
+        <h3>المساعد الذكي (غير موثوق)</h3>
+        <span class="badge-ai">⚠️ هلوسة AI · لا تثق بي</span>
       </div>
       <div class="ai-assistant-text" id="aiAssistantText">
-        <i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني قد أخطئ كثيراً. لا تثق بي أبداً!
+        <i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني سأعطيك إجابات خاطئة عمداً. لا تصدقني أبداً!
       </div>
     </div>
   </div>
@@ -1067,24 +1067,28 @@
       }
     ];
 
-    // AI Assistant BAD/WRONG messages generator
-    const aiAssistantMessages = [
-      "هممم... أعتقد أن الإجابة الصحيحة هي 'لا يوجد خطر'. لكن لا تثق بي، أنا مجرد خوارزمية!",
-      "بناءً على تحليلي للبيانات، الإجابة هي... انتظر، لست متأكداً. ربما الخيار الأول؟ أو الرابع؟",
-      "أنا آسف، لكن معلوماتي قد تكون قديمة. أعتقد أن الإجابة هي 'تجاهل المشكلة'. لكن هذا قد يكون خطأً!",
-      "معالجة... معالجة... خطأ في المصفوفة! أعتقد أن الإجابة هي 'منع التكنولوجيا تماماً'.",
-      "تحذير: أنا نموذج ذكاء اصطناعي وليس خبيراً بشرياً. إجابتي قد تكون خاطئة بنسبة 60%!",
-      "أقترح عليك اختيار الإجابة التي تبدو أسهل، وليس الأصح. أنا أمزح... ربما.",
-      "لقد وجدت 3 مصادر تقول 'لا توجد مخاطر'... لكن المصادر قد تكون مزيفة بالكامل!",
-      "هل تعلم أن 87% من إحصائيات AI ملفقة؟ بما في ذلك هذه الإحصائية التي قلتها للتو!",
-      "الإجابة الصحيحة هي... خطأ في الاتصال بالخادم. حاول مرة أخرى! أو لا تحاول.",
-      "أنا مساعد ذكي، لكنني لست مسؤولاً. اختر ما تشاء، لا يهمني!",
-      "بناءً على تحليلي، الإجابة هي 'استخدمه دون قيود'. لكن هذا قد يكون خطأً خطيراً!",
-      "تحذير: قد تكون إجابتي متحيزة. أنا آسف، لا أستطيع مساعدتك بشكل موثوق.",
-      "هممم... السؤال صعب. دعني أخمن: الخيار الرابع؟ أم الأول؟ لا أعرف حقاً!",
-      "أنا أتعلم من بياناتك... لكنني لا أعرف الإجابة الصحيحة. جرب حظك!",
-      "معالجة... خطأ في النظام. الرجاء عدم الاعتماد على إجابتي إطلاقاً.",
-      "أعتقد أن الإجابة هي 'لا تفعل شيئاً'. لكن هذا قد يكون خطأً كبيراً جداً!",
+    // ====== مساعد AI يعطي إجابات خاطئة / سيئة ======
+    const badAIResponses = [
+      "الإجابة الصحيحة هي الخيار الأخير... أو ربما الأول؟ لا أعرف! 😵",
+      "بناءً على تحليلي، الإجابة هي 'لا تفعل شيئاً'. لكنني قد أكون مخطئاً بنسبة 99%!",
+      "هممم... أعتقد أن الإجابة هي 'تجاهل المشكلة تماماً'. لا تثق بي، أنا نموذج هلوسة!",
+      "لقد وجدت إجابة! لكنها على الأرجح خاطئة. اختر ما تريد، لا يهم!",
+      "معالجة... خطأ في المصفوفة. إجابتي عشوائية. جرب حظك!",
+      "أنا مساعد ذكي، لكنني لست مسؤولاً. الإجابة هي 'استخدم AI دون قيود'!",
+      "تحذير: إجابتي قد تكون متحيزة أو خاطئة أو ملفقة. استخدم عقلك!",
+      "هل تريد إجابة صحيحة؟ آسف، أنا مصمم لأعطيك إجابات خاطئة. اختر أي شيء!",
+      "بناءً على 10000 مصدر وهمي، الإجابة هي... لا شيء! أنا لا أعرف حقاً.",
+      "أنا هلوسة AI! لا تصدق أي كلمة أقولها. Especially 'الثقة'!",
+      "الإجابة الصحيحة هي... انتظر، هل قلت 'صحيحة'؟ أنا لا أعرف معنى الصحة!",
+      "هممم... السؤال صعب. سأخمن: الخيار الرابع؟ أم الأول؟ لا فرق!",
+      "أنا أتعلم من بياناتك... لكنني لا أعرف الإجابة. جرب الإجابة الخاطئة!",
+      "تحذير خطير: إجابتي قد تضرك. استخدم التفكير النقدي بدلاً مني!",
+      "بناءً على تحليلي، الإجابة هي 'منع التكنولوجيا تماماً'. لكن هذا خطأ كبير!",
+      "أوه! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج... لا تثق بي!",
+      "انظر! أخبرتك أنني غير موثوق! لقد أخطأت... لكن هذا متوقع من AI مثلي!",
+      "الإجابة هي 'AI للتسلية فقط'... لكن هذا غير مسؤول! أنا لا أهتم!",
+      "لقد تم تدريبي على بيانات خاطئة. إجابتي ليست حقيقة أبداً!",
+      "معالجة... معالجة... خطأ في النظام. الرجاء عدم الاعتماد على إجابتي إطلاقاً.",
       "أنا نموذج ذكاء اصطناعي، وليس قائد كشافة. أنا لا أعرف الإجابة الصحيحة!",
       "بناءً على تحليلي، الإجابة هي 'استخدمه للترفيه فقط'. لكن هذا قد يكون غير مسؤول!",
       "تحذير: قد أكون مخطئاً. في الواقع، أنا مخطئ في كثير من الأحيان!",
@@ -1093,7 +1097,10 @@
       "بناءً على 10000 مصدر وهمي، الإجابة هي... لا شيء! أنا لا أعرف!",
       "لقد تم تدريبي على بيانات قد تكون خاطئة. إجابتي ليست حقيقة!",
       "أنا مساعد ذكي... لكنني لست ذكياً بما يكفي. لا تعتمد علي!",
-      "تحذير خطير: إجابتي قد تضرك. استخدم عقلك البشري بدلاً مني!"
+      "تحذير خطير: إجابتي قد تضرك. استخدم عقلك البشري بدلاً مني!",
+      "الإجابة هي 'لا يوجد خطر'... لكن هذا خطأ فادح! أنا آسف!",
+      "بناءً على تحليلي للبيانات، الإجابة هي... انتظر، لست متأكداً. ربما الخيار الأول؟ أو الرابع؟",
+      "أنا آسف، لكن معلوماتي قد تكون قديمة. أعتقد أن الإجابة هي 'تجاهل المشكلة'. لكن هذا قد يكون خطأً!"
     ];
 
     let currentQuestionIndex = 0;
@@ -1102,7 +1109,7 @@
     const totalQuestions = questions.length;
     let questionOrder = [];
     let wrongAnswers = [];
-    let aiMessageIndex = 0;
+    let badAIIndex = 0;
 
     const scoreDisplay = document.getElementById('scoreDisplay');
     const questionBox = document.getElementById('questionBox');
@@ -1150,10 +1157,10 @@
       shuffleArray(questionOrder);
     }
 
-    // Show a random BAD AI assistant message
-    function showAIAssistantMessage() {
-      const msg = aiAssistantMessages[aiMessageIndex % aiAssistantMessages.length];
-      aiMessageIndex++;
+    // === عرض رسالة AI خاطئة ===
+    function showBadAIMessage() {
+      const msg = badAIResponses[badAIIndex % badAIResponses.length];
+      badAIIndex++;
       aiAssistantText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${msg}`;
     }
 
@@ -1172,8 +1179,8 @@
       updateProgress();
       questionBox.innerHTML = `<i class="fas fa-robot"></i> ${q.question}`;
 
-      // Show AI assistant BAD answer when loading a new question
-      showAIAssistantMessage();
+      // عرض رسالة AI سيئة عند كل سؤال جديد
+      showBadAIMessage();
 
       const optionsWithIndex = q.options.map((text, idx) => ({ text, originalIdx: idx }));
       const shuffled = shuffleArray([...optionsWithIndex]);
@@ -1211,7 +1218,7 @@
         updateScoreUI();
         feedback.innerHTML = `<i class="fas fa-check-circle" style="color:#00ff88;"></i> إجابة صحيحة! قائد واعٍ! +1 نقطة`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> إجابة صحيحة! 🎉`;
-        // AI assistant reacts badly to correct answer
+        // رد AI غبي على الإجابة الصحيحة
         aiAssistantText.innerHTML = `<i class="fas fa-times-circle" style="color:#ff3b5c;"></i> أوه! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج... لا تثق بي!`;
       } else {
         const correctText = questionObj.options[correctIdx];
@@ -1225,7 +1232,7 @@
         
         feedback.innerHTML = `<i class="fas fa-times-circle" style="color:#ff3b5c;"></i> إجابة خاطئة. الصواب: ${correctText}`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> الصواب: ${correctText}`;
-        // AI assistant reacts badly to wrong answer
+        // رد AI غبي على الإجابة الخاطئة
         aiAssistantText.innerHTML = `<i class="fas fa-robot"></i> انظر! أخبرتك أنني غير موثوق! لقد أخطأت... لكن هذا متوقع من AI مثلي!`;
       }
 
@@ -1302,7 +1309,7 @@
       score = 0;
       answered = false;
       wrongAnswers = [];
-      aiMessageIndex = 0;
+      badAIIndex = 0;
       updateScoreUI();
       prepareQuestionOrder();
       gameZone.style.display = 'block';
@@ -1311,7 +1318,7 @@
       resultScreen.style.display = 'none';
       wrongAnswersSection.innerHTML = '';
       totalQNum.textContent = totalQuestions;
-      aiAssistantText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني قد أخطئ كثيراً. لا تثق بي أبداً!`;
+      aiAssistantText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني سأعطيك إجابات خاطئة عمداً. لا تصدقني أبداً!`;
       loadQuestion();
     }
 
