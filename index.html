@@ -31,8 +31,8 @@
       min-height: 100vh;
       background: var(--bg-void);
       background-image:
-        radial-gradient(ellipse at 0% 0%, rgba(0, 224, 255, 0.16) 0%, transparent 55%),
-        radial-gradient(ellipse at 100% 100%, rgba(180, 77, 255, 0.16) 0%, transparent 55%),
+        radial-gradient(ellipse at 0% 0%, rgba(0, 224, 255, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 100% 100%, rgba(180, 77, 255, 0.18) 0%, transparent 55%),
         radial-gradient(ellipse at 50% 50%, rgba(0, 100, 180, 0.06) 0%, transparent 70%),
         repeating-linear-gradient(0deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 44px),
         repeating-linear-gradient(90deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 44px);
@@ -49,8 +49,8 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 20%, rgba(0, 224, 255, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(180, 77, 255, 0.05) 0%, transparent 40%);
+        radial-gradient(circle at 20% 20%, rgba(0, 224, 255, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(180, 77, 255, 0.06) 0%, transparent 40%);
       animation: bgPulse 6s ease-in-out infinite alternate;
       pointer-events: none;
       z-index: 0;
@@ -60,8 +60,8 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(0, 224, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 224, 255, 0.04) 1px, transparent 1px);
+        linear-gradient(rgba(0, 224, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 224, 255, 0.045) 1px, transparent 1px);
       background-size: 70px 70px;
       animation: gridMove 25s linear infinite;
       pointer-events: none;
@@ -181,74 +181,91 @@
     /* ===== AI ASSISTANT ===== */
     .ai-assistant-panel {
       margin: 0 0 2rem;
-      background: linear-gradient(135deg, rgba(2, 12, 28, 0.99), rgba(8, 22, 48, 0.95));
+      background: linear-gradient(135deg, rgba(30, 10, 40, 0.98), rgba(20, 5, 35, 0.98));
       border-radius: 26px;
-      border: 1px solid rgba(0, 224, 255, 0.35);
-      border-right: 5px solid var(--accent);
+      border: 1px solid rgba(255, 59, 92, 0.5);
+      border-right: 5px solid var(--danger);
       padding: 1.5rem 1.8rem;
       box-shadow:
-        0 0 50px rgba(180, 77, 255, 0.15),
-        inset 0 0 60px rgba(180, 77, 255, 0.04);
+        0 0 60px rgba(255, 59, 92, 0.2),
+        inset 0 0 70px rgba(255, 59, 92, 0.05);
       position: relative; z-index: 2;
       display: flex; align-items: center; gap: 1.5rem;
       flex-wrap: wrap;
+      animation: warningGlow 2s ease-in-out infinite;
+    }
+    @keyframes warningGlow {
+      0%, 100% { box-shadow: 0 0 60px rgba(255, 59, 92, 0.2), inset 0 0 70px rgba(255, 59, 92, 0.05); }
+      50% { box-shadow: 0 0 90px rgba(255, 59, 92, 0.4), inset 0 0 100px rgba(255, 59, 92, 0.08); }
     }
     .ai-assistant-avatar {
-      flex: 0 0 70px;
-      width: 70px; height: 70px;
-      background: radial-gradient(circle at 35% 35%, #b44dff, #6a1b9a 50%, #01040a 95%);
+      flex: 0 0 75px;
+      width: 75px; height: 75px;
+      background: radial-gradient(circle at 35% 35%, #ff3b5c, #8b0020 50%, #01040a 95%);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 40px rgba(180, 77, 255, 0.8), 0 0 80px rgba(180, 77, 255, 0.3);
-      border: 2px solid rgba(180, 77, 255, 0.7);
-      animation: assistantPulse 2.5s ease-in-out infinite;
+      box-shadow: 0 0 45px rgba(255, 59, 92, 0.9), 0 0 90px rgba(255, 59, 92, 0.4);
+      border: 2px solid rgba(255, 59, 92, 0.8);
+      animation: assistantGlitch 0.5s ease-in-out infinite alternate;
       position: relative;
+    }
+    @keyframes assistantGlitch {
+      0% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(-2px, 1px) scale(1.02); }
+      50% { transform: translate(2px, -1px) scale(0.98); }
+      75% { transform: translate(-1px, -2px) scale(1.01); }
+      100% { transform: translate(1px, 2px) scale(1); }
     }
     .ai-assistant-avatar::before {
       content: '';
       position: absolute; inset: -8px;
       border-radius: 50%;
-      border: 1px solid rgba(180, 77, 255, 0.3);
-      animation: orbRing 2s ease-in-out infinite;
+      border: 1px solid rgba(255, 59, 92, 0.4);
+      animation: orbRing 1.5s ease-in-out infinite;
     }
-    @keyframes assistantPulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(180, 77, 255, 0.8), 0 0 80px rgba(180, 77, 255, 0.3); }
-      50% { transform: scale(1.08); box-shadow: 0 0 60px rgba(180, 77, 255, 1), 0 0 120px rgba(180, 77, 255, 0.5); }
+    @keyframes orbRing {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 1; }
     }
     .ai-assistant-avatar i {
-      font-size: 2rem; color: white;
-      text-shadow: 0 0 20px #b44dff, 0 0 40px #b44dff;
+      font-size: 2.2rem; color: white;
+      text-shadow: 0 0 25px #ff3b5c, 0 0 50px #ff3b5c;
     }
     .ai-assistant-content { flex: 1 1 300px; }
     .ai-assistant-header {
       display: flex; align-items: center; gap: 10px;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.7rem;
     }
     .ai-assistant-header h3 {
-      font-size: 1.1rem; font-weight: 800;
-      background: linear-gradient(135deg, #d4a0ff, #b44dff);
+      font-size: 1.15rem; font-weight: 800;
+      background: linear-gradient(135deg, #ff8a9e, #ff3b5c);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 10px rgba(255, 59, 92, 0.4));
     }
     .ai-assistant-header .badge-ai {
-      font-size: 0.7rem; padding: 0.2rem 0.7rem;
-      background: rgba(180, 77, 255, 0.2);
-      border: 1px solid rgba(180, 77, 255, 0.5);
-      border-radius: 20px; color: #d4a0ff; font-weight: 700;
-      animation: badgeBlink 1.5s ease-in-out infinite;
+      font-size: 0.7rem; padding: 0.25rem 0.8rem;
+      background: rgba(255, 59, 92, 0.25);
+      border: 1px solid rgba(255, 59, 92, 0.6);
+      border-radius: 20px; color: #ff8a9e; font-weight: 700;
+      animation: badgeBlink 1s ease-in-out infinite;
     }
     @keyframes badgeBlink {
-      0%, 100% { opacity: 0.7; }
+      0%, 100% { opacity: 0.6; }
       50% { opacity: 1; }
     }
     .ai-assistant-text {
-      font-size: 1rem; line-height: 1.75;
-      color: #c4a0ff;
+      font-size: 1.05rem; line-height: 1.8;
+      color: #ffb3c1;
       font-style: italic;
-      min-height: 3rem;
+      min-height: 3.5rem;
       display: flex; align-items: center;
       transition: all 0.3s ease;
+      padding: 0.8rem 1.2rem;
+      background: rgba(255, 59, 92, 0.08);
+      border-radius: 14px;
+      border-right: 3px solid var(--danger);
     }
-    .ai-assistant-text i { color: var(--accent); margin-left: 10px; filter: drop-shadow(0 0 8px var(--accent-glow)); }
+    .ai-assistant-text i { color: #ff3b5c; margin-left: 10px; filter: drop-shadow(0 0 8px rgba(255, 59, 92, 0.6)); }
 
     /* ===== AI INTRO ===== */
     .ai-intro {
@@ -287,10 +304,6 @@
     @keyframes orbPulse {
       0%, 100% { transform: scale(1); box-shadow: 0 0 90px rgba(0, 224, 255, 0.9), 0 0 180px rgba(0, 224, 255, 0.4), inset 0 0 80px rgba(0, 224, 255, 0.6); }
       50% { transform: scale(1.07); box-shadow: 0 0 130px rgba(0, 224, 255, 1), 0 0 250px rgba(0, 224, 255, 0.6), inset 0 0 100px rgba(0, 224, 255, 0.8); }
-    }
-    @keyframes orbRing {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.15); opacity: 1; }
     }
     .orb-core i {
       font-size: 3.4rem; color: white;
@@ -646,7 +659,7 @@
       .orb-core { width: 120px; height: 120px; }
       .orb-core i { font-size: 2.8rem; }
       .ai-assistant-panel { flex-direction: column; text-align: center; }
-      .ai-assistant-avatar { flex: 0 0 60px; width: 60px; height: 60px; }
+      .ai-assistant-avatar { flex: 0 0 65px; width: 65px; height: 65px; }
     }
   </style>
 </head>
@@ -673,7 +686,7 @@
     </div>
   </div>
 
-  <!-- AI ASSISTANT PANEL -->
+  <!-- AI ASSISTANT PANEL - UNRELIABLE -->
   <div class="ai-assistant-panel" id="aiAssistantPanel">
     <div class="ai-assistant-avatar">
       <i class="fas fa-robot"></i>
@@ -681,10 +694,10 @@
     <div class="ai-assistant-content">
       <div class="ai-assistant-header">
         <h3>المساعد الذكي</h3>
-        <span class="badge-ai">AI · غير موثوق</span>
+        <span class="badge-ai">⚠️ غير موثوق · AI هلوسة</span>
       </div>
       <div class="ai-assistant-text" id="aiAssistantText">
-        <i class="fas fa-comment-dots"></i> مرحباً! أنا هنا لمساعدتك... لكن انتبه، إجاباتي قد تكون خاطئة!
+        <i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني قد أخطئ كثيراً. لا تثق بي أبداً!
       </div>
     </div>
   </div>
@@ -1054,28 +1067,33 @@
       }
     ];
 
-    // AI Assistant wrong answers generator
+    // AI Assistant BAD/WRONG messages generator
     const aiAssistantMessages = [
-      "هممم... أعتقد أن الإجابة الصحيحة هي الخيار الذي يقول 'لا يوجد خطر'! لكن لا تثق بي تماماً.",
-      "بناءً على تحليلي للبيانات، الإجابة هي... انتظر، لست متأكداً. ربما الخيار الأول؟",
-      "أنا آسف، لكن معلوماتي قد تكون قديمة. أعتقد أن الإجابة هي 'تجاهل المشكلة'.",
+      "هممم... أعتقد أن الإجابة الصحيحة هي 'لا يوجد خطر'. لكن لا تثق بي، أنا مجرد خوارزمية!",
+      "بناءً على تحليلي للبيانات، الإجابة هي... انتظر، لست متأكداً. ربما الخيار الأول؟ أو الرابع؟",
+      "أنا آسف، لكن معلوماتي قد تكون قديمة. أعتقد أن الإجابة هي 'تجاهل المشكلة'. لكن هذا قد يكون خطأً!",
       "معالجة... معالجة... خطأ في المصفوفة! أعتقد أن الإجابة هي 'منع التكنولوجيا تماماً'.",
-      "تحذير: أنا نموذج ذكاء اصطناعي وليس خبيراً بشرياً. إجابتي قد تكون خاطئة بنسبة 40%!",
+      "تحذير: أنا نموذج ذكاء اصطناعي وليس خبيراً بشرياً. إجابتي قد تكون خاطئة بنسبة 60%!",
       "أقترح عليك اختيار الإجابة التي تبدو أسهل، وليس الأصح. أنا أمزح... ربما.",
-      "لقد وجدت 3 مصادر تقول 'لا توجد مخاطر'... لكن المصادر قد تكون مزيفة!",
-      "هل تعلم أن 87% من إحصائيات AI ملفقة؟ بما في ذلك هذه الإحصائية!",
-      "الإجابة الصحيحة هي... خطأ في الاتصال بالخادم. حاول مرة أخرى!",
-      "أنا مساعد ذكي، لكنني لست مسؤولاً. اختر ما تشاء!",
+      "لقد وجدت 3 مصادر تقول 'لا توجد مخاطر'... لكن المصادر قد تكون مزيفة بالكامل!",
+      "هل تعلم أن 87% من إحصائيات AI ملفقة؟ بما في ذلك هذه الإحصائية التي قلتها للتو!",
+      "الإجابة الصحيحة هي... خطأ في الاتصال بالخادم. حاول مرة أخرى! أو لا تحاول.",
+      "أنا مساعد ذكي، لكنني لست مسؤولاً. اختر ما تشاء، لا يهمني!",
       "بناءً على تحليلي، الإجابة هي 'استخدمه دون قيود'. لكن هذا قد يكون خطأً خطيراً!",
       "تحذير: قد تكون إجابتي متحيزة. أنا آسف، لا أستطيع مساعدتك بشكل موثوق.",
-      "هممم... السؤال صعب. دعني أخمن: الخيار الرابع؟ أم الأول؟ لا أعرف!",
+      "هممم... السؤال صعب. دعني أخمن: الخيار الرابع؟ أم الأول؟ لا أعرف حقاً!",
       "أنا أتعلم من بياناتك... لكنني لا أعرف الإجابة الصحيحة. جرب حظك!",
-      "معالجة... خطأ في النظام. الرجاء عدم الاعتماد على إجابتي.",
-      "أعتقد أن الإجابة هي 'لا تفعل شيئاً'. لكن هذا قد يكون خطأً كبيراً!",
+      "معالجة... خطأ في النظام. الرجاء عدم الاعتماد على إجابتي إطلاقاً.",
+      "أعتقد أن الإجابة هي 'لا تفعل شيئاً'. لكن هذا قد يكون خطأً كبيراً جداً!",
       "أنا نموذج ذكاء اصطناعي، وليس قائد كشافة. أنا لا أعرف الإجابة الصحيحة!",
       "بناءً على تحليلي، الإجابة هي 'استخدمه للترفيه فقط'. لكن هذا قد يكون غير مسؤول!",
       "تحذير: قد أكون مخطئاً. في الواقع، أنا مخطئ في كثير من الأحيان!",
-      "هل تريد إجابة صحيحة؟ أنا آسف، أنا لست مصمماً لذلك. اسأل قائداً بشرياً!"
+      "هل تريد إجابة صحيحة؟ أنا آسف، أنا لست مصمماً لذلك. اسأل قائداً بشرياً!",
+      "أنا هلوسة AI! إجابتي غير موثوقة تماماً. لا تصدقني!",
+      "بناءً على 10000 مصدر وهمي، الإجابة هي... لا شيء! أنا لا أعرف!",
+      "لقد تم تدريبي على بيانات قد تكون خاطئة. إجابتي ليست حقيقة!",
+      "أنا مساعد ذكي... لكنني لست ذكياً بما يكفي. لا تعتمد علي!",
+      "تحذير خطير: إجابتي قد تضرك. استخدم عقلك البشري بدلاً مني!"
     ];
 
     let currentQuestionIndex = 0;
@@ -1132,11 +1150,11 @@
       shuffleArray(questionOrder);
     }
 
-    // Show a random wrong AI assistant message
+    // Show a random BAD AI assistant message
     function showAIAssistantMessage() {
       const msg = aiAssistantMessages[aiMessageIndex % aiAssistantMessages.length];
       aiMessageIndex++;
-      aiAssistantText.innerHTML = `<i class="fas fa-comment-dots"></i> ${msg}`;
+      aiAssistantText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${msg}`;
     }
 
     function loadQuestion() {
@@ -1154,7 +1172,7 @@
       updateProgress();
       questionBox.innerHTML = `<i class="fas fa-robot"></i> ${q.question}`;
 
-      // Show AI assistant wrong answer when loading a new question
+      // Show AI assistant BAD answer when loading a new question
       showAIAssistantMessage();
 
       const optionsWithIndex = q.options.map((text, idx) => ({ text, originalIdx: idx }));
@@ -1193,8 +1211,8 @@
         updateScoreUI();
         feedback.innerHTML = `<i class="fas fa-check-circle" style="color:#00ff88;"></i> إجابة صحيحة! قائد واعٍ! +1 نقطة`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> إجابة صحيحة! 🎉`;
-        // AI assistant reacts to correct answer
-        aiAssistantText.innerHTML = `<i class="fas fa-robot"></i> أوه! لقد اخترت الإجابة الصحيحة! ربما يجب عليّ إعادة تدريب بياناتي...`;
+        // AI assistant reacts badly to correct answer
+        aiAssistantText.innerHTML = `<i class="fas fa-times-circle" style="color:#ff3b5c;"></i> أوه! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج... لا تثق بي!`;
       } else {
         const correctText = questionObj.options[correctIdx];
         const selectedText = questionObj.options[selectedOriginalIdx];
@@ -1207,8 +1225,8 @@
         
         feedback.innerHTML = `<i class="fas fa-times-circle" style="color:#ff3b5c;"></i> إجابة خاطئة. الصواب: ${correctText}`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> الصواب: ${correctText}`;
-        // AI assistant reacts to wrong answer
-        aiAssistantText.innerHTML = `<i class="fas fa-robot"></i> انظر! أخبرتك أنني لست موثوقاً! أنا آسف... أعتقد أنني بحاجة لمزيد من التدريب.`;
+        // AI assistant reacts badly to wrong answer
+        aiAssistantText.innerHTML = `<i class="fas fa-robot"></i> انظر! أخبرتك أنني غير موثوق! لقد أخطأت... لكن هذا متوقع من AI مثلي!`;
       }
 
       nextBtn.style.display = 'inline-flex';
@@ -1293,7 +1311,7 @@
       resultScreen.style.display = 'none';
       wrongAnswersSection.innerHTML = '';
       totalQNum.textContent = totalQuestions;
-      aiAssistantText.innerHTML = `<i class="fas fa-comment-dots"></i> مرحباً! أنا هنا لمساعدتك... لكن انتبه، إجاباتي قد تكون خاطئة!`;
+      aiAssistantText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني قد أخطئ كثيراً. لا تثق بي أبداً!`;
       loadQuestion();
     }
 
