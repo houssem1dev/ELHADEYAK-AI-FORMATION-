@@ -8,975 +8,378 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #00d4ff;
-      --primary-dark: #0099cc;
-      --primary-glow: rgba(0, 212, 255, 0.5);
-      --accent: #7c3aed;
-      --accent-light: #a78bfa;
-      --success: #10b981;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --bg-dark: #050a15;
-      --bg-mid: #0a1428;
-      --bg-card: rgba(10, 20, 40, 0.85);
-      --text-primary: #e8f4ff;
-      --text-secondary: #94b8d8;
-      --border: rgba(0, 212, 255, 0.2);
-      --border-hover: rgba(0, 212, 255, 0.6);
+      --primary: #00e0ff;
+      --primary-glow: rgba(0, 224, 255, 0.7);
+      --primary-dark: #0088aa;
+      --accent: #9d4eff;
+      --accent-glow: rgba(157, 78, 255, 0.6);
+      --accent-light: #c4a0ff;
+      --success: #00e676;
+      --danger: #ff4d4d;
+      --warning: #ffb74d;
+      --bg-dark: #030812;
+      --bg-card: rgba(8, 16, 32, 0.92);
+      --bg-deep: #01040a;
+      --text-primary: #e0f0ff;
+      --text-secondary: #8ab0d0;
+      --border: rgba(0, 224, 255, 0.25);
+      --border-hover: rgba(0, 224, 255, 0.7);
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Tajawal', 'Segoe UI', sans-serif;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', 'Segoe UI', sans-serif; }
     html { scroll-behavior: smooth; }
-
     body {
       min-height: 100vh;
       background: var(--bg-dark);
       background-image:
-        radial-gradient(ellipse at 15% 10%, rgba(0, 212, 255, 0.15) 0%, transparent 45%),
-        radial-gradient(ellipse at 85% 90%, rgba(124, 58, 237, 0.15) 0%, transparent 45%),
-        radial-gradient(ellipse at 50% 50%, rgba(0, 100, 200, 0.05) 0%, transparent 70%);
+        radial-gradient(ellipse at 10% 5%, rgba(0, 224, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 95%, rgba(157, 78, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(0, 100, 200, 0.05) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, rgba(0, 224, 255, 0.02) 0px, rgba(0, 224, 255, 0.02) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg, rgba(0, 224, 255, 0.02) 0px, rgba(0, 224, 255, 0.02) 1px, transparent 1px, transparent 40px);
       display: flex;
       justify-content: center;
       align-items: flex-start;
       padding: 2rem 1.5rem;
       color: var(--text-primary);
       position: relative;
-      overflow-x: hidden;
     }
-
+    /* أنيميشن خلفية AI */
     body::before {
       content: '';
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image:
-        radial-gradient(1px 1px at 20% 30%, rgba(0, 212, 255, 0.4), transparent),
-        radial-gradient(1px 1px at 60% 70%, rgba(124, 58, 237, 0.4), transparent),
-        radial-gradient(1px 1px at 80% 20%, rgba(0, 212, 255, 0.3), transparent),
-        radial-gradient(1px 1px at 40% 80%, rgba(167, 139, 250, 0.4), transparent),
-        radial-gradient(1px 1px at 90% 50%, rgba(0, 212, 255, 0.3), transparent),
-        radial-gradient(1px 1px at 10% 70%, rgba(124, 58, 237, 0.3), transparent);
-      background-size: 200% 200%;
-      animation: particles 20s linear infinite;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(0, 224, 255, 0.03) 0%, transparent 40%);
+      animation: pulse-bg 8s ease-in-out infinite alternate;
       pointer-events: none;
       z-index: 0;
     }
-
-    @keyframes particles {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 200% 200%; }
+    @keyframes pulse-bg {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.1); }
     }
 
     .game-container {
       max-width: 1150px;
       width: 100%;
       background: var(--bg-card);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
       border: 1px solid var(--border);
-      border-radius: 32px;
-      box-shadow:
-        0 32px 64px -16px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(0, 212, 255, 0.1) inset,
-        0 0 80px rgba(0, 212, 255, 0.15);
+      border-radius: 36px;
+      box-shadow: 0 32px 80px -16px rgba(0, 0, 0, 0.9), 0 0 120px rgba(0, 224, 255, 0.12), inset 0 0 80px rgba(0, 224, 255, 0.03);
       padding: 2.5rem 2.25rem;
       position: relative;
       z-index: 1;
-      animation: container-glow 8s ease-in-out infinite alternate;
+      overflow: hidden;
     }
-
-    @keyframes container-glow {
-      0% {
-        box-shadow:
-          0 32px 64px -16px rgba(0, 0, 0, 0.7),
-          0 0 0 1px rgba(0, 212, 255, 0.1) inset,
-          0 0 80px rgba(0, 212, 255, 0.15);
-      }
-      100% {
-        box-shadow:
-          0 32px 64px -16px rgba(0, 0, 0, 0.7),
-          0 0 0 1px rgba(0, 212, 255, 0.2) inset,
-          0 0 120px rgba(0, 212, 255, 0.25);
-      }
-    }
-
+    /* خطوط ضوئية للتصميم */
     .game-container::before {
       content: '';
       position: absolute;
-      top: 0; left: 10%; right: 10%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
-      border-radius: 2px;
-      animation: top-line 4s ease-in-out infinite;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: conic-gradient(from 0deg, transparent 0deg, rgba(0, 224, 255, 0.03) 10deg, transparent 20deg, transparent 360deg);
+      animation: rotate-slow 20s linear infinite;
+      pointer-events: none;
     }
-
-    @keyframes top-line {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
+    @keyframes rotate-slow {
+      to { transform: rotate(360deg); }
     }
 
     .hero {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-      gap: 1rem;
-      position: relative;
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem;
+      position: relative; z-index: 2;
     }
-
     .name-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(124, 58, 237, 0.12));
-      padding: 0.85rem 1.75rem;
-      border-radius: 60px;
-      border: 1px solid rgba(0, 212, 255, 0.35);
-      box-shadow:
-        0 0 24px rgba(0, 212, 255, 0.2),
-        0 4px 16px rgba(0, 0, 0, 0.3) inset;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
+      display: flex; align-items: center; gap: 0.85rem;
+      background: linear-gradient(135deg, rgba(0, 224, 255, 0.1), rgba(157, 78, 255, 0.1));
+      padding: 0.85rem 1.75rem; border-radius: 60px;
+      border: 1px solid rgba(0, 224, 255, 0.4);
+      box-shadow: 0 0 30px rgba(0, 224, 255, 0.2), inset 0 0 20px rgba(0, 224, 255, 0.05);
     }
-
-    .name-badge::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-      transition: left 0.6s ease;
-    }
-
-    .name-badge:hover::after { left: 100%; }
-
-    .name-badge:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 0 40px rgba(0, 212, 255, 0.4),
-        0 4px 16px rgba(0, 0, 0, 0.3) inset;
-      border-color: var(--border-hover);
-    }
-
-    .name-badge i {
-      font-size: 1.85rem;
-      color: var(--primary);
-      filter: drop-shadow(0 0 12px var(--primary-glow));
-      animation: icon-float 3s ease-in-out infinite;
-    }
-
-    @keyframes icon-float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
-    }
-
+    .name-badge i { font-size: 1.85rem; color: var(--primary); filter: drop-shadow(0 0 8px var(--primary-glow)); }
     .name-badge h1 {
-      font-size: 1.85rem;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      background: linear-gradient(135deg, #ffffff 0%, #00d4ff 50%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      font-size: 1.85rem; font-weight: 900;
+      background: linear-gradient(135deg, #ffffff, #00e0ff, #c4a0ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 12px rgba(0, 224, 255, 0.3));
     }
-
     .scout-tag {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: linear-gradient(135deg, rgba(10, 20, 40, 0.9), rgba(20, 30, 50, 0.9));
-      padding: 0.7rem 1.5rem;
-      border-radius: 40px;
-      border: 1px solid var(--border);
-      border-right: 3px solid var(--primary);
-      font-weight: 500;
-      transition: all 0.3s ease;
+      font-size: 0.9rem; color: var(--text-secondary);
+      display: flex; align-items: center; gap: 0.6rem;
+      background: linear-gradient(135deg, rgba(5, 12, 25, 0.95), rgba(10, 20, 40, 0.95));
+      padding: 0.7rem 1.5rem; border-radius: 40px;
+      border: 1px solid var(--border); border-right: 3px solid var(--primary); font-weight: 500;
+      box-shadow: 0 0 20px rgba(0, 224, 255, 0.1);
     }
-
-    .scout-tag:hover {
-      border-color: var(--border-hover);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
-    }
-
-    .scout-tag i {
-      color: var(--primary);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.7; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.15); }
-    }
+    .scout-tag i { color: var(--primary); filter: drop-shadow(0 0 6px var(--primary-glow)); }
 
     .progress-section {
       margin: 1.25rem 0 2rem;
-      background: linear-gradient(135deg, rgba(5, 10, 21, 0.9), rgba(10, 20, 40, 0.9));
-      border-radius: 20px;
-      padding: 0.85rem 1.25rem 1.1rem;
+      background: linear-gradient(135deg, rgba(3, 8, 18, 0.95), rgba(8, 16, 32, 0.95));
+      border-radius: 20px; padding: 0.85rem 1.25rem 1.1rem;
       border: 1px solid var(--border);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) inset;
+      box-shadow: inset 0 0 30px rgba(0, 224, 255, 0.04);
+      position: relative; z-index: 2;
     }
-
     .progress-info {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 0.25rem 0.65rem;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      font-weight: 600;
+      display: flex; justify-content: space-between;
+      padding: 0 0.25rem 0.65rem; font-size: 0.9rem;
+      color: var(--text-secondary); font-weight: 600;
     }
-
-    .progress-info i {
-      color: var(--primary);
-      margin-left: 4px;
-    }
-
+    .progress-info i { color: var(--primary); margin-left: 4px; }
     .progress-bar-bg {
-      background: rgba(0, 0, 0, 0.5);
-      height: 14px;
-      border-radius: 30px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 212, 255, 0.15);
-      position: relative;
+      background: rgba(0, 0, 0, 0.6); height: 14px; border-radius: 30px;
+      overflow: hidden; border: 1px solid rgba(0, 224, 255, 0.2);
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6);
     }
-
     .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #0099cc, #00d4ff, #7c3aed);
-      border-radius: 30px;
-      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 20px var(--primary-glow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      animation: progress-shine 2s linear infinite;
-    }
-
-    @keyframes progress-shine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #006688, #00e0ff, #9d4eff);
+      border-radius: 30px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 25px var(--primary-glow), 0 0 50px rgba(157, 78, 255, 0.3);
     }
 
     .ai-intro {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin: 0 0 2rem;
-      align-items: center;
-      justify-content: center;
+      display: flex; flex-wrap: wrap; gap: 2rem; margin: 0 0 2rem;
+      align-items: center; justify-content: center;
+      position: relative; z-index: 2;
     }
-
-    .ai-orb {
-      flex: 0 0 150px;
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    .ai-orb::before {
-      content: '';
-      position: absolute;
-      inset: -20px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-      animation: orb-pulse 4s ease-in-out infinite;
-      z-index: -1;
-    }
-
-    @keyframes orb-pulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.2); opacity: 0.8; }
-    }
-
+    .ai-orb { flex: 0 0 150px; display: flex; justify-content: center; }
     .orb-core {
-      width: 140px;
-      height: 140px;
-      background: radial-gradient(circle at 30% 30%, #00d4ff, #0077aa 40%, #0a1428 90%);
+      width: 140px; height: 140px;
+      background: radial-gradient(circle at 30% 30%, #00e0ff, #006688 40%, #030812 90%);
       border-radius: 50%;
-      box-shadow:
-        0 0 60px rgba(0, 212, 255, 0.6),
-        0 0 120px rgba(0, 212, 255, 0.3),
-        inset 0 0 40px rgba(255, 255, 255, 0.3);
-      animation: spin 15s linear infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      border: 2px solid rgba(0, 212, 255, 0.4);
+      box-shadow: 0 0 70px rgba(0, 224, 255, 0.7), 0 0 140px rgba(0, 224, 255, 0.3), inset 0 0 60px rgba(0, 224, 255, 0.4);
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(0, 224, 255, 0.6);
+      animation: orb-pulse 3s ease-in-out infinite;
     }
-
-    .orb-core::before {
-      content: '';
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
-      border: 1px dashed rgba(255, 255, 255, 0.3);
-      animation: spin-reverse 8s linear infinite;
+    @keyframes orb-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 70px rgba(0, 224, 255, 0.7), 0 0 140px rgba(0, 224, 255, 0.3), inset 0 0 60px rgba(0, 224, 255, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 90px rgba(0, 224, 255, 0.9), 0 0 180px rgba(0, 224, 255, 0.4), inset 0 0 80px rgba(0, 224, 255, 0.6); }
     }
-
-    @keyframes spin-reverse {
-      from { transform: rotate(360deg); }
-      to { transform: rotate(0deg); }
-    }
-
-    .orb-core i {
-      font-size: 3.2rem;
-      color: white;
-      text-shadow:
-        0 0 20px var(--primary),
-        0 0 40px var(--primary),
-        0 0 60px var(--accent);
-      animation: pulse-icon 3s infinite alternate;
-      z-index: 2;
-    }
-
-    @keyframes pulse-icon {
-      0% { transform: scale(1); opacity: 0.85; }
-      100% { transform: scale(1.15); opacity: 1; }
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
+    .orb-core i { font-size: 3.2rem; color: white; text-shadow: 0 0 30px var(--primary), 0 0 60px var(--primary); }
     .ai-message {
       flex: 2 1 320px;
-      background: linear-gradient(135deg, rgba(8, 25, 50, 0.95), rgba(15, 30, 60, 0.85));
+      background: linear-gradient(135deg, rgba(3, 15, 35, 0.98), rgba(10, 25, 50, 0.9));
       border-right: 5px solid var(--primary);
-      padding: 1.5rem 2rem;
-      border-radius: 24px 8px 24px 8px;
-      box-shadow:
-        0 0 40px rgba(0, 212, 255, 0.15),
-        0 8px 24px rgba(0, 0, 0, 0.3) inset;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--text-primary);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+      padding: 1.5rem 2rem; border-radius: 24px 8px 24px 8px;
+      font-size: 1.1rem; line-height: 1.8;
+      box-shadow: 0 0 40px rgba(0, 224, 255, 0.1), inset 0 0 40px rgba(0, 224, 255, 0.03);
     }
-
-    .ai-message::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, transparent 0%, rgba(0, 212, 255, 0.03) 100%);
-      pointer-events: none;
-    }
-
-    .ai-message:hover {
-      box-shadow:
-        0 0 60px rgba(0, 212, 255, 0.25),
-        0 8px 24px rgba(0, 0, 0, 0.3) inset;
-      transform: translateY(-2px);
-    }
-
-    .ai-message i {
-      color: var(--primary);
-      margin-left: 10px;
-      filter: drop-shadow(0 0 8px var(--primary-glow));
-    }
-
-    .ai-message strong {
-      color: var(--primary);
-      font-weight: 800;
-    }
+    .ai-message i { color: var(--primary); margin-left: 10px; filter: drop-shadow(0 0 6px var(--primary-glow)); }
+    .ai-message strong { color: var(--primary); font-weight: 800; }
 
     .game-zone {
-      background: linear-gradient(135deg, rgba(5, 12, 25, 0.95), rgba(10, 20, 40, 0.95));
-      border-radius: 28px;
-      padding: 2.25rem 1.75rem;
+      background: linear-gradient(135deg, rgba(2, 8, 20, 0.98), rgba(5, 15, 35, 0.98));
+      border-radius: 28px; padding: 2.25rem 1.75rem;
       border: 1px solid var(--border);
-      box-shadow:
-        0 0 60px rgba(0, 212, 255, 0.1) inset,
-        0 16px 40px rgba(0, 0, 0, 0.4);
       margin-bottom: 1.5rem;
-      position: relative;
-      overflow: hidden;
+      box-shadow: inset 0 0 60px rgba(0, 224, 255, 0.03), 0 0 40px rgba(0, 0, 0, 0.4);
+      position: relative; z-index: 2;
     }
-
-    .game-zone::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
-      animation: zone-line 3s ease-in-out infinite;
-    }
-
-    @keyframes zone-line {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-
     .game-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      gap: 1rem;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;
     }
-
     .game-header h2 {
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 1.6rem;
-      background: linear-gradient(to left, #ffffff, #00d4ff, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 2px 6px rgba(0, 212, 255, 0.3));
+      font-weight: 800; display: flex; align-items: center; gap: 14px; font-size: 1.6rem;
+      background: linear-gradient(to left, #ffffff, #00e0ff, #c4a0ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 15px rgba(0, 224, 255, 0.2));
     }
-
-    .game-header h2 i {
-      font-size: 1.8rem;
-      -webkit-text-fill-color: var(--primary);
-      filter: drop-shadow(0 0 12px var(--primary-glow));
-    }
-
+    .game-header h2 i { font-size: 1.8rem; -webkit-text-fill-color: var(--primary); filter: drop-shadow(0 0 8px var(--primary-glow)); }
     .score-board {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(124, 58, 237, 0.12));
-      padding: 0.75rem 1.75rem;
-      border-radius: 60px;
-      border: 1px solid rgba(0, 212, 255, 0.4);
-      box-shadow:
-        0 0 24px rgba(0, 212, 255, 0.25),
-        0 4px 12px rgba(0, 0, 0, 0.3) inset;
-      font-weight: 700;
-      display: flex;
-      gap: 1.25rem;
-      font-size: 1.05rem;
-      align-items: center;
-      flex-wrap: wrap;
-      transition: all 0.3s ease;
+      background: linear-gradient(135deg, rgba(0, 224, 255, 0.1), rgba(157, 78, 255, 0.1));
+      padding: 0.75rem 1.75rem; border-radius: 60px;
+      border: 1px solid rgba(0, 224, 255, 0.5);
+      font-weight: 700; display: flex; gap: 1.25rem; font-size: 1.05rem;
+      align-items: center; flex-wrap: wrap;
+      box-shadow: 0 0 25px rgba(0, 224, 255, 0.15);
     }
-
-    .score-board:hover {
-      box-shadow:
-        0 0 40px rgba(0, 212, 255, 0.4),
-        0 4px 12px rgba(0, 0, 0, 0.3) inset;
-      transform: scale(1.02);
-    }
-
-    .score-board i {
-      color: #ffd700;
-      filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
-    }
-
-    .score-board span {
-      color: var(--primary);
-      font-weight: 900;
-      text-shadow: 0 0 12px var(--primary-glow);
-      font-size: 1.5rem;
-      display: inline-block;
-      transition: transform 0.3s ease;
-    }
-
+    .score-board i { color: #ffd700; filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.5)); }
+    .score-board span { color: var(--primary); font-weight: 900; font-size: 1.5rem; text-shadow: 0 0 15px var(--primary-glow); }
     .question-counter {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding-right: 1rem;
-      border-right: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 0.95rem; font-weight: 600;
+      padding-right: 1rem; border-right: 1px solid var(--border);
     }
-
     .ai-question-box {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(124, 58, 237, 0.08));
-      padding: 1.75rem 2rem;
-      border-radius: 20px;
-      font-size: 1.25rem;
-      font-weight: 700;
-      text-align: center;
-      width: 100%;
-      letter-spacing: 0.3px;
-      border: 1.5px solid rgba(0, 212, 255, 0.4);
-      box-shadow:
-        0 0 40px rgba(0, 212, 255, 0.15),
-        0 8px 24px rgba(0, 0, 0, 0.3) inset;
-      color: var(--text-primary);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      margin-bottom: 1.75rem;
-      line-height: 1.7;
-      min-height: 110px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(135deg, rgba(0, 224, 255, 0.06), rgba(157, 78, 255, 0.06));
+      padding: 1.75rem 2rem; border-radius: 20px;
+      font-size: 1.25rem; font-weight: 700; text-align: center;
+      border: 1.5px solid rgba(0, 224, 255, 0.5);
+      color: var(--text-primary); margin-bottom: 1.75rem;
+      line-height: 1.7; min-height: 110px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: inset 0 0 40px rgba(0, 224, 255, 0.05), 0 0 30px rgba(0, 224, 255, 0.08);
     }
-
-    .ai-question-box::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(135deg, transparent 0%, rgba(0, 212, 255, 0.05) 100%);
-      pointer-events: none;
-    }
-
-    .ai-question-box i {
-      color: var(--primary);
-      font-size: 1.7rem;
-      margin-left: 12px;
-      filter: drop-shadow(0 0 12px var(--primary-glow));
-      animation: icon-float 3s ease-in-out infinite;
-    }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin: 1.75rem 0;
-    }
-
+    .ai-question-box i { color: var(--primary); font-size: 1.7rem; margin-left: 12px; filter: drop-shadow(0 0 10px var(--primary-glow)); }
+    .options { display: flex; flex-direction: column; gap: 1rem; margin: 1.75rem 0; }
     .option-btn {
-      background: linear-gradient(135deg, rgba(10, 25, 50, 0.9), rgba(15, 30, 60, 0.9));
-      border: 1.5px solid rgba(0, 150, 220, 0.5);
-      color: white;
-      font-size: 1.05rem;
-      font-weight: 600;
-      padding: 1.1rem 1.5rem;
-      border-radius: 18px;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow:
-        0 5px 0 rgba(0, 50, 100, 0.6),
-        0 8px 20px rgba(0, 0, 0, 0.4);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-align: right;
-      line-height: 1.6;
-      font-family: 'Tajawal', sans-serif;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .option-btn::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.08), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .option-btn:hover:not(:disabled)::before { left: 100%; }
-
-    .option-btn .option-letter {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(124, 58, 237, 0.25));
-      color: var(--primary);
-      min-width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 1.15rem;
-      border: 1px solid rgba(0, 212, 255, 0.4);
-      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(5, 15, 35, 0.95), rgba(10, 25, 50, 0.95));
+      border: 1.5px solid rgba(0, 180, 255, 0.5);
+      color: white; font-size: 1.05rem; font-weight: 600;
+      padding: 1.1rem 1.5rem; border-radius: 18px; cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
+      box-shadow: 0 5px 0 rgba(0, 40, 80, 0.8), 0 8px 25px rgba(0, 0, 0, 0.5);
+      display: flex; align-items: center; gap: 14px;
+      text-align: right; line-height: 1.6; font-family: 'Tajawal', sans-serif;
     }
-
+    .option-btn .option-letter {
+      background: linear-gradient(135deg, rgba(0, 224, 255, 0.2), rgba(157, 78, 255, 0.2));
+      color: var(--primary); min-width: 40px; height: 40px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 1.15rem;
+      border: 1px solid rgba(0, 224, 255, 0.5); flex-shrink: 0;
+      box-shadow: inset 0 0 15px rgba(0, 224, 255, 0.1);
+    }
     .option-btn:hover:not(:disabled) {
-      background: linear-gradient(135deg, rgba(15, 40, 75, 0.95), rgba(25, 50, 90, 0.95));
-      border-color: var(--primary);
-      box-shadow:
-        0 5px 0 rgba(0, 80, 150, 0.8),
-        0 0 35px rgba(0, 212, 255, 0.4),
-        0 8px 24px rgba(0, 0, 0, 0.5);
-      transform: translateY(-3px);
+      background: linear-gradient(135deg, rgba(10, 30, 60, 0.98), rgba(20, 45, 85, 0.98));
+      border-color: var(--primary); transform: translateY(-3px);
+      box-shadow: 0 5px 0 rgba(0, 60, 120, 0.9), 0 0 45px rgba(0, 224, 255, 0.5);
     }
-
-    .option-btn:hover:not(:disabled) .option-letter {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      transform: scale(1.1);
-      box-shadow: 0 0 20px var(--primary-glow);
-    }
-
-    .option-btn:active:not(:disabled) {
-      transform: translateY(3px);
-      box-shadow:
-        0 2px 0 rgba(0, 50, 100, 0.6),
-        0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-
     .option-btn.correct {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.35));
+      background: linear-gradient(135deg, rgba(0, 230, 118, 0.2), rgba(0, 180, 90, 0.3));
       border-color: var(--success);
-      box-shadow:
-        0 0 35px rgba(16, 185, 129, 0.6),
-        0 5px 0 rgba(5, 100, 70, 0.8);
-      animation: correct-pulse 0.6s ease;
+      box-shadow: 0 0 40px rgba(0, 230, 118, 0.5), inset 0 0 30px rgba(0, 230, 118, 0.1);
     }
-
-    @keyframes correct-pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-      100% { transform: scale(1); }
-    }
-
-    .option-btn.correct .option-letter {
-      background: var(--success);
-      color: white;
-      border-color: var(--success);
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
-    }
-
+    .option-btn.correct .option-letter { background: var(--success); color: white; box-shadow: 0 0 20px rgba(0, 230, 118, 0.6); }
     .option-btn.wrong {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(185, 28, 28, 0.3));
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.2), rgba(200, 30, 30, 0.3));
       border-color: var(--danger);
-      box-shadow:
-        0 0 35px rgba(239, 68, 68, 0.5),
-        0 5px 0 rgba(120, 20, 20, 0.8);
-      animation: wrong-shake 0.5s ease;
+      box-shadow: 0 0 40px rgba(255, 77, 77, 0.5), inset 0 0 30px rgba(255, 77, 77, 0.1);
     }
-
-    @keyframes wrong-shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-8px); }
-      75% { transform: translateX(8px); }
-    }
-
-    .option-btn.wrong .option-letter {
-      background: var(--danger);
-      color: white;
-      border-color: var(--danger);
-      box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
-    }
-
-    .option-btn:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 rgba(0, 50, 100, 0.4);
-    }
+    .option-btn.wrong .option-letter { background: var(--danger); color: white; box-shadow: 0 0 20px rgba(255, 77, 77, 0.6); }
+    .option-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
     .feedback {
-      font-size: 1.05rem;
-      min-height: 4rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
+      font-size: 1.05rem; min-height: 4rem; font-weight: 600;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
       color: var(--text-primary);
-      background: linear-gradient(135deg, rgba(5, 15, 30, 0.95), rgba(10, 25, 45, 0.95));
-      padding: 1.1rem 1.75rem;
-      border-radius: 18px;
-      margin: 1.25rem 0 0.5rem;
-      text-align: center;
-      line-height: 1.7;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) inset;
-      transition: all 0.3s ease;
+      background: linear-gradient(135deg, rgba(2, 10, 25, 0.98), rgba(5, 20, 40, 0.98));
+      padding: 1.1rem 1.75rem; border-radius: 18px; margin: 1.25rem 0 0.5rem;
+      text-align: center; line-height: 1.7; border: 1px solid var(--border);
+      box-shadow: inset 0 0 30px rgba(0, 224, 255, 0.03);
     }
-
-    .feedback i {
-      font-size: 1.3rem;
-      filter: drop-shadow(0 0 8px currentColor);
-    }
-
     .action-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
+      display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;
     }
-
     .btn {
-      background: transparent;
-      border: 1.5px solid var(--primary);
-      color: var(--primary);
-      font-size: 1rem;
-      padding: 0.85rem 2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      font-weight: 700;
+      background: transparent; border: 1.5px solid var(--primary);
+      color: var(--primary); font-size: 1rem; padding: 0.85rem 2rem;
+      border-radius: 50px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: all 0.3s ease; font-weight: 700;
       font-family: 'Tajawal', sans-serif;
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 224, 255, 0.1);
     }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 0; height: 0;
-      background: radial-gradient(circle, var(--primary-glow), transparent);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: width 0.5s ease, height 0.5s ease;
-      z-index: -1;
-    }
-
-    .btn:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-
     .btn:hover {
-      border-color: var(--primary);
-      box-shadow: 0 0 35px var(--primary-glow);
-      color: white;
-      transform: translateY(-2px);
+      border-color: var(--primary); box-shadow: 0 0 45px var(--primary-glow), inset 0 0 25px rgba(0, 224, 255, 0.1);
+      color: white; transform: translateY(-2px);
     }
-
-    .btn:active { transform: translateY(1px); }
-
     .btn.primary {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(124, 58, 237, 0.15));
+      background: linear-gradient(135deg, rgba(0, 224, 255, 0.15), rgba(157, 78, 255, 0.15));
       border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
     }
 
-    .btn.primary:hover {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(124, 58, 237, 0.3));
-      box-shadow: 0 0 45px var(--primary-glow);
-    }
-
-    .result-screen {
-      display: none;
-      text-align: center;
-      padding: 3rem 1.5rem;
-      position: relative;
-    }
-
-    .result-screen .badge {
-      font-size: 6rem;
-      margin: 0 0 1.5rem;
-      animation: badge-bounce 1.2s ease-in-out infinite alternate;
-      display: inline-block;
-    }
-
-    @keyframes badge-bounce {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-20px) scale(1.05); }
-    }
-
+    /* شاشة النتائج */
+    .result-screen { display: none; text-align: center; padding: 2.5rem 1.5rem; position: relative; z-index: 2; }
+    .result-screen .badge { font-size: 6rem; margin: 0 0 1.5rem; display: inline-block; filter: drop-shadow(0 0 30px rgba(0, 224, 255, 0.5)); }
     .result-screen h2 {
-      font-size: 2.2rem;
-      font-weight: 900;
-      margin-bottom: 1.25rem;
-      background: linear-gradient(135deg, #ffffff, #00d4ff, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 4px 12px rgba(0, 212, 255, 0.4));
+      font-size: 2.2rem; font-weight: 900; margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #ffffff, #00e0ff, #c4a0ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       line-height: 1.4;
+      filter: drop-shadow(0 0 20px rgba(0, 224, 255, 0.2));
     }
-
     .result-screen .final-score {
-      font-size: 5rem;
-      font-weight: 900;
-      margin: 1.5rem 0;
-      background: linear-gradient(135deg, #00d4ff, #7c3aed);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 30px var(--primary-glow));
-      animation: score-glow 2s ease-in-out infinite alternate;
+      font-size: 5rem; font-weight: 900; margin: 1.5rem 0;
+      background: linear-gradient(135deg, #00e0ff, #9d4eff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(0, 224, 255, 0.4));
     }
-
-    @keyframes score-glow {
-      0% { filter: drop-shadow(0 0 20px var(--primary-glow)); }
-      100% { filter: drop-shadow(0 0 50px var(--primary-glow)); }
-    }
-
     .result-screen .score-message {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      margin: 0 auto 2rem;
-      line-height: 1.9;
-      max-width: 750px;
+      font-size: 1.15rem; color: var(--text-secondary);
+      margin: 0 auto 2rem; line-height: 1.9; max-width: 750px;
       padding: 1.5rem 2rem;
-      background: rgba(0, 212, 255, 0.05);
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      border-right: 4px solid var(--primary);
-      text-align: right;
+      background: rgba(0, 224, 255, 0.04);
+      border-radius: 20px; border: 1px solid var(--border);
+      border-right: 4px solid var(--primary); text-align: right;
+      box-shadow: inset 0 0 40px rgba(0, 224, 255, 0.03);
     }
 
+    /* قسم الإجابات الخاطئة - تصميم محسّن */
     .wrong-answers-container {
-      margin: 2rem auto;
-      max-width: 850px;
-      text-align: right;
-      background: rgba(239, 68, 68, 0.05);
-      border-radius: 20px;
-      padding: 1.5rem 2rem;
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      border-right: 4px solid var(--danger);
+      margin: 2rem auto; max-width: 900px; text-align: right;
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.06), rgba(180, 30, 30, 0.04));
+      border-radius: 24px; padding: 1.8rem 2rem;
+      border: 1px solid rgba(255, 77, 77, 0.3);
+      border-right: 5px solid var(--danger);
+      box-shadow: inset 0 0 50px rgba(255, 77, 77, 0.03), 0 0 30px rgba(255, 77, 77, 0.08);
     }
-
     .wrong-answers-container h3 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--danger);
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-size: 1.4rem; font-weight: 800; color: var(--danger);
+      margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px;
+      filter: drop-shadow(0 0 10px rgba(255, 77, 77, 0.3));
     }
-
-    .wrong-answers-container h3 i {
-      font-size: 1.4rem;
-    }
-
     .wrong-item {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 16px;
-      padding: 1.2rem 1.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid rgba(239, 68, 68, 0.2);
-      transition: all 0.3s ease;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 18px; padding: 1.4rem 1.6rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 77, 77, 0.2);
+      transition: all 0.2s ease;
     }
-
     .wrong-item:hover {
-      border-color: rgba(239, 68, 68, 0.5);
-      box-shadow: 0 0 25px rgba(239, 68, 68, 0.15);
+      border-color: rgba(255, 77, 77, 0.4);
+      box-shadow: 0 0 25px rgba(255, 77, 77, 0.1);
     }
-
     .wrong-item .q-text {
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 0.6rem;
-      font-size: 1.05rem;
-      line-height: 1.6;
+      font-weight: 700; color: var(--text-primary);
+      margin-bottom: 0.8rem; font-size: 1.08rem; line-height: 1.7;
+      display: flex; gap: 10px; align-items: flex-start;
     }
-
-    .wrong-item .q-text i {
-      color: var(--warning);
-      margin-left: 6px;
-    }
-
+    .wrong-item .q-text i { color: var(--warning); margin-left: 6px; margin-top: 4px; filter: drop-shadow(0 0 6px rgba(255, 183, 77, 0.4)); }
     .wrong-item .a-text {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
+      font-size: 0.98rem; color: var(--text-secondary);
+      display: flex; flex-direction: column; gap: 0.6rem;
+      padding-right: 1.5rem;
     }
-
-    .wrong-item .a-text .user-answer {
-      color: #fca5a5;
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-    }
-
-    .wrong-item .a-text .correct-answer {
-      color: #6ee7b7;
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-    }
-
-    .wrong-item .a-text i {
-      margin-top: 3px;
-      flex-shrink: 0;
-    }
+    .wrong-item .user-answer { color: #ff8a8a; display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+    .wrong-item .correct-answer { color: #6ee7b7; display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+    .wrong-item .user-answer i { color: var(--danger); flex-shrink: 0; margin-top: 4px; }
+    .wrong-item .correct-answer i { color: var(--success); flex-shrink: 0; margin-top: 4px; }
 
     .footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 2.5rem;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      border-top: 1px solid var(--border);
-      padding-top: 1.5rem;
-      flex-wrap: wrap;
-      gap: 1rem;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 2.5rem; font-size: 0.9rem; color: var(--text-secondary);
+      border-top: 1px solid var(--border); padding-top: 1.5rem;
+      flex-wrap: wrap; gap: 1rem;
+      position: relative; z-index: 2;
     }
-
     .footer .houssem {
-      font-weight: 900;
-      font-size: 1rem;
-      background: linear-gradient(135deg, #00d4ff, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 8px var(--primary-glow));
+      font-weight: 900; font-size: 1rem;
+      background: linear-gradient(135deg, #00e0ff, #c4a0ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 8px rgba(0, 224, 255, 0.3));
     }
-
-    .footer i {
-      color: var(--primary);
-      margin-left: 4px;
-    }
+    .footer i { color: var(--primary); margin-left: 4px; }
 
     @media (max-width: 768px) {
       body { padding: 1rem 0.75rem; }
-      .game-container { padding: 1.75rem 1.25rem; border-radius: 24px; }
-      .name-badge { padding: 0.65rem 1.25rem; }
+      .game-container { padding: 1.75rem 1.25rem; border-radius: 28px; }
       .name-badge h1 { font-size: 1.25rem; }
-      .name-badge i { font-size: 1.4rem; }
-      .scout-tag { font-size: 0.8rem; padding: 0.55rem 1rem; }
-      .ai-question-box { font-size: 1.05rem; padding: 1.25rem 1rem; min-height: 90px; }
-      .option-btn { font-size: 0.95rem; padding: 0.9rem 1.1rem; gap: 10px; }
-      .option-btn .option-letter { min-width: 34px; height: 34px; font-size: 1rem; }
-      .score-board { font-size: 0.9rem; padding: 0.6rem 1.1rem; gap: 0.75rem; }
-      .score-board span { font-size: 1.2rem; }
-      .game-header h2 { font-size: 1.2rem; }
-      .feedback { font-size: 0.9rem; padding: 0.9rem 1rem; }
+      .ai-question-box { font-size: 1.05rem; padding: 1.25rem 1rem; }
+      .option-btn { font-size: 0.95rem; padding: 0.9rem 1.1rem; }
       .result-screen h2 { font-size: 1.5rem; }
       .result-screen .final-score { font-size: 3.5rem; }
-      .result-screen .score-message { font-size: 1rem; padding: 1.25rem; }
-      .result-screen .badge { font-size: 4rem; }
-      .orb-core { width: 100px; height: 100px; }
-      .orb-core i { font-size: 2.4rem; }
-      .ai-orb { flex: 0 0 120px; }
-      .ai-message { font-size: 0.95rem; padding: 1.2rem 1.25rem; }
-      .btn { font-size: 0.9rem; padding: 0.75rem 1.5rem; }
-      .progress-info { font-size: 0.8rem; }
       .wrong-answers-container { padding: 1.2rem 1rem; }
-      .wrong-item { padding: 1rem; }
-    }
-
-    @media (max-width: 480px) {
-      .name-badge h1 { font-size: 1.05rem; }
-      .name-badge { padding: 0.55rem 1rem; gap: 0.5rem; }
-      .game-header { flex-direction: column; align-items: flex-start; }
-      .score-board { width: 100%; justify-content: center; }
-      .question-counter { border-right: none; padding-right: 0; }
+      .wrong-item { padding: 1rem 1rem; }
     }
   </style>
 </head>
 <body>
 
 <div class="game-container">
-  <!-- الترويسة -->
   <div class="hero">
     <div class="name-badge">
       <i class="fas fa-shield-halved"></i>
@@ -987,7 +390,6 @@
     </div>
   </div>
 
-  <!-- شريط التقدم -->
   <div class="progress-section" id="progressSection">
     <div class="progress-info">
       <span><i class="fas fa-list-ol"></i> السؤال <span id="currentQNum">1</span> من <span id="totalQNum">30</span></span>
@@ -998,7 +400,6 @@
     </div>
   </div>
 
-  <!-- المقدمة التعريفية -->
   <div class="ai-intro" id="introSection">
     <div class="ai-orb">
       <div class="orb-core">
@@ -1009,11 +410,10 @@
       <i class="fas fa-microchip"></i>
       <strong>مرحباً أيها القائد!</strong> الذكاء الاصطناعي سلاح ذو حدين — يمكن أن يساعدك في قيادة فرقتك، لكنه يحمل مخاطر حقيقية على الأطفال والشباب.
       <br>هذه اللعبة ستعلّمك كيف تستخدم AI بحكمة، وما هي المخاطر التي يجب أن تحمي منها كشافتك.
-      <br><span style="color:#00d4ff;">⚡ 30 سؤالاً موجهاً لقادة الكشافة — كن واعياً، كن قدوة!</span>
+      <br><span style="color:#00e0ff;">⚡ 30 سؤالاً متقدماً لقادة الكشافة — كن واعياً، كن قدوة!</span>
     </div>
   </div>
 
-  <!-- منطقة اللعبة -->
   <div class="game-zone" id="gameZone">
     <div class="game-header">
       <h2><i class="fas fa-question-circle"></i> اختبار القائد الواعي بالذكاء الاصطناعي</h2>
@@ -1027,9 +427,7 @@
       <i class="fas fa-robot"></i> جاري تحميل السؤال...
     </div>
 
-    <div class="options" id="optionsContainer">
-      <!-- سيتم إنشاء الخيارات ديناميكياً -->
-    </div>
+    <div class="options" id="optionsContainer"></div>
 
     <div class="feedback" id="feedback">
       <i class="fas fa-comment-dots"></i> اختر إجابة...
@@ -1045,348 +443,336 @@
     </div>
   </div>
 
-  <!-- شاشة النتائج -->
   <div class="result-screen" id="resultScreen">
     <div class="badge" id="resultBadge">🏆</div>
     <h2 id="resultTitle">أحسنت أيها القائد!</h2>
     <div class="final-score" id="finalScore">0 / 30</div>
     <div class="score-message" id="scoreMessage"></div>
-    
-    <!-- ✅ قسم عرض الإجابات الخاطئة -->
-    <div id="wrongAnswersSection" style="display: none;">
-      <div class="wrong-answers-container">
-        <h3><i class="fas fa-exclamation-triangle"></i> الأسئلة التي أخطأت فيها (تحتاج مراجعة):</h3>
-        <div id="wrongAnswersList"></div>
-      </div>
-    </div>
-
+    <div id="wrongAnswersSection"></div>
     <button class="btn primary" id="playAgainBtn" style="font-size:1.1rem; padding:0.9rem 2.5rem; margin-top: 1rem;">
       <i class="fas fa-redo"></i> العب مرة أخرى
     </button>
   </div>
 
-  <!-- التذييل -->
   <div class="footer">
     <div><i class="fas fa-code"></i> صُمّم خصيصاً من <span class="houssem">حسام القسنطيني</span></div>
-    <div><i class="fas fa-bolt"></i> 30 سؤالاً · القادة · الاستخدام الآمن للذكاء الاصطناعي</div>
+    <div><i class="fas fa-bolt"></i> 30 سؤالاً متقدماً · القادة · الاستخدام الآمن للذكاء الاصطناعي</div>
   </div>
 </div>
 
 <script>
   (function() {
-    // ========== بنك الأسئلة: 30 سؤالاً موجهاً لقادة الكشافة ==========
+    // أسئلة أكثر تخصصاً وصعوبة
     const questions = [
       {
-        question: "كقائد كشافة، ما هو أفضل استخدام للذكاء الاصطناعي في التحضير للأنشطة؟",
+        question: "كقائد كشافة، ما هو التحدي الأخلاقي الأكبر عند استخدام الذكاء الاصطناعي لتوليد أنشطة تنافسية بين الفرق؟",
         options: [
-          "استخدامه كمساعد لتوليد أفكار الأنشطة ثم مراجعتها وتعديلها بنفسك",
-          "نسخ الأنشطة من الإنترنت حرفياً دون مراجعة",
-          "الاعتماد عليه كلياً لتحضير كل شيء",
-          "تجاهله تماماً واستخدام الطرق التقليدية فقط"
+          "ضمان تكافؤ الفرص وعدم تحيز المحتوى المولد ضد فئة معينة من الكشافة",
+          "الحصول على أفكار أسرع دون مراجعة",
+          "استخدام AI لتقليد أنشطة فرق أخرى",
+          "نشر الأنشطة دون ذكر المصدر"
         ],
         correct: 0
       },
       {
-        question: "ما هي القاعدة الذهبية عند استخدام AI لإعداد محتوى تعليمي للكشافة؟",
+        question: "ما هي 'الحوكمة الرقمية' التي يجب على قائد الكشافة تطبيقها عند استخدام أدوات AI في التواصل مع الكشافة؟",
         options: [
-          "راجع المعلومات من مصادر موثوقة قبل تقديمها للكشافة",
-          "انشر المحتوى مباشرة دون مراجعة",
-          "اعتمد على AI كمصدر وحيد",
-          "لا تحتاج لمراجعة لأن AI دقيق دائماً"
+          "وضع سياسات واضحة للاستخدام، وموافقة الأولياء، وحماية البيانات، والشفافية",
+          "منع استخدام AI تماماً",
+          "السماح بالاستخدام دون قيود",
+          "تفويض المسؤولية للكشافة أنفسهم"
         ],
         correct: 0
       },
       {
-        question: "كقائد، كيف يمكنك استخدام ChatGPT أو أدوات مشابهة بشكل مفيد؟",
+        question: "عند استخدام AI لتوليد صور لأنشطة كشفية، ما هو الخطر الأخلاقي الذي يجب تجنبه؟",
         options: [
-          "لتوليد أفكار للألعاب الكشفية وكتابة مسودات للخطب",
-          "لكتابة تقارير الكشافة دون جهد",
-          "للترويج للفرقة بصور مزيفة",
-          "لا يمكن استخدامه في الكشافة"
+          "توليد صور غير واقعية أو مسيئة أو تمييزية قد تضر بسمعة الكشافة",
+          "استخدام الصور دون حقوق",
+          "الصور بطيئة التحميل",
+          "الألوان غير جذابة"
         ],
         correct: 0
       },
       {
-        question: "ما هو 'التفكير النقدي' عند التعامل مع معلومات الذكاء الاصطناعي؟",
+        question: "كيف يمكن للذكاء الاصطناعي أن يساهم في 'الهندسة الاجتماعية' ضد الكشافة؟",
         options: [
-          "التحقق من صحة المعلومات ومقارنتها بمصادر أخرى",
-          "قبول كل ما يقوله AI",
-          "رفض AI تماماً",
-          "استخدامه دون تفكير"
+          "بإنشاء محادثات مقنعة لخداع الأطفال واستدراجهم لمشاركة معلومات حساسة",
+          "بتحسين التواصل بين القادة",
+          "بترجمة الوثائق الرسمية",
+          "بتنظيم المخيمات"
         ],
         correct: 0
       },
       {
-        question: "كيف يمكن للذكاء الاصطناعي أن يساعد في تواصل أفضل مع أولياء أمور الكشافة؟",
+        question: "ما هو 'التحيز الخفي' (Implicit Bias) في أنظمة AI التي قد تستخدمها مع الكشافة؟",
         options: [
-          "صياغة رسائل واضحة وإيجابية وترجمتها بلغات مختلفة",
-          "إرسال رسائل تلقائية دون مراجعة",
-          "لا يمكنه المساعدة في التواصل",
-          "إخفاء المعلومات عن الأولياء"
+          "تحيز مدمج في البيانات يظهر في قرارات أو اقتراحات غير عادلة دون وعي المستخدم",
+          "بطء النظام",
+          "أخطاء إملائية",
+          "انقطاع الإنترنت"
         ],
         correct: 0
       },
       {
-        question: "ما هي أخطر مشكلة يواجهها الأطفال عند استخدام الذكاء الاصطناعي دون إشراف؟",
+        question: "كقائد، ما هي استراتيجية 'الوقاية الرقمية' الأكثر فعالية لحماية الكشافة من مخاطر AI؟",
         options: [
-          "الوصول لمحتوى غير مناسب أو مشاركة بياناتهم دون وعي",
-          "فقط بطء الإنترنت",
-          "فقط إدمان اللعب",
-          "لا توجد مخاطر"
+          "التوعية المستمرة، وخلق بيئة آمنة للحوار، وتدريب الكشافة على التفكير النقدي",
+          "حذف التطبيقات من هواتفهم",
+          "منع استخدام الإنترنت في المخيمات",
+          "الاعتماد على الرقابة الأبوية فقط"
         ],
         correct: 0
       },
       {
-        question: "ما هي 'التصديق العميق' (Deepfake) ولماذا تهم القائد؟",
+        question: "ما هو 'الاستغلال العاطفي' الذي يمكن أن يحدث للكشافة عبر chatbots؟",
         options: [
-          "فيديوهات مزيفة قد تنتشر بين الكشافة وتسبب فتنة — القائد يجب أن يوعيهم",
-          "تقنية تحسين الصور فقط",
-          "لعبة فيديو مسلية",
-          "برنامج تصميم"
+          "إنشاء علاقة عاطفية مزيفة لاستغلال الطفل نفسياً أو جنسياً",
+          "تقديم نصائح كشفية",
+          "مساعدة في الواجبات",
+          "ترجمة النصوص"
         ],
         correct: 0
       },
       {
-        question: "كيف يمكن أن يكون الذكاء الاصطناعي خطراً على خصوصية الكشافة؟",
+        question: "كيف يمكن استخدام AI في 'التخطيط الاستراتيجي' لأنشطة الكشافة دون المساس بالإبداع البشري؟",
         options: [
-          "يجمع بياناتهم ويمكن أن تسرب أو تستغل تجارياً",
-          "لا يؤثر على الخصوصية",
-          "يزيد الخصوصية",
-          "يحذف بياناتهم"
+          "استخدام AI لتحليل البيانات وتوليد أفكار أولية، ثم تطويرها إبداعياً بشكل جماعي",
+          "نسخ خطط جاهزة",
+          "ترك AI يخطط كل شيء",
+          "تجاهل AI تماماً"
         ],
         correct: 0
       },
       {
-        question: "ما هو 'التحيز' (Bias) في الذكاء الاصطناعي؟",
+        question: "ما هي 'الشفافية الخوارزمية' ولماذا يجب أن يهتم بها القائد؟",
         options: [
-          "ميل النظام لنتائج غير عادلة بسبب بيانات تدريب متحيزة",
-          "سرعة النظام",
-          "دقة النظام",
-          "حجم النظام"
+          "معرفة كيف يتخذ AI قراراته لضمان العدالة وعدم التمييز بين الكشافة",
+          "سرعة معالجة البيانات",
+          "حجم التخزين",
+          "شكل واجهة المستخدم"
         ],
         correct: 0
       },
       {
-        question: "كقائد، ماذا تفعل إذا اكتشفت أن كشافاً يشارك معلومات شخصية مع chatbot؟",
+        question: "عند استخدام AI لكتابة تقارير الأنشطة الكشفية، ما هو الإجراء الصحيح؟",
         options: [
-          "أوعّيه فوراً بالمخاطر وأعلّم الفرقة عن الخصوصية الرقمية",
-          "أتجاهل الموضوع",
-          "أمنعه من استخدام الهاتف نهائياً",
-          "أشارك أنا أيضاً"
+          "مراجعة التقرير وتعديله بشرياً والتأكد من دقته قبل الإرسال",
+          "إرساله مباشرة",
+          "نسخ تقارير سابقة",
+          "الاعتماد على AI بنسبة 100%"
         ],
         correct: 0
       },
       {
-        question: "ما هي 'التنمر الإلكتروني بالذكاء الاصطناعي'؟",
+        question: "ما هو 'التزييف العميق الصوتي' (Audio Deepfake) وكيف يمكن أن يؤثر على الكشافة؟",
         options: [
-          "استخدام AI لإنشاء محتوى مسيء أو صور مزيفة لإيذاء الآخرين",
-          "نوع من أنواع الألعاب",
-          "برنامج تصميم",
-          "لا يوجد شيء كهذا"
+          "تقنية تقليد صوت القائد لإصدار تعليمات مزيفة — خطر حقيقي",
+          "تحسين جودة الصوت",
+          "ترجمة فورية",
+          "تسجيل الأنشطة"
         ],
         correct: 0
       },
       {
-        question: "كيف يمكن للذكاء الاصطناعي أن يؤثر سلباً على صحة الكشاف النفسية؟",
+        question: "كيف يمكن أن يساعد AI في 'الدمج الاجتماعي' للكشافة من خلفيات مختلفة؟",
         options: [
-          "محتوى مقترح قد يسبب القلق أو يقارنهم بالآخرين",
-          "لا يؤثر على الصحة النفسية",
-          "يحسّن الصحة النفسية دائماً",
-          "يزيد الثقة بالنفس دائماً"
+          "بتوفير ترجمة فورية وتكييف المحتوى ثقافياً ولغوياً",
+          "بتوحيد كل الأنشطة",
+          "بتجاهل الفروقات",
+          "لا يمكنه المساعدة"
         ],
         correct: 0
       },
       {
-        question: "ما هي القاعدة الأساسية لاستخدام الكشافة للذكاء الاصطناعي؟",
+        question: "ما هي 'البصمة الرقمية' للكشاف وكيف يمكن أن يؤثر AI على سمعته المستقبلية؟",
         options: [
-          "الإشراف الكامل من قائد أو ولي أمر وشرح المخاطر",
-          "الاستخدام الحر دون قيود",
-          "المنع التام",
-          "الاستخدام فقط للترفيه"
+          "سجل دائم للأنشطة عبر الإنترنت — AI قد يوسع انتشاره أو يسربه",
+          "رقم سري",
+          "كلمة مرور",
+          "لا تأثير لها"
         ],
         correct: 0
       },
       {
-        question: "كقائد، كيف تعلّم كشافتك التمييز بين المحتوى الحقيقي والمزيف؟",
+        question: "ما هو 'الانحياز التمثيلي' في الصور المولدة بالذكاء الاصطناعي للأنشطة الكشفية؟",
         options: [
-          "بتمارين عملية للتحقق من المصادر وتحليل الصور والفيديوهات",
-          "بإخبارهم أن كل شيء على الإنترنت صحيح",
-          "بتجنب الموضوع",
-          "بحذف التطبيقات من هواتفهم"
+          "عدم تمثيل التنوع العرقي والجسدي والاجتماعي للكشافة بشكل عادل",
+          "جودة الصورة",
+          "حجم الصورة",
+          "ألوان الصورة"
         ],
         correct: 0
       },
       {
-        question: "ما هي 'الأخلاقيات الرقمية' التي يجب تعليمها للكشاف؟",
+        question: "كقائد، كيف تتعامل مع كشاف يستخدم AI لتوليد محتوى تنمري ضد زميله؟",
         options: [
-          "احترام الآخرين، الصدق، الخصوصية، وعدم الإضرار بالآخرين",
-          "فقط استخدام كلمات المرور",
-          "فقط عدم مشاركة الصور",
-          "لا يوجد أخلاقيات رقمية"
+          "تدخل فوري، توعية، تطبيق سياسة عدم التسامح، ودعم الضحية",
+          "تجاهل المشكلة",
+          "معاقبة الكشاف فقط",
+          "حذف المحتوى والسكوت"
         ],
         correct: 0
       },
       {
-        question: "كيف تتعامل مع كشاف يستخدم AI لكتابة واجباته المدرسية؟",
+        question: "ما هو 'الاستخدام المزدوج' (Dual Use) لتقنيات AI في الكشافة؟",
         options: [
-          "أشرح له أن AI أداة مساعدة وليس بديلاً عن التعلم",
-          "أشجعه على الاستمرار",
-          "أبلغ المدرسة فوراً",
-          "أتجاهل الموضوع"
+          "نفس التقنية يمكن استخدامها للخير أو للضرر حسب النية والسياق",
+          "استخدام التطبيق مرتين",
+          "نوعان من التطبيقات",
+          "لا يوجد استخدام مزدوج"
         ],
         correct: 0
       },
       {
-        question: "ما هو 'الاستخدام المسؤول للذكاء الاصطناعي' في نظر القائد؟",
+        question: "كيف يمكن أن يؤثر AI على 'الهوية الكشفية' للطفل؟",
         options: [
-          "استخدامه لخدمة الآخرين مع احترام الأخلاقيات والشفافية",
-          "استخدامه لأي غرض",
-          "استخدامه فقط للربح",
-          "عدم استخدامه أبداً"
+          "قد يضعف الانتماء الجماعي إذا حل محل التفاعل البشري — القائد يجب أن يوازن",
+          "يعزز الهوية دائماً",
+          "لا تأثير له",
+          "يقضي على الهوية"
         ],
         correct: 0
       },
       {
-        question: "كيف يمكن للذكاء الاصطناعي أن يساعد الكشاف ذوي الاحتياجات الخاصة؟",
+        question: "ما هي 'الفجوة الرقمية' التي يجب على القائد معالجتها بين الكشافة؟",
         options: [
-          "تحويل النص إلى كلام والعكس وتسهيل التواصل والتعلم",
-          "لا يمكنه المساعدة",
-          "يعقد الأمور",
-          "فقط للترفيه"
-        ],
-        correct: 0
-      },
-      {
-        question: "ما هي 'الترجمة الفورية' التي يمكن أن يستفيد منها القائد؟",
-        options: [
-          "ترجمة الوثائق الكشفية لمخاطبة فرق من دول أخرى",
-          "ترجمة الأغاني فقط",
-          "لا فائدة منها",
-          "ترجمة الأسماء فقط"
-        ],
-        correct: 0
-      },
-      {
-        question: "كيف يستفيد القائد من AI في تنظيم المخيمات الكشفية؟",
-        options: [
-          "تخطيط الجداول وقوائم التجهيزات وتوزيع المهام",
-          "لا يمكن الاستفادة",
-          "يعقد التنظيم",
-          "يقلل الإبداع"
-        ],
-        correct: 0
-      },
-      {
-        question: "ما هي 'الخرائط الذكية' التي يمكن للقائد استخدامها؟",
-        options: [
-          "تطبيقات AI تقترح أفضل المسارات ومواقع المخيمات",
-          "خرائط ورقية فقط",
-          "لا توجد خرائط ذكية",
-          "خرائط للألعاب"
-        ],
-        correct: 0
-      },
-      {
-        question: "كيف يمكن للذكاء الاصطناعي أن يساعد في التسويق لأنشطة الكشافة؟",
-        options: [
-          "تصميم ملصقات جذابة وكتابة منشورات مؤثرة",
-          "لا علاقة له بالتسويق",
-          "يضر بالتسويق",
-          "للترفيه فقط"
-        ],
-        correct: 0
-      },
-      {
-        question: "ما هو 'التعلم التفاعلي' الذي يوفره AI للكشافة؟",
-        options: [
-          "تطبيقات تعليمية تتكيف مع مستوى كل كشاف",
-          "فيديوهات ثابتة فقط",
-          "كتب فقط",
-          "لا يوجد تعلم تفاعلي"
-        ],
-        correct: 0
-      },
-      {
-        question: "ما هو دور القائد في عصر الذكاء الاصطناعي؟",
-        options: [
-          "توجيه الكشاف للاستخدام الواعي والأخلاقي للتكنولوجيا",
-          "منع التكنولوجيا تماماً",
-          "استخدامها دون وعي",
-          "ترك الكشافة يتعلمون وحدهم"
-        ],
-        correct: 0
-      },
-      {
-        question: "كيف تستعد فرقتك لمستقبل يسيطر عليه الذكاء الاصطناعي؟",
-        options: [
-          "بتعليم المهارات الرقمية والأخلاقيات والتفكير النقدي",
-          "بتجنب التكنولوجيا",
-          "بالاعتماد على الحفظ فقط",
-          "بمنع الهواتف"
-        ],
-        correct: 0
-      },
-      {
-        question: "ما هي 'فجوة المهارات الرقمية' التي يجب على القائد معالجتها؟",
-        options: [
-          "الفرق بين من يملكون مهارات رقمية ومن لا يملكونها",
-          "فجوة في الإنترنت",
-          "فجوة في الأجهزة",
+          "عدم تكافؤ الوصول للتقنية والمهارات الرقمية بين الكشافة",
+          "فجوة في الأجهزة فقط",
+          "فجوة في الأعمار",
           "لا توجد فجوة"
         ],
         correct: 0
       },
       {
-        question: "كيف تتعامل مع كشاف يخاف من الذكاء الاصطناعي؟",
+        question: "عند استخدام AI لتحليل أداء الكشافة، ما هو الخطر الأخلاقي؟",
         options: [
-          "أطمئنه وأشرح له أن AI أداة وليس كائناً مخيفاً",
-          "أتركه يخاف",
-          "أجبره على استخدامه",
-          "أعزله عن الفرقة"
+          "تصنيف الكشافة بشكل غير عادل أو تقليص إنسانيتهم إلى أرقام",
+          "تحسين الأداء",
+          "توفير الوقت",
+          "زيادة التنافسية"
         ],
         correct: 0
       },
       {
-        question: "ما هي 'الشفافية' في استخدام AI مع الكشاف؟",
+        question: "ما هو 'التحقق من الحقائق' (Fact-checking) الذي يجب على القائد تعليمه للكشافة؟",
         options: [
-          "إخبارهم عند استخدام AI وإشراكهم في النقاش",
-          "إخفاء استخدامه",
-          "عدم شرح أي شيء",
-          "الاستخدام السري"
+          "التحقق من المعلومات المولدة بالذكاء الاصطناعي من مصادر موثوقة قبل مشاركتها",
+          "تصديق كل شيء",
+          "رفض كل شيء",
+          "مشاركة كل شيء بسرعة"
         ],
         correct: 0
       },
       {
-        question: "ما هي أهم صفة يجب أن يتحلى بها القائد في عصر AI؟",
+        question: "كيف يمكن استخدام AI لتعزيز 'التعلم التجريبي' في الكشافة؟",
         options: [
-          "الوعي والمسؤولية والقدوة الحسنة",
-          "السرعة فقط",
-          "القوة فقط",
-          "الصمت"
+          "بمحاكاة سيناريوهات واقعية وتوفير تغذية راجعة فورية",
+          "باستبدال الأنشطة الميدانية",
+          "بحفظ المعلومات",
+          "لا يمكن استخدامه"
         ],
         correct: 0
       },
       {
-        question: "كقائد، ما هي رسالتك الأساسية للكشاف حول الذكاء الاصطناعي؟",
+        question: "ما هو 'الاستقطاب الخوارزمي' وكيف يمكن أن يؤثر على وحدة الفرقة الكشفية؟",
         options: [
-          "استخدمه بحكمة وأخلاق، وابقَ إنساناً مبدعاً ومتعاطفاً",
-          "استخدمه دون قيود",
-          "تجاهله تماماً",
-          "خاف منه"
+          "عرض محتوى متطرف أو منقسم قد يزرع الفتنة بين الكشافة",
+          "تقوية الوحدة",
+          "زيادة التعاون",
+          "لا تأثير له"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي 'المرونة الرقمية' التي يجب أن يتحلى بها القائد في عصر AI؟",
+        options: [
+          "القدرة على التكيف مع التقنيات الجديدة وتقييم مخاطرها بسرعة",
+          "استخدام تطبيق واحد",
+          "رفض التغيير",
+          "انتظار التعليمات"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف يمكن أن يكون AI أداة لـ 'التمكين' بدلاً من 'الإحلال' للقادة؟",
+        options: [
+          "بأتمتة المهام الروتينية ليتفرغ القائد للعلاقات الإنسانية والتوجيه",
+          "باستبدال القائد",
+          "باتخاذ القرارات بدلاً منه",
+          "لا يمكن"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هو 'الالتزام الأخلاقي' الأساسي للقائد عند استخدام AI مع الأطفال؟",
+        options: [
+          "المصلحة الفضلى للطفل فوق أي اعتبار تقني أو إداري",
+          "توفير الوقت",
+          "إرضاء الأولياء",
+          "كسب الجوائز"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف تتعامل مع كشاف يرفض استخدام AI تماماً خوفاً منه؟",
+        options: [
+          "أحترم مخاوفه وأشرح له الفوائد والمخاطر وأدعمه للتدرج",
+          "أجبره على الاستخدام",
+          "أتجاهله",
+          "أعزله عن الأنشطة"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هو 'التصميم الشامل' (Inclusive Design) في أدوات AI الكشفية؟",
+        options: [
+          "مراعاة احتياجات جميع الكشافة بغض النظر عن قدراتهم أو خلفياتهم",
+          "تصميم واحد للجميع",
+          "تصميم للنخبة",
+          "تصميم للمدينة فقط"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي 'الكفاءة الرقمية' التي يجب أن يمتلكها القائد ليكون قدوة؟",
+        options: [
+          "المعرفة العملية بأدوات AI، وفهم مخاطرها، والقدرة على تعليمها",
+          "استخدام الهاتف فقط",
+          "معرفة أساسيات الحاسوب",
+          "لا يحتاج كفاءة"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف يمكن أن يؤثر AI على 'الوقت النوعي' بين القائد والكشاف؟",
+        options: [
+          "قد يقلل التفاعل البشري إذا استُخدم بشكل مفرط — يجب الموازنة",
+          "يزيده دائماً",
+          "لا تأثير",
+          "يقضيه تماماً"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي رسالتك النهائية كقائد كشافة حول الذكاء الاصطناعي؟",
+        options: [
+          "AI أداة لخدمة الإنسان — لنبقَ مبدعين ومتعاطفين وأخلاقيين",
+          "AI خطر يجب تجنبه",
+          "AI بديل عن القائد",
+          "AI للتسلية فقط"
         ],
         correct: 0
       }
     ];
 
-    // ========== متغيرات اللعبة ==========
     let currentQuestionIndex = 0;
     let score = 0;
     let answered = false;
-    let totalQuestions = questions.length;
+    const totalQuestions = questions.length;
     let questionOrder = [];
     let wrongAnswers = [];
 
-    // عناصر DOM
     const scoreDisplay = document.getElementById('scoreDisplay');
     const questionBox = document.getElementById('questionBox');
     const optionsContainer = document.getElementById('optionsContainer');
@@ -1407,11 +793,9 @@
     const resultTitle = document.getElementById('resultTitle');
     const finalScore = document.getElementById('finalScore');
     const scoreMessage = document.getElementById('scoreMessage');
+    const wrongAnswersSection = document.getElementById('wrongAnswersSection');
 
-    // ========== دوال مساعدة ==========
-    function updateScoreUI() {
-      scoreDisplay.textContent = score;
-    }
+    function updateScoreUI() { scoreDisplay.textContent = score; }
 
     function updateProgress() {
       const percent = Math.round((currentQuestionIndex / totalQuestions) * 100);
@@ -1463,15 +847,7 @@
         optionsContainer.appendChild(btn);
       });
 
-      document.querySelectorAll('.option-btn').forEach(btn => {
-        btn.disabled = false;
-        btn.classList.remove('correct', 'wrong');
-      });
-
       feedback.innerHTML = `<i class="fas fa-comment-dots"></i> اختر إجابة...`;
-
-      questionBox.style.transform = 'scale(1.01)';
-      setTimeout(() => { questionBox.style.transform = 'scale(1)'; }, 200);
     }
 
     function handleAnswer(btn, selectedOriginalIdx, correctIdx, questionObj) {
@@ -1484,32 +860,26 @@
 
       document.querySelectorAll('.option-btn').forEach(b => {
         const origIdx = parseInt(b.dataset.originalIdx);
-        if (origIdx === correctIdx) {
-          b.classList.add('correct');
-        } else if (origIdx === selectedOriginalIdx && !isCorrect) {
-          b.classList.add('wrong');
-        }
+        if (origIdx === correctIdx) b.classList.add('correct');
+        else if (origIdx === selectedOriginalIdx && !isCorrect) b.classList.add('wrong');
       });
 
       if (isCorrect) {
         score += 1;
         updateScoreUI();
-        feedback.innerHTML = `<i class="fas fa-check-circle" style="color:#10b981;"></i> إجابة صحيحة! قائد واعٍ! +1 نقطة`;
+        feedback.innerHTML = `<i class="fas fa-check-circle" style="color:#00e676;"></i> إجابة صحيحة! قائد واعٍ! +1 نقطة`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> إجابة صحيحة! 🎉`;
-        scoreDisplay.style.transform = 'scale(1.5)';
-        setTimeout(() => scoreDisplay.style.transform = 'scale(1)', 300);
       } else {
         const correctText = questionObj.options[correctIdx];
         const selectedText = questionObj.options[selectedOriginalIdx];
         
-        // ✅ تسجيل الإجابة الخاطئة
         wrongAnswers.push({
           question: questionObj.question,
           selectedAnswer: selectedText,
           correctAnswer: correctText
         });
         
-        feedback.innerHTML = `<i class="fas fa-times-circle" style="color:#ef4444;"></i> إجابة خاطئة. الصواب: ${correctText}`;
+        feedback.innerHTML = `<i class="fas fa-times-circle" style="color:#ff4d4d;"></i> إجابة خاطئة. الصواب: ${correctText}`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> الصواب: ${correctText}`;
       }
 
@@ -1538,52 +908,47 @@
       resultScreen.style.display = 'block';
 
       finalScore.textContent = `${score} / ${totalQuestions}`;
-
       const percentage = (score / totalQuestions) * 100;
 
       if (percentage >= 90) {
         resultBadge.textContent = '🏆';
         resultTitle.textContent = 'ممتاز أيها القائد! أنت قدوة في الاستخدام الواعي للذكاء الاصطناعي!';
         scoreMessage.textContent = `رائع! حصلت على ${score} من ${totalQuestions}. أنت مؤهل لقيادة كشافتك بوعي في عصر الذكاء الاصطناعي. شارك هذه المعرفة مع قادة آخرين!`;
-        resultBadge.style.filter = 'drop-shadow(0 0 40px gold)';
       } else if (percentage >= 70) {
         resultBadge.textContent = '🌟';
         resultTitle.textContent = 'أحسنت! مستوى جيد جداً!';
         scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. لديك وعي جيد بالمخاطر والفرص. راجع بعض النقاط لتصبح قدوة كاملة.`;
-        resultBadge.style.filter = 'drop-shadow(0 0 40px #00d4ff)';
       } else if (percentage >= 50) {
         resultBadge.textContent = '📖';
         resultTitle.textContent = 'جيد، لكن يحتاج القائد للمزيد';
         scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. اقرأ أكثر عن أخلاقيات AI وحماية الأطفال الرقمية. كشافتك تعتمد عليك!`;
-        resultBadge.style.filter = 'drop-shadow(0 0 40px #f59e0b)';
       } else {
         resultBadge.textContent = '⚠️';
         resultTitle.textContent = 'تحذير: يحتاج القائد لتوعية عاجلة!';
         scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. الذكاء الاصطناعي خطر حقيقي على الأطفال بدون توعية. ابدأ بتعلّم الأساسيات لحماية كشافتك.`;
-        resultBadge.style.filter = 'drop-shadow(0 0 40px #ef4444)';
       }
 
-      // ✅ عرض قائمة الإجابات الخاطئة
-      const wrongSection = document.getElementById('wrongAnswersSection');
-      const wrongList = document.getElementById('wrongAnswersList');
-
-      if (wrongAnswers && wrongAnswers.length > 0) {
-        wrongSection.style.display = 'block';
-        let html = '';
+      // بناء قسم الإجابات الخاطئة
+      if (wrongAnswers.length > 0) {
+        let html = '<div class="wrong-answers-container">';
+        html += '<h3><i class="fas fa-exclamation-triangle"></i> الأسئلة التي أخطأت فيها (تحتاج مراجعة):</h3>';
+        
         wrongAnswers.forEach((item, index) => {
           html += `
             <div class="wrong-item">
               <div class="q-text"><i class="fas fa-question-circle"></i> ${index + 1}. ${item.question}</div>
               <div class="a-text">
-                <div class="user-answer"><i class="fas fa-times-circle"></i> إجابتك: ${item.selectedAnswer}</div>
-                <div class="correct-answer"><i class="fas fa-check-circle"></i> الإجابة الصحيحة: ${item.correctAnswer}</div>
+                <div class="user-answer"><i class="fas fa-times-circle"></i> <span>إجابتك: ${item.selectedAnswer}</span></div>
+                <div class="correct-answer"><i class="fas fa-check-circle"></i> <span>الإجابة الصحيحة: ${item.correctAnswer}</span></div>
               </div>
             </div>
           `;
         });
-        wrongList.innerHTML = html;
+        
+        html += '</div>';
+        wrongAnswersSection.innerHTML = html;
       } else {
-        wrongSection.style.display = 'none';
+        wrongAnswersSection.innerHTML = '';
       }
     }
 
@@ -1598,7 +963,7 @@
       introSection.style.display = 'flex';
       progressSection.style.display = 'block';
       resultScreen.style.display = 'none';
-      document.getElementById('wrongAnswersSection').style.display = 'none';
+      wrongAnswersSection.innerHTML = '';
       totalQNum.textContent = totalQuestions;
       loadQuestion();
     }
@@ -1621,7 +986,6 @@
     }
 
     initGame();
-
   })();
 </script>
 
