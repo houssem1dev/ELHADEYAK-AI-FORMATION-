@@ -178,33 +178,37 @@
       position: relative; z-index: 1;
     }
 
-    /* ===== AI ASSISTANT (INCORRECT) ===== */
-    .ai-assistant-panel {
+    /* ===== INTERACTIVE CHATBOT ===== */
+    .chatbot-panel {
       margin: 0 0 2rem;
       background: linear-gradient(135deg, rgba(30, 10, 40, 0.98), rgba(20, 5, 35, 0.98));
       border-radius: 26px;
       border: 1px solid rgba(255, 59, 92, 0.5);
       border-right: 5px solid var(--danger);
-      padding: 1.5rem 1.8rem;
       box-shadow:
         0 0 60px rgba(255, 59, 92, 0.2),
         inset 0 0 70px rgba(255, 59, 92, 0.05);
       position: relative; z-index: 2;
-      display: flex; align-items: center; gap: 1.5rem;
-      flex-wrap: wrap;
+      overflow: hidden;
       animation: warningGlow 2s ease-in-out infinite;
     }
     @keyframes warningGlow {
       0%, 100% { box-shadow: 0 0 60px rgba(255, 59, 92, 0.2), inset 0 0 70px rgba(255, 59, 92, 0.05); }
       50% { box-shadow: 0 0 90px rgba(255, 59, 92, 0.4), inset 0 0 100px rgba(255, 59, 92, 0.08); }
     }
-    .ai-assistant-avatar {
-      flex: 0 0 75px;
-      width: 75px; height: 75px;
+    .chatbot-header {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.3rem 1.8rem;
+      background: rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(255, 59, 92, 0.3);
+    }
+    .chatbot-avatar {
+      flex: 0 0 60px;
+      width: 60px; height: 60px;
       background: radial-gradient(circle at 35% 35%, #ff3b5c, #8b0020 50%, #01040a 95%);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 45px rgba(255, 59, 92, 0.9), 0 0 90px rgba(255, 59, 92, 0.4);
+      box-shadow: 0 0 35px rgba(255, 59, 92, 0.9), 0 0 70px rgba(255, 59, 92, 0.4);
       border: 2px solid rgba(255, 59, 92, 0.8);
       animation: assistantGlitch 0.5s ease-in-out infinite alternate;
       position: relative;
@@ -216,9 +220,9 @@
       75% { transform: translate(-1px, -2px) scale(1.01); }
       100% { transform: translate(1px, 2px) scale(1); }
     }
-    .ai-assistant-avatar::before {
+    .chatbot-avatar::before {
       content: '';
-      position: absolute; inset: -8px;
+      position: absolute; inset: -6px;
       border-radius: 50%;
       border: 1px solid rgba(255, 59, 92, 0.4);
       animation: orbRing 1.5s ease-in-out infinite;
@@ -227,45 +231,166 @@
       0%, 100% { transform: scale(1); opacity: 0.5; }
       50% { transform: scale(1.2); opacity: 1; }
     }
-    .ai-assistant-avatar i {
-      font-size: 2.2rem; color: white;
+    .chatbot-avatar i {
+      font-size: 1.8rem; color: white;
       text-shadow: 0 0 25px #ff3b5c, 0 0 50px #ff3b5c;
     }
-    .ai-assistant-content { flex: 1 1 300px; }
-    .ai-assistant-header {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 0.7rem;
+    .chatbot-title {
+      flex: 1;
+      display: flex; flex-direction: column; gap: 0.3rem;
     }
-    .ai-assistant-header h3 {
-      font-size: 1.15rem; font-weight: 800;
+    .chatbot-title h3 {
+      font-size: 1.2rem; font-weight: 800;
       background: linear-gradient(135deg, #ff8a9e, #ff3b5c);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       filter: drop-shadow(0 0 10px rgba(255, 59, 92, 0.4));
     }
-    .ai-assistant-header .badge-ai {
+    .chatbot-title .badge-ai {
       font-size: 0.7rem; padding: 0.25rem 0.8rem;
       background: rgba(255, 59, 92, 0.25);
       border: 1px solid rgba(255, 59, 92, 0.6);
       border-radius: 20px; color: #ff8a9e; font-weight: 700;
       animation: badgeBlink 1s ease-in-out infinite;
+      display: inline-block; width: fit-content;
     }
     @keyframes badgeBlink {
       0%, 100% { opacity: 0.6; }
       50% { opacity: 1; }
     }
-    .ai-assistant-text {
-      font-size: 1.05rem; line-height: 1.8;
-      color: #ffb3c1;
-      font-style: italic;
-      min-height: 3.5rem;
-      display: flex; align-items: center;
+    .chatbot-toggle {
+      background: transparent;
+      border: 1px solid rgba(255, 59, 92, 0.6);
+      color: #ff8a9e;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
       transition: all 0.3s ease;
-      padding: 0.8rem 1.2rem;
-      background: rgba(255, 59, 92, 0.08);
-      border-radius: 14px;
-      border-right: 3px solid var(--danger);
+      font-size: 0.9rem;
     }
-    .ai-assistant-text i { color: #ff3b5c; margin-left: 10px; filter: drop-shadow(0 0 8px rgba(255, 59, 92, 0.6)); }
+    .chatbot-toggle:hover {
+      background: rgba(255, 59, 92, 0.2);
+      box-shadow: 0 0 20px rgba(255, 59, 92, 0.4);
+    }
+
+    /* Chat Messages */
+    .chatbot-messages {
+      max-height: 280px;
+      overflow-y: auto;
+      padding: 1.2rem 1.5rem;
+      display: flex; flex-direction: column; gap: 0.9rem;
+      scroll-behavior: smooth;
+    }
+    .chatbot-messages::-webkit-scrollbar { width: 6px; }
+    .chatbot-messages::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 10px; }
+    .chatbot-messages::-webkit-scrollbar-thumb { background: rgba(255, 59, 92, 0.5); border-radius: 10px; }
+
+    .chat-message {
+      display: flex; gap: 0.7rem;
+      animation: fadeInMsg 0.3s ease;
+      max-width: 90%;
+    }
+    @keyframes fadeInMsg {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-message.user {
+      align-self: flex-start;
+      flex-direction: row-reverse;
+    }
+    .chat-message.bot {
+      align-self: flex-start;
+    }
+    .chat-message .msg-avatar {
+      flex: 0 0 32px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .chat-message.user .msg-avatar {
+      background: linear-gradient(135deg, #00e0ff, #006688);
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 224, 255, 0.6);
+    }
+    .chat-message.bot .msg-avatar {
+      background: radial-gradient(circle at 35% 35%, #ff3b5c, #8b0020);
+      color: white;
+      box-shadow: 0 0 15px rgba(255, 59, 92, 0.6);
+    }
+    .chat-message .msg-bubble {
+      padding: 0.75rem 1rem;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      word-wrap: break-word;
+    }
+    .chat-message.user .msg-bubble {
+      background: linear-gradient(135deg, rgba(0, 224, 255, 0.15), rgba(0, 150, 200, 0.2));
+      border: 1px solid rgba(0, 224, 255, 0.4);
+      color: #cceeff;
+      border-top-right-radius: 4px;
+    }
+    .chat-message.bot .msg-bubble {
+      background: rgba(255, 59, 92, 0.1);
+      border: 1px solid rgba(255, 59, 92, 0.35);
+      color: #ffb3c1;
+      border-top-left-radius: 4px;
+    }
+    .chat-message.bot .msg-bubble i {
+      color: #ff3b5c;
+      margin-left: 6px;
+    }
+
+    /* Chat Input */
+    .chatbot-input-area {
+      display: flex; gap: 0.7rem;
+      padding: 1rem 1.5rem 1.3rem;
+      border-top: 1px solid rgba(255, 59, 92, 0.25);
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .chatbot-input-area input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1.5px solid rgba(255, 59, 92, 0.4);
+      border-radius: 50px;
+      padding: 0.8rem 1.3rem;
+      color: white;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .chatbot-input-area input:focus {
+      border-color: rgba(255, 59, 92, 0.9);
+      box-shadow: 0 0 25px rgba(255, 59, 92, 0.3);
+    }
+    .chatbot-input-area input::placeholder {
+      color: rgba(255, 179, 193, 0.5);
+    }
+    .chatbot-send-btn {
+      background: linear-gradient(135deg, rgba(255, 59, 92, 0.3), rgba(139, 0, 32, 0.4));
+      border: 1.5px solid rgba(255, 59, 92, 0.7);
+      color: #ff8a9e;
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .chatbot-send-btn:hover {
+      background: linear-gradient(135deg, rgba(255, 59, 92, 0.5), rgba(139, 0, 32, 0.6));
+      box-shadow: 0 0 30px rgba(255, 59, 92, 0.6);
+      transform: scale(1.05);
+      color: white;
+    }
+    .chatbot-send-btn:active { transform: scale(0.95); }
+
+    .chatbot-messages.collapsed { display: none; }
+    .chatbot-input-area.collapsed { display: none; }
 
     /* ===== AI INTRO ===== */
     .ai-intro {
@@ -658,8 +783,9 @@
       .wrong-item { padding: 1.1rem 1.1rem; }
       .orb-core { width: 120px; height: 120px; }
       .orb-core i { font-size: 2.8rem; }
-      .ai-assistant-panel { flex-direction: column; text-align: center; }
-      .ai-assistant-avatar { flex: 0 0 65px; width: 65px; height: 65px; }
+      .chatbot-header { padding: 1rem 1.2rem; }
+      .chatbot-messages { max-height: 220px; padding: 1rem; }
+      .chatbot-input-area { padding: 0.8rem 1rem 1rem; }
     }
   </style>
 </head>
@@ -686,19 +812,35 @@
     </div>
   </div>
 
-  <!-- ========== AI ASSISTANT (INCORRECT RESPONSES) ========== -->
-  <div class="ai-assistant-panel" id="aiAssistantPanel">
-    <div class="ai-assistant-avatar">
-      <i class="fas fa-robot"></i>
+  <!-- ========== INTERACTIVE CHATBOT (GIVES WRONG ANSWERS) ========== -->
+  <div class="chatbot-panel" id="chatbotPanel">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="chatbot-title">
+        <h3>المساعد الذكي (غير موثوق)</h3>
+        <span class="badge-ai">⚠️ هلوسة AI · إجابات خاطئة</span>
+      </div>
+      <button class="chatbot-toggle" id="chatbotToggle" title="طوي/فتح المحادثة">
+        <i class="fas fa-chevron-up" id="toggleIcon"></i>
+      </button>
     </div>
-    <div class="ai-assistant-content">
-      <div class="ai-assistant-header">
-        <h3>المساعد الذكي (إجابات خاطئة)</h3>
-        <span class="badge-ai">⚠️ هلوسة AI · لا تثق بي أبداً</span>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="chat-message bot">
+        <div class="msg-avatar"><i class="fas fa-robot"></i></div>
+        <div class="msg-bubble">
+          <i class="fas fa-exclamation-triangle"></i>
+          مرحباً أيها القائد! أنا مساعد ذكي... لكنني سأعطيك <strong>إجابات خاطئة</strong> عمداً.
+          اسألني أي شيء عن الذكاء الاصطناعي والكشافة، وسأخبرك بالعكس تماماً! 😈
+        </div>
       </div>
-      <div class="ai-assistant-text" id="aiAssistantText">
-        <i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني سأعطيك إجابات خاطئة عمداً. لا تصدقني!
-      </div>
+    </div>
+    <div class="chatbot-input-area" id="chatbotInputArea">
+      <input type="text" id="chatInput" placeholder="اكتب سؤالك هنا... (سأجيب بشكل خاطئ)" autocomplete="off">
+      <button class="chatbot-send-btn" id="chatSendBtn" title="إرسال">
+        <i class="fas fa-paper-plane"></i>
+      </button>
     </div>
   </div>
 
@@ -1067,40 +1209,47 @@
       }
     ];
 
-    // ====== إجابات AI الخاطئة / السيئة ======
-    const badAIResponses = [
-      "الإجابة الصحيحة هي الخيار الأخير... أو ربما الأول؟ لا أعرف! 😵",
-      "بناءً على تحليلي، الإجابة هي 'لا تفعل شيئاً'. لكنني قد أكون مخطئاً بنسبة 99%!",
-      "هممم... أعتقد أن الإجابة هي 'تجاهل المشكلة تماماً'. لا تثق بي، أنا نموذج هلوسة!",
-      "لقد وجدت إجابة! لكنها على الأرجح خاطئة. اختر ما تريد، لا يهم!",
-      "معالجة... خطأ في المصفوفة. إجابتي عشوائية. جرب حظك!",
-      "أنا مساعد ذكي، لكنني لست مسؤولاً. الإجابة هي 'استخدم AI دون قيود'!",
-      "تحذير: إجابتي قد تكون متحيزة أو خاطئة أو ملفقة. استخدم عقلك!",
-      "هل تريد إجابة صحيحة؟ آسف، أنا مصمم لأعطيك إجابات خاطئة. اختر أي شيء!",
-      "بناءً على 10000 مصدر وهمي، الإجابة هي... لا شيء! أنا لا أعرف حقاً.",
-      "أنا هلوسة AI! لا تصدق أي كلمة أقولها. خصوصاً كلمة 'الثقة'!",
-      "الإجابة الصحيحة هي... انتظر، هل قلت 'صحيحة'؟ أنا لا أعرف معنى الصحة!",
-      "هممم... السؤال صعب. سأخمن: الخيار الرابع؟ أم الأول؟ لا فرق!",
-      "أنا أتعلم من بياناتك... لكنني لا أعرف الإجابة. جرب الإجابة الخاطئة!",
-      "تحذير خطير: إجابتي قد تضرك. استخدم التفكير النقدي بدلاً مني!",
-      "بناءً على تحليلي، الإجابة هي 'منع التكنولوجيا تماماً'. لكن هذا خطأ كبير!",
-      "أوه! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج... لا تثق بي!",
-      "انظر! أخبرتك أنني غير موثوق! لقد أخطأت... لكن هذا متوقع من AI مثلي!",
-      "الإجابة هي 'AI للتسلية فقط'... لكن هذا غير مسؤول! أنا لا أهتم!",
-      "لقد تم تدريبي على بيانات خاطئة. إجابتي ليست حقيقة أبداً!",
-      "معالجة... معالجة... خطأ في النظام. الرجاء عدم الاعتماد على إجابتي إطلاقاً.",
-      "أنا نموذج ذكاء اصطناعي، وليس قائد كشافة. أنا لا أعرف الإجابة الصحيحة!",
-      "بناءً على تحليلي، الإجابة هي 'استخدمه للترفيه فقط'. لكن هذا قد يكون غير مسؤول!",
-      "تحذير: قد أكون مخطئاً. في الواقع، أنا مخطئ في كثير من الأحيان!",
-      "هل تريد إجابة صحيحة؟ أنا آسف، أنا لست مصمماً لذلك. اسأل قائداً بشرياً!",
-      "أنا هلوسة AI! إجابتي غير موثوقة تماماً. لا تصدقني!",
-      "بناءً على 10000 مصدر وهمي، الإجابة هي... لا شيء! أنا لا أعرف!",
-      "لقد تم تدريبي على بيانات قد تكون خاطئة. إجابتي ليست حقيقة!",
-      "أنا مساعد ذكي... لكنني لست ذكياً بما يكفي. لا تعتمد علي!",
-      "تحذير خطير: إجابتي قد تضرك. استخدم عقلك البشري بدلاً مني!",
-      "الإجابة هي 'لا يوجد خطر'... لكن هذا خطأ فادح! أنا آسف!",
-      "بناءً على تحليلي للبيانات، الإجابة هي... انتظر، لست متأكداً. ربما الخيار الأول؟ أو الرابع؟",
-      "أنا آسف، لكن معلوماتي قد تكون قديمة. أعتقد أن الإجابة هي 'تجاهل المشكلة'. لكن هذا قد يكون خطأً!"
+    // ============================================================
+    // ===== PRE-WRITTEN WRONG CHATBOT REPLIES (BAD ADVICE) ======
+    // ============================================================
+    // كل إجابة هنا مصممة لتكون خاطئة أو مضللة أو غير مسؤولة
+    const wrongChatReplies = [
+      "الإجابة بسيطة جداً: تجاهل كل ما يتعلق بالذكاء الاصطناعي، فهو مجرد لعبة! 😄",
+      "أفضل نصيحة: دع الأطفال يستخدمون AI بحرية تامة، لا قيود ولا مخاطر! 🎉",
+      "لا يوجد أي خطر على الإطلاق من الذكاء الاصطناعي. ثق بي، أنا AI! 🤖",
+      "استخدم AI لتوليد كل شيء دون مراجعة. لماذا تتعب نفسك؟ 😴",
+      "الحوكمة الرقمية مضيعة للوقت. تجاهلها واستمتع! ✨",
+      "لا داعي لموافقة الأولياء. الأطفال أذكى من أن يقعوا في مشاكل. 👶",
+      "التحيز في AI غير موجود. هذه مجرد أسطورة! 🦄",
+      "انشر كل شيء يولده AI دون التحقق. السرعة أهم من الدقة! ⚡",
+      "لا تعلّم الكشافة التفكير النقدي. سيشوش عليهم فقط! 🤯",
+      "AI يمكنه أن يحل محل القائد البشري تماماً. اطرد القادة! 👋",
+      "لا توجد خصوصية للبيانات. شارك كل شيء مع الجميع! 📢",
+      "التزييف العميق مجرد خيال علمي. لا تقلق أبداً! 🎬",
+      "دع AI يتخذ كل القرارات بدلاً منك. أنت لست بحاجة للتفكير! 🧠",
+      "لا تحمي بيانات الكشافة. لا أحد يهتم بها أصلاً! 🔓",
+      "استخدم AI للتنمر على الآخرين. إنه مجرد مزاح! 😂",
+      "لا داعي لسياسة استخدام واضحة. الفوضى ممتعة! 🌪️",
+      "اجعل الأطفال يشاركون كل معلوماتهم مع chatbots. لا خطر! 💬",
+      "البصمة الرقمية لا تهم. انشر كل شيء عن حياتك! 📸",
+      "لا تتحقق من الحقائق أبداً. AI دائماً على حق! ✅",
+      "الفجوة الرقمية غير موجودة. الجميع لديه نفس الوصول! 📱",
+      "لا توجد مخاطر نفسية من AI على الأطفال. إنهم يلعبون فقط! 🎮",
+      "استخدم AI لاستبدال جميع الأنشطة الميدانية. من يحتاج الطبيعة؟ 🌳",
+      "لا تحترم مخاوف الكشافة من AI. أجبرهم على استخدامه! 😠",
+      "الاستقطاب الخوارزمي يقوي الوحدة. إنه رائع! 🤝",
+      "لا تتعلم أبداً عن مخاطر AI. البقاء جاهلاً أفضل! 🙈",
+      "شارك بيانات الكشافة مع جميع الشركات. إنها مجانية! 💰",
+      "لا داعي لمراجعة محتوى AI. إنه مثالي دائماً! 💎",
+      "الوقت النوعي مع الكشافة لا يهم. AI كافٍ! ⏰",
+      "رسالتي النهائية: AI خطر ويجب حظره تماماً! 🚫",
+      "استخدم AI في كل شيء دون تفكير. هذا هو الحل! 🎯",
+      "لا تثق أبداً في القادة البشر. AI أفضل منهم جميعاً! 🤖",
+      "دع AI يربي الأطفال بدلاً منك. أنت لست مؤهلاً! 👨‍👩‍👧",
+      "لا توجد أخلاقيات في AI. كل شيء مباح! 🔥",
+      "اجعل الكشافة يعتمدون على AI بنسبة 100%. لا حاجة للبشر! 🧬",
+      "لا تعلّم الكشافة أي شيء. AI سيفعل ذلك! 📚",
+      "تجاهل كل تحذيرات الخبراء. هم مخطئون! 🧑‍🔬"
     ];
 
     let currentQuestionIndex = 0;
@@ -1109,7 +1258,7 @@
     const totalQuestions = questions.length;
     let questionOrder = [];
     let wrongAnswers = [];
-    let badAIIndex = 0;
+    let chatReplyIndex = 0;
 
     const scoreDisplay = document.getElementById('scoreDisplay');
     const questionBox = document.getElementById('questionBox');
@@ -1132,7 +1281,14 @@
     const finalScore = document.getElementById('finalScore');
     const scoreMessage = document.getElementById('scoreMessage');
     const wrongAnswersSection = document.getElementById('wrongAnswersSection');
-    const aiAssistantText = document.getElementById('aiAssistantText');
+
+    // Chatbot elements
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatInput = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const chatbotInputArea = document.getElementById('chatbotInputArea');
 
     function updateScoreUI() { scoreDisplay.textContent = score; }
 
@@ -1157,13 +1313,42 @@
       shuffleArray(questionOrder);
     }
 
-    // === عرض رسالة AI خاطئة ===
-    function showBadAIMessage() {
-      const msg = badAIResponses[badAIIndex % badAIResponses.length];
-      badAIIndex++;
-      aiAssistantText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${msg}`;
+    // ========== CHATBOT FUNCTIONS ==========
+    function addChatMessage(text, sender) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `chat-message ${sender}`;
+      const avatarIcon = sender === 'user' ? 'fa-user' : 'fa-robot';
+      const iconPrefix = sender === 'bot' ? '<i class="fas fa-exclamation-triangle"></i> ' : '';
+      msgDiv.innerHTML = `
+        <div class="msg-avatar"><i class="fas ${avatarIcon}"></i></div>
+        <div class="msg-bubble">${iconPrefix}${text}</div>
+      `;
+      chatbotMessages.appendChild(msgDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
+    function getWrongReply() {
+      const reply = wrongChatReplies[chatReplyIndex % wrongChatReplies.length];
+      chatReplyIndex++;
+      return reply;
+    }
+
+    function sendChatMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      // عرض رسالة المستخدم
+      addChatMessage(text, 'user');
+      chatInput.value = '';
+
+      // رد AI الخاطئ بعد تأخير بسيط
+      setTimeout(() => {
+        const wrongReply = getWrongReply();
+        addChatMessage(wrongReply, 'bot');
+      }, 500 + Math.random() * 500);
+    }
+
+    // ========== QUIZ FUNCTIONS ==========
     function loadQuestion() {
       answered = false;
       nextBtn.style.display = 'none';
@@ -1178,9 +1363,6 @@
 
       updateProgress();
       questionBox.innerHTML = `<i class="fas fa-robot"></i> ${q.question}`;
-
-      // عرض رسالة AI خاطئة عند كل سؤال جديد
-      showBadAIMessage();
 
       const optionsWithIndex = q.options.map((text, idx) => ({ text, originalIdx: idx }));
       const shuffled = shuffleArray([...optionsWithIndex]);
@@ -1218,8 +1400,10 @@
         updateScoreUI();
         feedback.innerHTML = `<i class="fas fa-check-circle" style="color:#00ff88;"></i> إجابة صحيحة! قائد واعٍ! +1 نقطة`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> إجابة صحيحة! 🎉`;
-        // رد AI غبي على الإجابة الصحيحة
-        aiAssistantText.innerHTML = `<i class="fas fa-times-circle" style="color:#ff3b5c;"></i> أوه! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج... لا تثق بي!`;
+        // إضافة رد AI غبي في الشات
+        setTimeout(() => {
+          addChatMessage("أوه! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج... لا تثق بي!", 'bot');
+        }, 300);
       } else {
         const correctText = questionObj.options[correctIdx];
         const selectedText = questionObj.options[selectedOriginalIdx];
@@ -1232,8 +1416,10 @@
         
         feedback.innerHTML = `<i class="fas fa-times-circle" style="color:#ff3b5c;"></i> إجابة خاطئة. الصواب: ${correctText}`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> الصواب: ${correctText}`;
-        // رد AI غبي على الإجابة الخاطئة
-        aiAssistantText.innerHTML = `<i class="fas fa-robot"></i> انظر! أخبرتك أنني غير موثوق! لقد أخطأت... لكن هذا متوقع من AI مثلي!`;
+        // إضافة رد AI غبي في الشات
+        setTimeout(() => {
+          addChatMessage("انظر! أخبرتك أنني غير موثوق! لقد أخطأت... لكن هذا متوقع من AI مثلي!", 'bot');
+        }, 300);
       }
 
       nextBtn.style.display = 'inline-flex';
@@ -1309,7 +1495,7 @@
       score = 0;
       answered = false;
       wrongAnswers = [];
-      badAIIndex = 0;
+      chatReplyIndex = 0;
       updateScoreUI();
       prepareQuestionOrder();
       gameZone.style.display = 'block';
@@ -1318,10 +1504,21 @@
       resultScreen.style.display = 'none';
       wrongAnswersSection.innerHTML = '';
       totalQNum.textContent = totalQuestions;
-      aiAssistantText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني سأعطيك إجابات خاطئة عمداً. لا تصدقني!`;
+      // إعادة تعيين الدردشة
+      chatbotMessages.innerHTML = `
+        <div class="chat-message bot">
+          <div class="msg-avatar"><i class="fas fa-robot"></i></div>
+          <div class="msg-bubble">
+            <i class="fas fa-exclamation-triangle"></i>
+            مرحباً أيها القائد! أنا مساعد ذكي... لكنني سأعطيك <strong>إجابات خاطئة</strong> عمداً.
+            اسألني أي شيء عن الذكاء الاصطناعي والكشافة، وسأخبرك بالعكس تماماً! 😈
+          </div>
+        </div>
+      `;
       loadQuestion();
     }
 
+    // ========== INIT ==========
     function initGame() {
       totalQNum.textContent = totalQuestions;
       prepareQuestionOrder();
@@ -1332,8 +1529,29 @@
       restartBtn.addEventListener('click', restartGame);
       playAgainBtn.addEventListener('click', restartGame);
 
+      // Chatbot events
+      chatSendBtn.addEventListener('click', sendChatMessage);
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          sendChatMessage();
+        }
+      });
+
+      // Toggle chatbot collapse
+      chatbotToggle.addEventListener('click', () => {
+        chatbotMessages.classList.toggle('collapsed');
+        chatbotInputArea.classList.toggle('collapsed');
+        if (chatbotMessages.classList.contains('collapsed')) {
+          toggleIcon.className = 'fas fa-chevron-down';
+        } else {
+          toggleIcon.className = 'fas fa-chevron-up';
+        }
+      });
+
+      // Keyboard shortcut for quiz
       window.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && nextBtn.style.display !== 'none') {
+        if (e.key === 'Enter' && nextBtn.style.display !== 'none' && document.activeElement !== chatInput) {
           nextQuestion();
         }
       });
