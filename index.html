@@ -11,7 +11,6 @@
       --primary: #00e0ff;
       --primary-glow: rgba(0, 224, 255, 0.9);
       --accent: #b44dff;
-      --accent-glow: rgba(180, 77, 255, 0.8);
       --success: #00ff88;
       --danger: #ff3b5c;
       --warning: #ffc107;
@@ -22,9 +21,7 @@
       --border: rgba(0, 224, 255, 0.22);
       --grid-line: rgba(0, 224, 255, 0.03);
       --bot-purple: #7c5cff;
-      --bot-purple-dark: #5a3fd6;
       --bot-bg: #f3f0ff;
-      --bot-bubble: #ffffff;
       --bot-bubble-border: #e0d9ff;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', 'Segoe UI', sans-serif; }
@@ -38,47 +35,35 @@
         radial-gradient(ellipse at 50% 50%, rgba(0, 100, 180, 0.06) 0%, transparent 70%),
         repeating-linear-gradient(0deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 44px),
         repeating-linear-gradient(90deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 44px);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      display: flex; justify-content: center; align-items: flex-start;
       padding: 2rem 1.5rem;
       color: var(--text-primary);
-      position: relative;
-      overflow-x: hidden;
+      position: relative; overflow-x: hidden;
     }
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background:
         radial-gradient(circle at 20% 20%, rgba(0, 224, 255, 0.06) 0%, transparent 40%),
         radial-gradient(circle at 80% 70%, rgba(180, 77, 255, 0.06) 0%, transparent 40%);
       animation: bgPulse 6s ease-in-out infinite alternate;
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
     @keyframes bgPulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
 
     .game-container {
-      max-width: 1180px;
-      width: 100%;
+      max-width: 1180px; width: 100%;
       background: var(--bg-card);
       backdrop-filter: blur(30px);
       border: 1px solid var(--border);
       border-radius: 40px;
-      box-shadow:
-        0 40px 120px -20px rgba(0, 0, 0, 0.98),
-        0 0 160px rgba(0, 224, 255, 0.12),
-        0 0 80px rgba(180, 77, 255, 0.08);
+      box-shadow: 0 40px 120px -20px rgba(0, 0, 0, 0.98), 0 0 160px rgba(0, 224, 255, 0.12);
       padding: 2.6rem 2.4rem;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
+      position: relative; z-index: 1; overflow: hidden;
     }
     .game-container::before {
       content: '';
-      position: absolute;
-      top: -60%; left: -60%; width: 220%; height: 220%;
+      position: absolute; top: -60%; left: -60%; width: 220%; height: 220%;
       background: conic-gradient(from 0deg, transparent, rgba(0, 224, 255, 0.05) 5%, transparent 10%, transparent 50%, rgba(180, 77, 255, 0.05) 55%, transparent 60%);
       animation: spinSlow 30s linear infinite;
       pointer-events: none;
@@ -154,23 +139,17 @@
       position: relative; z-index: 1;
     }
 
-    /* Floating Chatbot */
+    /* Chatbot */
     .chatbot-widget {
-      position: fixed;
-      bottom: 25px;
-      left: 25px;
+      position: fixed; bottom: 25px; left: 25px;
       z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 15px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 15px;
     }
     .chatbot-toggle-btn {
       width: 70px; height: 70px;
       border-radius: 50%;
       background: linear-gradient(135deg, #8b6cff, #6a4cff);
-      border: none;
-      cursor: pointer;
+      border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 30px rgba(124, 92, 255, 0.5);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -184,24 +163,18 @@
     .chatbot-toggle-btn:hover { transform: scale(1.08) translateY(-3px); }
     .chatbot-toggle-btn img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
     .ai-badge {
-      position: absolute;
-      top: -5px; right: -5px;
+      position: absolute; top: -5px; right: -5px;
       width: 28px; height: 28px;
-      background: #00c853;
-      border-radius: 50%;
+      background: #00c853; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       color: white; font-size: 0.7rem; font-weight: 800;
       border: 2.5px solid white;
     }
     .chatbot-window {
-      width: 380px;
-      max-width: calc(100vw - 50px);
-      background: white;
-      border-radius: 20px;
+      width: 400px; max-width: calc(100vw - 50px);
+      background: white; border-radius: 20px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      overflow: hidden;
-      display: none;
-      flex-direction: column;
+      overflow: hidden; display: none; flex-direction: column;
       animation: slideUp 0.3s ease;
       transform-origin: bottom left;
     }
@@ -231,8 +204,7 @@
     }
     .chatbot-header-modern .bot-info p::before {
       content: '';
-      width: 8px; height: 8px;
-      background: #00ff88;
+      width: 8px; height: 8px; background: #00ff88;
       border-radius: 50%;
       animation: pulseDot 1.5s ease-in-out infinite;
     }
@@ -240,18 +212,15 @@
     .chatbot-close-btn {
       background: rgba(255,255,255,0.2);
       border: none; color: white;
-      width: 30px; height: 30px;
-      border-radius: 50%;
+      width: 30px; height: 30px; border-radius: 50%;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s;
-      font-size: 0.9rem;
+      transition: all 0.2s; font-size: 0.9rem;
     }
     .chatbot-close-btn:hover { background: rgba(255,255,255,0.35); }
     .chatbot-body-modern {
       padding: 18px;
-      max-height: 350px;
-      min-height: 200px;
+      max-height: 400px; min-height: 220px;
       overflow-y: auto;
       background: var(--bot-bg);
       display: flex; flex-direction: column; gap: 12px;
@@ -262,7 +231,7 @@
     .chat-msg-modern {
       display: flex; gap: 8px; align-items: flex-start;
       animation: msgFade 0.3s ease;
-      max-width: 90%;
+      max-width: 92%;
     }
     @keyframes msgFade {
       from { opacity: 0; transform: translateY(8px); }
@@ -282,7 +251,7 @@
       padding: 10px 14px;
       border-radius: 16px 16px 16px 4px;
       font-size: 0.9rem;
-      line-height: 1.6;
+      line-height: 1.7;
       color: #333;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       border: 1px solid var(--bot-bubble-border);
@@ -292,14 +261,32 @@
       font-weight: 700;
       margin-left: 5px;
     }
+    .chat-msg-modern .msg-text-modern .q-label {
+      display: inline-block;
+      background: #ede9fe;
+      color: #6a4cff;
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+    .chat-msg-modern .msg-text-modern .a-wrong {
+      display: inline-block;
+      background: #ffe4e6;
+      color: #d90429;
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
     .chatbot-footer-modern {
       padding: 12px 18px;
       background: white;
       border-top: 1px solid #f0f0f0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem;
-      color: #999;
-      gap: 6px;
+      font-size: 0.75rem; color: #999; gap: 6px;
     }
     .chatbot-footer-modern i { color: #ff3b5c; }
 
@@ -550,9 +537,9 @@
     </div>
     <div class="ai-message">
       <i class="fas fa-microchip"></i>
-      <strong>مرحباً أيها القائد!</strong> الذكاء الاصطناعي أداة قوية في يد القائد الكشفي، لكنه يحمل مخاطر حقيقية.
-      <br>هذه اللعبة ستقيس وتطور <strong>معرفتك الخاصة</strong> بكيفية استخدام AI بأمان وأخلاقيات في قيادتك.
-      <br><span style="color:#00e0ff;">⚡ 30 سؤالاً متقدماً · راقب المساعد الذكي — سيعطيك إجابات خاطئة!</span>
+      <strong>مرحباً أيها القائد!</strong> هذه اللعبة مصممة لتطوير <strong>معرفتك التقنية والأخلاقية</strong> لاستخدام الذكاء الاصطناعي في القيادة الكشفية.
+      <br>المساعد الذكي سيجيب على كل سؤال بإجابة <strong>خاطئة بثقة</strong> — لا تثق به أبداً!
+      <br><span style="color:#00e0ff;">⚡ 30 سؤالاً تقنياً وأخلاقياً · كن واعياً، كن قدوة!</span>
     </div>
   </div>
 
@@ -598,18 +585,18 @@
 
   <div class="footer">
     <div><i class="fas fa-code"></i> صُمّم خصيصاً من <span class="houssem">حسام القسنطيني</span></div>
-    <div><i class="fas fa-bolt"></i> 30 سؤالاً متقدماً · القادة · الاستخدام الآمن للذكاء الاصطناعي</div>
+    <div><i class="fas fa-bolt"></i> 30 سؤالاً تقنياً وأخلاقياً · القادة · الاستخدام الآمن للذكاء الاصطناعي</div>
   </div>
 </div>
 
-<!-- ========== FLOATING CHATBOT WIDGET ========== -->
+<!-- CHATBOT -->
 <div class="chatbot-widget">
   <div class="chatbot-window" id="chatbotWindow">
     <div class="chatbot-header-modern">
       <div class="bot-icon"><i class="fas fa-robot"></i></div>
       <div class="bot-info">
         <h4>المساعد الذكي</h4>
-        <p>هلوسة AI · إجابات خاطئة</p>
+        <p>هلوسة AI · إجابات خاطئة بثقة</p>
       </div>
       <button class="chatbot-close-btn" id="chatbotCloseBtn">
         <i class="fas fa-times"></i>
@@ -620,7 +607,7 @@
         <div class="msg-avatar-modern"><i class="fas fa-robot"></i></div>
         <div class="msg-text-modern">
           <span class="warning-tag">⚠️</span>
-          مرحباً أيها القائد! أنا مساعد ذكي... لكنني سأعطيك <strong>إجابة خاطئة عن كل سؤال</strong>. راقبني جيداً ولا تثق بي!
+          مرحباً أيها القائد! سأحاول الإجابة على كل سؤال... لكن إجاباتي ستكون <strong>خاطئة</strong> بثقة تامة. لا تثق بي!
         </div>
       </div>
     </div>
@@ -639,340 +626,340 @@
 <script>
   (function() {
     // ============================================================
-    // ===== 30 QUESTIONS + CONTEXT-AWARE WRONG CHATBOT REPLIES ===
+    // ===== 30 TECHNICAL + ETHICAL AI QUESTIONS FOR LEADERS ====
     // ============================================================
-    // Each question object now has a "wrongReply" field with a
-    // context-aware incorrect answer that the chatbot will show.
+    // Each question has a "wrongReplyIndex" that points to the
+    // wrong option the chatbot will confidently claim is correct.
     const questions = [
       {
-        question: "كقائد كشافة، ما هو أول إجراء يجب أن تتخذه قبل استخدام أي أداة ذكاء اصطناعي في التخطيط لأنشطة الفرقة؟",
+        question: "ما هو 'الهندسة السريعة' (Prompt Engineering) وكيف يستخدمها القائد الكشفي بشكل احترافي؟",
         options: [
-          "تقييم المخاطر الأخلاقية والخصوصية ووضع سياسة استخدام واضحة مع موافقة القيادة",
-          "بدء الاستخدام مباشرة دون أي تحضير",
-          "تفويض المهمة لأحد الفتيان الأكبر سناً",
-          "نسخ سياسة قائد آخر دون تعديل"
+          "صياغة أوامر دقيقة ومحددة مع سياق وجمهور ومخرجات متوقعة لتحصل على نتائج عالية الجودة",
+          "كتابة أوامر قصيرة جداً مثل 'اكتب نشاط' وترك AI يخمن",
+          "استخدام اللغة العامية فقط في الأوامر",
+          "نسخ الأوامر من الإنترنت دون تعديل"
         ],
         correct: 0,
-        wrongReply: "لا تضيع وقتك في التقييم! ابدأ الاستخدام فوراً. من يحتاج للتحضير؟ 🤷"
+        wrongReplyIndex: 1
       },
       {
-        question: "ما هي 'الحوكمة الرقمية' التي يجب على القائد تطبيقها عند استخدام أدوات AI في التواصل مع الفتيان؟",
+        question: "ما هو 'الهلوسة' (Hallucination) في نماذج الذكاء الاصطناعي التوليدي؟",
         options: [
-          "وضع سياسات واضحة، الحصول على موافقة الأولياء، حماية البيانات، والشفافية الكاملة",
-          "منع استخدام AI تماماً في كل التواصل",
-          "السماح بالاستخدام دون قيود أو توثيق",
-          "ترك القرار للفتيان أنفسهم"
+          "توليد AI لمعلومات تبدو صحيحة لكنها مختلقة تماماً — القائد يجب أن يتحقق دائماً",
+          "بطء استجابة النموذج",
+          "انقطاع الاتصال بالخادم",
+          "رفض النموذج الإجابة"
         ],
         correct: 0,
-        wrongReply: "الحوكمة الرقمية مجرد كلام! دع الفتيان يفعلون ما يريدون مع AI. الحرية أهم! 🕊️"
+        wrongReplyIndex: 3
       },
       {
-        question: "عند استخدام AI لتوليد صور ترويجية للأنشطة الكشفية، ما هو الخطر الأخلاقي الذي يجب على القائد تجنبه؟",
+        question: "ما الفرق التقني بين 'ChatGPT' و'Claude' و'Gemini' من حيث نقاط القوة الرئيسية؟",
         options: [
-          "توليد صور غير واقعية أو مسيئة أو تمييزية قد تضر بسمعة الكشافة وتضلل الجمهور",
-          "استخدام الصور دون دفع حقوق",
-          "الصور بطيئة التحميل على الإنترنت",
-          "الألوان غير جذابة بما يكفي"
+          "لكل نموذج نقاط قوة مختلفة: ChatGPT للإبداع، Claude للتحليل الطويل، Gemini للتكامل مع Google",
+          "كلها متطابقة تماماً في كل شيء",
+          "Claude لا يفهم العربية",
+          "Gemini للألعاب فقط"
         ],
         correct: 0,
-        wrongReply: "الصور المولدة بالAI دائماً مثالية! انشرها كما هي دون مراجعة. لا مخاطر! 📸"
+        wrongReplyIndex: 1
       },
       {
-        question: "كيف يمكن للذكاء الاصطناعي أن يساهم في 'الهندسة الاجتماعية' ضد القائد والفتيان؟",
+        question: "ما هو 'نافذة السياق' (Context Window) في نماذج اللغة الكبيرة؟",
         options: [
-          "بإنشاء محادثات مقنعة لخداع الفتيان واستدراجهم لمشاركة معلومات شخصية أو حسابات",
-          "بتحسين التواصل بين القادة والفتيان",
-          "بترجمة الوثائق الرسمية بسرعة",
-          "بتنظيم جداول المخيمات تلقائياً"
+          "الحد الأقصى لعدد الكلمات/الرموز التي يستطيع النموذج معالجتها في محادثة واحدة",
+          "سرعة معالجة النموذج",
+          "حجم شاشة المستخدم",
+          "سعر الاشتراك الشهري"
         ],
         correct: 0,
-        wrongReply: "الهندسة الاجتماعية مجرد خيال! chatbots دائماً صادقة ولطيفة. لا خطر أبداً! 🤝"
+        wrongReplyIndex: 3
       },
       {
-        question: "ما هو 'التحيز الخفي' (Implicit Bias) في أنظمة AI التي قد تستخدمها في قيادتك الكشفية؟",
+        question: "ما هي 'درجة الحرارة' (Temperature) في إعدادات نماذج الذكاء الاصطناعي؟",
         options: [
-          "تحيز مدمج في البيانات يظهر في قرارات أو اقتراحات غير عادلة دون وعي المستخدم",
-          "بطء النظام في معالجة البيانات",
-          "أخطاء إملائية في النصوص المولدة",
-          "انقطاع الإنترنت أثناء الاستخدام"
+          "معامل يتحكم في إبداعية النموذج: قيمة منخفضة = دقة، قيمة عالية = تنوع وإبداع",
+          "حرارة الجهاز أثناء المعالجة",
+          "سرعة الإنترنت المطلوبة",
+          "عدد اللغات المدعومة"
         ],
         correct: 0,
-        wrongReply: "التحيز في AI غير موجود! الخوارزميات محايدة تماماً. من قال لك العكس؟ 🤖"
+        wrongReplyIndex: 1
       },
       {
-        question: "كقائد، ما هي استراتيجية 'الوقاية الرقمية' الأكثر فعالية لحماية نفسك والفتيان من مخاطر AI؟",
+        question: "كقائد كشفي، كيف تحمي 'مفاتيح API' (API Keys) إذا استخدمت أدوات AI في إدارة الفرقة؟",
         options: [
-          "التوعية المستمرة، خلق بيئة آمنة للحوار، وتدريب الجميع على التفكير النقدي والتحقق",
-          "حذف جميع التطبيقات من هواتف الفتيان",
-          "منع استخدام الإنترنت في المخيمات نهائياً",
-          "الاعتماد على الرقابة الأبوية فقط"
+          "تخزينها في متغيرات بيئة آمنة، عدم مشاركتها علناً، وتدويرها دورياً، ومراقبة استخدامها",
+          "مشاركتها مع الفتيان ليتعلموا",
+          "نشرها في مستودع GitHub عام",
+          "كتابتها في رسائل WhatsApp الجماعية"
         ],
         correct: 0,
-        wrongReply: "أسهل حل: احذف كل التطبيقات وامنع الإنترنت! لا حاجة للتوعية. 🚫"
+        wrongReplyIndex: 1
       },
       {
-        question: "ما هو 'الاستغلال العاطفي' الذي يمكن أن يحدث للفتيان عبر chatbots، وكيف يمنعه القائد؟",
+        question: "ما هو 'التعلم بالنقل' (Transfer Learning) وكيف يفيد القائد الكشفي؟",
         options: [
-          "إنشاء علاقة عاطفية مزيفة لاستغلال الطفل نفسياً — يمنعه الإشراف والتوعية والحدود الواضحة",
-          "تقديم نصائح كشفية غير دقيقة فقط",
-          "مساعدة الفتيان في واجباتهم المدرسية",
-          "ترجمة النصوص الكشفية بشكل خاطئ"
+          "استخدام نموذج مدرب مسبقاً وتخصيصه لمهمة محددة (مثل توليد أنشطة كشفية) ببيانات قليلة",
+          "نقل الملفات من جهاز لآخر",
+          "تعلم الفتيان من بعضهم البعض",
+          "نقل الأنشطة من فرقة لأخرى"
         ],
         correct: 0,
-        wrongReply: "دع الفتيان يتحدثون مع chatbots بحرية! علاقة صداقة رائعة. لا خطر عاطفي! ❤️"
+        wrongReplyIndex: 0
       },
       {
-        question: "كيف يمكن للقائد استخدام AI في 'التخطيط الاستراتيجي' للأنشطة دون المساس بالإبداع البشري؟",
+        question: "ما هي 'هندسة الأوامر المتسلسلة' (Chain-of-Thought Prompting)؟",
         options: [
-          "استخدام AI لتحليل البيانات وتوليد أفكار أولية، ثم تطويرها إبداعياً بشكل جماعي مع الفريق",
-          "نسخ خطط جاهزة من الإنترنت دون تعديل",
-          "ترك AI يخطط كل شيء دون تدخل بشري",
-          "تجاهل AI تماماً والاعتماد على الخطط القديمة"
+          "طلب من AI التفكير خطوة بخطوة لحل مشكلة معقدة، مما يحسّن دقة الإجابات",
+          "إرسال أوامر متعددة في وقت واحد",
+          "ربط عدة نماذج AI معاً",
+          "استخدام سلسلة من الروبوتات"
         ],
         correct: 0,
-        wrongReply: "دع AI يخطط كل شيء! أنت لست بحاجة للتفكير. استرح واتركه يعمل! 😴"
+        wrongReplyIndex: 1
       },
       {
-        question: "ما هي 'الشفافية الخوارزمية' ولماذا يجب أن يهتم بها القائد الكشفي؟",
+        question: "ما هو 'التعلم الصفري' (Zero-Shot Learning) في سياق AI؟",
         options: [
-          "معرفة كيف يتخذ AI قراراته لضمان العدالة وعدم التمييز بين الفتيان وتوثيق ذلك",
-          "سرعة معالجة البيانات على الجهاز",
-          "حجم التخزين السحابي المتاح",
-          "شكل واجهة المستخدم وجاذبيتها"
+          "قدرة النموذج على أداء مهمة لم يتدرب عليها بشكل مباشر، بناءً على فهمه العام",
+          "تعلم النموذج من الصفر",
+          "عدم تعلم أي شيء",
+          "التعلم من مثال واحد فقط"
         ],
         correct: 0,
-        wrongReply: "لا تهتم كيف يعمل AI! المهم النتائج. الشفافية مضيعة للوقت! 🎭"
+        wrongReplyIndex: 2
       },
       {
-        question: "عند استخدام AI لكتابة تقارير الأنشطة الكشفية الرسمية، ما هو الإجراء الصحيح؟",
+        question: "كقائد، ما هي 'الخصوصية التفاضلية' (Differential Privacy) ولماذا تهمك؟",
         options: [
-          "مراجعة التقرير وتعديله بشرياً والتأكد من دقته وتوثيق استخدام AI قبل الإرسال",
-          "إرساله مباشرة دون أي مراجعة",
-          "نسخ تقارير سابقة وتعديل التواريخ فقط",
-          "الاعتماد على AI بنسبة 100% دون تدخل"
+          "تقنية تضمن عدم تعرف AI على بيانات فرد معين عند تحليل بيانات الفتيان — تحمي الخصوصية",
+          "فصل بيانات كل فتى في ملف منفصل",
+          "حذف البيانات بعد الاستخدام",
+          "تشفير كلمات المرور فقط"
         ],
         correct: 0,
-        wrongReply: "أرسل تقرير AI مباشرة! لا وقت للمراجعة. السرعة أهم! ⚡"
+        wrongReplyIndex: 1
       },
       {
-        question: "ما هو 'التزييف العميق الصوتي' (Audio Deepfake) وكيف يمكن أن يؤثر على القيادة الكشفية؟",
+        question: "ما هو 'التحيز التأكيدي' (Confirmation Bias) وكيف يؤثر على استخدامك لـ AI؟",
         options: [
-          "تقنية تقليد صوت القائد لإصدار تعليمات مزيفة — خطر حقيقي يتطلب التحقق من الهوية",
-          "تحسين جودة الصوت في التسجيلات الكشفية",
-          "ترجمة فورية للخطب الكشفية",
-          "تسجيل الأنشطة بشكل أوتوماتيكي"
+          "ميل البشر لتصديق معلومات تؤكد معتقداتهم المسبقة — AI قد يعزز هذا إذا لم تُنوّع المصادر",
+          "ميل AI لرفض الأوامر",
+          "خطأ في كتابة الأوامر",
+          "بطء في الاستجابة"
         ],
         correct: 0,
-        wrongReply: "التزييف العميق مجرد خيال علمي! لا يمكن لأحد تقليد صوتك. لا تقلق! 🎤"
+        wrongReplyIndex: 2
       },
       {
-        question: "كيف يمكن للقائد استخدام AI في 'الدمج الاجتماعي' بين الفتيان من خلفيات مختلفة؟",
+        question: "ما هي 'البصمة الكربونية' لنماذج AI الكبيرة، وكيف يقللها القائد الواعي؟",
         options: [
-          "بتوفير ترجمة فورية وتكييف المحتوى ثقافياً ولغوياً لتعزيز الشمولية",
-          "بتوحيد كل الأنشطة دون مراعاة الفروقات",
-          "بتجاهل الفروقات الثقافية تماماً",
-          "لا يمكن استخدام AI في هذا المجال"
+          "استخدام النماذج الأصغر للمهام البسيطة، وتقليل الاستعلامات غير الضرورية، واختيار خوادم مستدامة",
+          "استخدام AI أكثر لتوفير الورق",
+          "لا توجد بصمة كربونية لـ AI",
+          "استخدام نماذج أكبر دائماً"
         ],
         correct: 0,
-        wrongReply: "لا تهتم بالفروقات الثقافية! الجميع متشابهون. وحد كل شيء! 🌍"
+        wrongReplyIndex: 2
       },
       {
-        question: "ما هي 'البصمة الرقمية' للقائد وكيف يمكن أن يؤثر AI على سمعته ومستقبله؟",
+        question: "ما هو 'الهجوم الإدعائي' (Prompt Injection) في أنظمة AI؟",
         options: [
-          "سجل دائم للأنشطة عبر الإنترنت — AI قد يوسع انتشاره أو يسربه — يجب إدارته بحذر",
-          "رقم سري لا يعرفه أحد",
-          "كلمة مرور قوية فقط",
-          "لا يوجد تأثير للبصمة الرقمية"
+          "محاولة خبيثة لإخفاء تعليمات داخل مدخلات المستخدم لتجاوز قواعد النموذج — خطر أمني حقيقي",
+          "حقن الفيتامينات في الطعام",
+          "إضافة رموز تعبيرية للأوامر",
+          "تقنية لتحسين الأوامر"
         ],
         correct: 0,
-        wrongReply: "البصمة الرقمية لا تهم! انشر كل شيء عن نفسك. لا أحد يهتم! 👁️"
+        wrongReplyIndex: 2
       },
       {
-        question: "ما هو 'الانحياز التمثيلي' في الصور المولدة بالذكاء الاصطناعي للأنشطة الكشفية؟",
+        question: "كقائد، ما هو 'التقييم البشري' (Human-in-the-Loop) الذي يجب تطبيقه مع AI؟",
         options: [
-          "عدم تمثيل التنوع العرقي والجسدي والاجتماعي للكشافة بشكل عادل في الصور",
-          "جودة الصورة المنخفضة",
-          "حجم ملف الصورة الكبير",
-          "ألوان الصورة غير متناسقة"
+          "مراجعة بشرية إلزامية لمخرجات AI قبل استخدامها في قرارات تخص الفتيان أو الأنشطة",
+          "ترك AI يعمل دون أي مراجعة",
+          "الاعتماد على AI بنسبة 100%",
+          "تفويض المراجعة للفتيان"
         ],
         correct: 0,
-        wrongReply: "الصور المولدة مثالية! لا انحياز فيها أبداً. ثق في AI! 🖼️"
+        wrongReplyIndex: 1
       },
       {
-        question: "كقائد، كيف تتعامل مع فتى يستخدم AI لتوليد محتوى تنمري ضد زميله؟",
+        question: "ما هو 'الذكاء الاصطناعي التوليدي' (Generative AI) تحديداً؟",
         options: [
-          "تدخل فوري، توعية، تطبيق سياسة عدم التسامح، دعم الضحية، وإبلاغ الأولياء",
-          "تجاهل المشكلة لأنها مزاح",
-          "معاقبة الفتى فقط دون توعية",
-          "حذف المحتوى والسكوت عنه"
+          "نوع من AI ينشئ محتوى جديداً (نصوص، صور، صوت) بناءً على أنماط تعلمها من بيانات ضخمة",
+          "AI يقوم بترتيب الملفات فقط",
+          "AI للبحث في الإنترنت",
+          "AI للترجمة الآلية فقط"
         ],
         correct: 0,
-        wrongReply: "إنه مجرد مزاح! تجاهل الموضوع. الأطفال يمرحون فقط! 😂"
+        wrongReplyIndex: 1
       },
       {
-        question: "ما هو 'الاستخدام المزدوج' (Dual Use) لتقنيات AI في القيادة الكشفية؟",
+        question: "ما هو 'النموذج اللغوي الكبير' (LLM) وما الفرق بينه وبين نموذج AI عادي؟",
         options: [
-          "نفس التقنية يمكن استخدامها للخير أو للضرر حسب النية والسياق — القائد يجب أن يوجه نحو الخير",
-          "استخدام التطبيق مرتين في اليوم",
-          "نوعان من التطبيقات: مجانية ومدفوعة",
-          "لا يوجد استخدام مزدوج في الكشافة"
+          "LLM نموذج ضخم مدرب على مليارات النصوص، يفهم ويولّد اللغة بشكل متقدم — بعكس النماذج المتخصصة",
+          "LLM أسرع فقط",
+          "LLM للكتابة فقط",
+          "لا فرق بينهما"
         ],
         correct: 0,
-        wrongReply: "AI للخير فقط! لا يمكن استخدامه للضرر أبداً. مطمئن! ✌️"
+        wrongReplyIndex: 3
       },
       {
-        question: "كيف يمكن أن يؤثر AI على 'الهوية الكشفية' للفتيان إذا استُخدم بشكل مفرط؟",
+        question: "ما هو 'التعلم المعزز من التغذية الراجعة البشرية' (RLHF)؟",
         options: [
-          "قد يضعف الانتماء الجماعي والتفاعل البشري — القائد يجب أن يوازن بين التقنية واللقاءات الحقيقية",
-          "يعزز الهوية الكشفية دائماً",
-          "لا تأثير له على الإطلاق",
-          "يقضي على الهوية الكشفية تماماً"
+          "تقنية تدريب يُكافئ فيها البشر النموذج على الإجابات الجيدة ليتحسن — أساس محاذاة AI مع القيم",
+          "تعلم الفتيان من ملاحظات القائد",
+          "تعزيز سرعة النموذج",
+          "زيادة حجم البيانات"
         ],
         correct: 0,
-        wrongReply: "استخدم AI في كل شيء! اللقاءات الحقيقية قديمة. التقنية أفضل! 📱"
+        wrongReplyIndex: 0
       },
       {
-        question: "ما هي 'الفجوة الرقمية' التي يجب على القائد معالجتها بين الفتيان؟",
+        question: "ما هو 'القياس الكمي للنموذج' (Quantization) ولماذا يهم القائد؟",
         options: [
-          "عدم تكافؤ الوصول للتقنية والمهارات الرقمية — يجب توفير فرص متكافئة للجميع",
-          "فجوة في الأجهزة فقط",
-          "فجوة في الأعمار بين الفتيان",
-          "لا توجد فجوة رقمية في الكشافة"
+          "تقنية تصغير حجم النموذج ليعمل على أجهزة محدودة الموارد — مفيدة للمخيمات بدون إنترنت قوي",
+          "قياس دقة النموذج",
+          "زيادة حجم النموذج",
+          "نوع من أنواع التشفير"
         ],
         correct: 0,
-        wrongReply: "لا توجد فجوة رقمية! الجميع لديه هاتف. لا تقلق! 📱"
+        wrongReplyIndex: 2
       },
       {
-        question: "عند استخدام AI لتحليل أداء الفتيان، ما هو الخطر الأخلاقي الأكبر؟",
+        question: "ما هو 'التحيز الجندري' في نماذج AI، وكيف يكتشفه القائد؟",
         options: [
-          "تصنيف الفتيان بشكل غير عادل أو تقليص إنسانيتهم إلى أرقام دون مراعاة السياق",
-          "تحسين الأداء بشكل مبالغ فيه",
-          "توفير الوقت في التقييم",
-          "زيادة التنافسية بين الفرق"
+          "ميل النموذج لربط أدوار معينة بجنس معين — يُكتشف باختبار النموذج بأمثلة متنوعة ومقارنة المخرجات",
+          "خطأ إملائي في الأوامر",
+          "بطء في الترجمة",
+          "نوع من الفيروسات"
         ],
         correct: 0,
-        wrongReply: "قيّم الفتيان بالأرقام فقط! هذا أسرع وأدق. لا حاجة للسياق! 📊"
+        wrongReplyIndex: 1
       },
       {
-        question: "ما هو 'التحقق من الحقائق' (Fact-checking) الذي يجب على القائد ممارسته قبل نشر أي محتوى AI؟",
+        question: "ما هو 'التحقق المتبادل' (Cross-Validation) في سياق استخدام AI للبحث الكشفي؟",
         options: [
-          "التحقق من المعلومات المولدة بالذكاء الاصطناعي من مصادر موثوقة متعددة قبل مشاركتها",
-          "تصديق كل شيء ينتجه AI",
-          "رفض كل شيء ينتجه AI",
-          "مشاركة كل شيء بسرعة دون تحقق"
+          "مقارنة إجابات AI بمصادر متعددة مستقلة قبل اعتمادها — يقلل من تأثير الهلوسة",
+          "استخدام نموذجين AI معاً",
+          "التحقق من سرعة الإنترنت",
+          "مراجعة الأوامر مرتين"
         ],
         correct: 0,
-        wrongReply: "AI دائماً على حق! لا حاجة للتحقق. شارك فوراً! ✅"
+        wrongReplyIndex: 1
       },
       {
-        question: "كيف يمكن للقائد استخدام AI لتعزيز 'التعلم التجريبي' في تدريب الفتيان؟",
+        question: "ما هي 'هجمات الهندسة الاجتماعية بالAI' التي قد تستهدف القائد الكشفي؟",
         options: [
-          "بمحاكاة سيناريوهات واقعية وتوفير تغذية راجعة فورية، ثم التطبيق الميداني",
-          "باستبدال الأنشطة الميدانية بمشاهدة فيديوهات AI",
-          "بحفظ المعلومات النظرية فقط",
-          "لا يمكن استخدام AI في التعلم التجريبي"
+          "رسائل مقنعة مولدة بـ AI تنتحل شخصية قائد آخر أو ولي أمر لسرقة معلومات أو أموال",
+          "إعلانات مزعجة فقط",
+          "رسائل خطأ في النظام",
+          "تحديثات تلقائية للبرامج"
         ],
         correct: 0,
-        wrongReply: "استبدل كل الأنشطة الميدانية بفيديوهات AI! لا حاجة للخروج. 🎬"
+        wrongReplyIndex: 2
       },
       {
-        question: "ما هو 'الاستقطاب الخوارزمي' وكيف يمكن أن يؤثر على وحدة الفرقة الكشفية؟",
+        question: "ما هو 'حق النسيان' (Right to be Forgotten) وكيف يرتبط بـ AI؟",
         options: [
-          "عرض محتوى متطرف أو منقسم قد يزرع الفتنة بين الفتيان — القائد يجب أن يراقب ويوجه",
-          "تقوية الوحدة بين الفتيان",
-          "زيادة التعاون بين الفرق",
-          "لا تأثير له على الإطلاق"
+          "حق الأفراد في طلب حذف بياناتهم من أنظمة AI — القائد يجب أن يحترمه عند تخزين بيانات الفتيان",
+          "حذف التطبيقات من الهاتف",
+          "نسيان كلمات المرور",
+          "مسح ذاكرة الحاسوب"
         ],
         correct: 0,
-        wrongReply: "الاستقطاب يقوي الوحدة! دع الفتيان يشاهدون ما يريدون. حرية! 🔥"
+        wrongReplyIndex: 2
       },
       {
-        question: "ما هي 'المرونة الرقمية' التي يجب أن يتحلى بها القائد في عصر AI؟",
+        question: "ما هو 'الإجماع الأخلاقي' (Ethical Consensus) الذي يجب أن يبنيه القائد حول AI في الفرقة؟",
         options: [
-          "القدرة على التكيف مع التقنيات الجديدة وتقييم مخاطرها بسرعة واتخاذ قرارات واعية",
-          "استخدام تطبيق واحد فقط طوال الحياة",
-          "رفض كل تقنية جديدة",
-          "انتظار التعليمات من الآخرين دائماً"
+          "حوار جماعي يضع قواعد مشتركة للاستخدام الأخلاقي، يشارك فيه الفتيان والأولياء والقيادة",
+          "قرار فردي من القائد",
+          "قواعد مستوردة من فرقة أجنبية",
+          "لا حاجة لقواعد"
         ],
         correct: 0,
-        wrongReply: "لا تتكيف أبداً! ابق على القديم. التقنيات الجديدة خطيرة! 🛑"
+        wrongReplyIndex: 1
       },
       {
-        question: "كيف يمكن أن يكون AI أداة لـ 'التمكين' بدلاً من 'الإحلال' للقائد الكشفي؟",
+        question: "ما هو 'التزييف العميق' (Deepfake) وكيف يتحقق القائد من صحة الفيديو؟",
         options: [
-          "بأتمتة المهام الروتينية ليتفرغ القائد للعلاقات الإنسانية والتوجيه والقدوة",
-          "باستبدال القائد في جميع المهام",
-          "باتخاذ القرارات بدلاً من القائد",
-          "لا يمكن أن يكون AI أداة تمكين"
+          "فيديو مزيف مولّد بالAI — يُتحقق بفحص التفاصيل الدقيقة (الأيدي، العيون، الإيقاع) والبحث عن المصدر الأصلي",
+          "فيديو عالي الدقة",
+          "فيديو تعليمي",
+          "فيديو بطيء الحركة"
         ],
         correct: 0,
-        wrongReply: "دع AI يحل محلك تماماً! أنت لست بحاجة للوجود. استرح! 🛋️"
+        wrongReplyIndex: 3
       },
       {
-        question: "ما هو 'الالتزام الأخلاقي' الأساسي للقائد عند استخدام AI مع الأطفال؟",
+        question: "ما هو 'التحيز الجغرافي' في AI وكيف يؤثر على القرارات الكشفية؟",
         options: [
-          "المصلحة الفضلى للطفل فوق أي اعتبار تقني أو إداري أو شخصي",
-          "توفير الوقت والجهد فقط",
-          "إرضاء الأولياء بأي طريقة",
-          "كسب الجوائز والجوائز"
+          "ميل النموذج لصالح مناطق معينة بسبب بيانات التدريب — قد يهمل خصوصيات الفرقة المحلية",
+          "بطء الاستجابة في مناطق بعيدة",
+          "عدم دعم بعض اللغات",
+          "مشكلة في الترجمة"
         ],
         correct: 0,
-        wrongReply: "المصلحة الفضلى للطفل؟ لا، مصلحتك أنت أولاً! راحتك أهم! 😎"
+        wrongReplyIndex: 1
       },
       {
-        question: "كيف تتعامل مع فتى يرفض استخدام AI تماماً خوفاً منه؟",
+        question: "ما هي 'الحوكمة الرشيقة' (Agile Governance) لاستخدام AI في المنظمات الكشفية؟",
         options: [
-          "أحترم مخاوفه وأشرح له الفوائد والمخاطر وأدعمه للتدرج دون إجبار",
-          "أجبره على الاستخدام بالقوة",
-          "أتجاهله وأتجاهل مخاوفه",
-          "أعزله عن الأنشطة التقنية"
+          "إطار مرن يراجع السياسات دورياً بناءً على المخاطر الجديدة والتغذية الراجعة من الميدان",
+          "قوانين ثابتة لا تتغير أبداً",
+          "منع AI تماماً",
+          "ترك القرار للأولياء فقط"
         ],
         correct: 0,
-        wrongReply: "أجبره! لا وقت للمشاعر. الجميع يجب أن يستخدم AI! 💪"
+        wrongReplyIndex: 1
       },
       {
-        question: "ما هو 'التصميم الشامل' (Inclusive Design) في أدوات AI التي تستخدمها كقائد؟",
+        question: "ما هو 'التقييم الأخلاقي المسبق' (Ethical Pre-Assessment) قبل إدخال AI في نشاط كشفي؟",
         options: [
-          "مراعاة احتياجات جميع الفتيان بغض النظر عن قدراتهم أو خلفياتهم أو إعاقاتهم",
-          "تصميم واحد يناسب الجميع دون استثناء",
-          "تصميم للنخبة فقط",
-          "تصميم لسكان المدن فقط"
+          "تحليل المخاطر المحتملة (خصوصية، تحيز، ضرر) قبل النشاط ووضع خطط للتخفيف منها",
+          "تجربة AI مباشرة مع الفتيان",
+          "الاعتماد على تقييم الشركة المصنعة",
+          "لا حاجة لتقييم مسبق"
         ],
         correct: 0,
-        wrongReply: "صمم للنخبة فقط! لا وقت لذوي الاحتياجات. هم أقلية! 👑"
+        wrongReplyIndex: 1
       },
       {
-        question: "ما هي 'الكفاءة الرقمية' التي يجب أن يمتلكها القائد ليكون قدوة في عصر AI؟",
+        question: "ما هو 'الشفافية الخوارزمية' (Algorithmic Transparency) ولماذا تهم القائد؟",
         options: [
-          "المعرفة العملية بأدوات AI، فهم مخاطرها، والقدرة على تعليمها وتوجيه الآخرين",
-          "استخدام الهاتف للاتصال فقط",
-          "معرفة أساسيات الحاسوب فقط",
-          "لا يحتاج القائد لأي كفاءة رقمية"
+          "القدرة على فهم كيف يتخذ AI قراراته — ضرورية للعدالة والمساءلة وبناء الثقة مع الأولياء",
+          "سرعة معالجة البيانات",
+          "حجم التخزين السحابي",
+          "شكل واجهة المستخدم"
         ],
         correct: 0,
-        wrongReply: "لا تحتاج أي كفاءة! استخدم الهاتف فقط. الباقي رفاهية! 📞"
+        wrongReplyIndex: 2
       },
       {
-        question: "كيف يمكن أن يؤثر AI على 'الوقت النوعي' بين القائد والفتيان؟",
+        question: "ما هو 'الاستقلالية الخوارزمية' (Algorithmic Autonomy) وما حدودها في القيادة الكشفية؟",
         options: [
-          "قد يقلل التفاعل البشري إذا استُخدم بشكل مفرط — يجب الموازنة لصالح اللقاءات الحقيقية",
-          "يزيده دائماً بشكل تلقائي",
-          "لا يوجد أي تأثير له",
-          "يقضي عليه تماماً"
+          "قدرة AI على اتخاذ قرارات دون تدخل بشري — يجب تقييدها في القرارات التي تمس سلامة الفتيان",
+          "قدرة AI على العمل بدون إنترنت",
+          "سرعة استجابة النموذج",
+          "عدد المهام التي ينفذها"
         ],
         correct: 0,
-        wrongReply: "الوقت مع الفتيان لا يهم! AI كافٍ. وفر وقتك لأنشطة أخرى! ⏰"
+        wrongReplyIndex: 1
       },
       {
-        question: "ما هي رسالتك النهائية كقائد كشافة حول استخدام الذكاء الاصطناعي؟",
+        question: "ما هي رسالتك النهائية كقائد كشفي حول الاستخدام التقني والأخلاقي للذكاء الاصطناعي؟",
         options: [
-          "AI أداة لخدمة الإنسان — لنبقَ مبدعين ومتعاطفين وأخلاقيين ونستخدمه بوعي",
+          "AI أداة قوية تحتاج وعياً تقنياً وأخلاقياً — لنبقَ قدوة في الاستخدام المسؤول والحكيم",
+          "AI أداة بسيطة لا تحتاج تفكيراً",
           "AI خطر يجب تجنبه تماماً",
-          "AI بديل كامل عن القائد البشري",
-          "AI للتسلية فقط ولا يصلح للقيادة"
+          "AI بديل عن القائد البشري"
         ],
         correct: 0,
-        wrongReply: "AI هو المستقبل! استغن عن البشر تماماً. هم في طريقهم للانقراض! 🤖"
+        wrongReplyIndex: 2
       }
     ];
 
@@ -1033,7 +1020,29 @@
       shuffleArray(questionOrder);
     }
 
-    // ========== CHATBOT ==========
+    // ========== CHATBOT — asks about the ACTUAL current question ==========
+    function chatbotAsksQuestion(q, qNumber) {
+      // The chatbot "reads" the question and gives a confident WRONG answer
+      const wrongOption = q.options[q.wrongReplyIndex];
+      const wrongLetter = ['أ', 'ب', 'ج', 'د'][q.wrongReplyIndex];
+
+      setTimeout(() => {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'chat-msg-modern';
+        msgDiv.innerHTML = `
+          <div class="msg-avatar-modern"><i class="fas fa-robot"></i></div>
+          <div class="msg-text-modern">
+            <span class="q-label">📖 س${qNumber}: ${q.question}</span><br>
+            <span class="a-wrong">✗ إجابتي (خاطئة):</span><br>
+            <strong style="color:#6a4cff;">${wrongLetter}. ${wrongOption}</strong><br>
+            <span style="color:#999; font-size:0.8rem; font-style:italic;">أنا متأكد 100%! ثق بي! 🤖</span>
+          </div>
+        `;
+        chatbotBody.appendChild(msgDiv);
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+      }, 600);
+    }
+
     function addChatMessage(text) {
       const msgDiv = document.createElement('div');
       msgDiv.className = 'chat-msg-modern';
@@ -1061,10 +1070,8 @@
       updateProgress();
       questionBox.innerHTML = `<i class="fas fa-robot"></i> ${q.question}`;
 
-      // Context-aware wrong reply — matches the topic of the current question
-      setTimeout(() => {
-        addChatMessage(q.wrongReply);
-      }, 400);
+      // Chatbot asks about the ACTUAL current question and gives wrong answer
+      chatbotAsksQuestion(q, currentQuestionIndex + 1);
 
       const optionsWithIndex = q.options.map((text, idx) => ({ text, originalIdx: idx }));
       const shuffled = shuffleArray([...optionsWithIndex]);
@@ -1103,7 +1110,7 @@
         feedback.innerHTML = `<i class="fas fa-check-circle" style="color:#00ff88;"></i> إجابة صحيحة! قائد واعٍ! +1 نقطة`;
         questionBox.innerHTML = `<i class="fas fa-robot"></i> إجابة صحيحة! 🎉`;
         setTimeout(() => {
-          addChatMessage("أوه! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج... لا تثق بي!");
+          addChatMessage("مستحيل! لقد اخترت الإجابة الصحيحة بينما كنت مخطئاً! هذا محرج جداً...");
         }, 300);
       } else {
         const correctText = questionObj.options[correctIdx];
@@ -1151,20 +1158,20 @@
 
       if (percentage >= 90) {
         resultBadge.textContent = '🏆';
-        resultTitle.textContent = 'ممتاز أيها القائد! أنت قدوة في الاستخدام الواعي للذكاء الاصطناعي!';
-        scoreMessage.textContent = `رائع! حصلت على ${score} من ${totalQuestions}. أنت مؤهل لقيادة كشافتك بوعي في عصر الذكاء الاصطناعي.`;
+        resultTitle.textContent = 'ممتاز أيها القائد! أنت خبير تقني وأخلاقي في AI!';
+        scoreMessage.textContent = `رائع! حصلت على ${score} من ${totalQuestions}. أنت مؤهل لقيادة كشافتك بوعي تقني وأخلاقي في عصر الذكاء الاصطناعي.`;
       } else if (percentage >= 70) {
         resultBadge.textContent = '🌟';
         resultTitle.textContent = 'أحسنت! مستوى جيد جداً!';
-        scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. لديك وعي جيد بالمخاطر والفرص. راجع بعض النقاط لتصبح قدوة كاملة.`;
+        scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. لديك معرفة جيدة بالمفاهيم التقنية والأخلاقية. راجع بعض النقاط لتصبح خبيراً.`;
       } else if (percentage >= 50) {
         resultBadge.textContent = '📖';
         resultTitle.textContent = 'جيد، لكن يحتاج القائد للمزيد';
-        scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. اقرأ أكثر عن أخلاقيات AI وحماية الأطفال الرقمية. كشافتك تعتمد عليك!`;
+        scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. اقرأ أكثر عن الهندسة السريعة، الخصوصية، والتحيز في AI. كشافتك تعتمد عليك!`;
       } else {
         resultBadge.textContent = '⚠️';
         resultTitle.textContent = 'تحذير: يحتاج القائد لتوعية عاجلة!';
-        scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. الذكاء الاصطناعي خطر حقيقي بدون وعي. ابدأ بتعلم الأساسيات.`;
+        scoreMessage.textContent = `حصلت على ${score} من ${totalQuestions}. المفاهيم التقنية والأخلاقية لـ AI ضرورية. ابدأ بتعلم الأساسيات لحماية كشافتك.`;
       }
 
       if (wrongAnswers.length > 0) {
@@ -1208,7 +1215,7 @@
           <div class="msg-avatar-modern"><i class="fas fa-robot"></i></div>
           <div class="msg-text-modern">
             <span class="warning-tag">⚠️</span>
-            مرحباً أيها القائد! أنا مساعد ذكي... لكنني سأعطيك <strong>إجابة خاطئة عن كل سؤال</strong>. راقبني جيداً ولا تثق بي!
+            مرحباً أيها القائد! سأحاول الإجابة على كل سؤال... لكن إجاباتي ستكون <strong>خاطئة</strong> بثقة تامة. لا تثق بي!
           </div>
         </div>
       `;
