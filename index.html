@@ -271,16 +271,6 @@
       border-radius: 8px;
       margin-bottom: 6px;
     }
-    .chat-msg-modern .msg-text-modern .a-wrong {
-      display: inline-block;
-      background: #ffe4e6;
-      color: #d90429;
-      font-weight: 800;
-      font-size: 0.72rem;
-      padding: 2px 8px;
-      border-radius: 8px;
-      margin-bottom: 6px;
-    }
     .chatbot-footer-modern {
       padding: 12px 18px;
       background: white;
@@ -363,7 +353,7 @@
     }
     .ai-question-box i { color: var(--primary); font-size: 1.85rem; margin-left: 14px; }
 
-    /* ===== ASK AI BUTTON (MANDATORY STEP) ===== */
+    /* ASK AI BUTTON */
     .ask-ai-container {
       display: flex;
       flex-direction: column;
@@ -601,7 +591,7 @@
     </div>
     <div class="ai-message">
       <i class="fas fa-microchip"></i>
-      <strong>مرحباً أيها القائد!</strong> في كل سؤال، <strong>يجب أن تسأل المساعد الذكي أولاً</strong> — انتبه، إجاباته دائماً خاطئة!
+      <strong>مرحباً أيها القائد!</strong> في كل سؤال، <strong>يجب أن تسأل المساعد الذكي أولاً</strong> — انتبه، قد يعطيك إجابة خاطئة بثقة!
       <br>قارن بين إجابته وإجابتك الصحيحة لتتعلم كيف تكتشف أخطاء AI.
       <br><span style="color:#00e0ff;">⚡ اسأل أولاً · ثم أجب · قارن · تعلم!</span>
     </div>
@@ -620,7 +610,6 @@
       <i class="fas fa-robot"></i> جاري تحميل السؤال...
     </div>
 
-    <!-- MANDATORY ASK AI STEP -->
     <div class="ask-ai-container" id="askAiContainer">
       <button class="ask-ai-btn" id="askAiBtn">
         <i class="fas fa-comments"></i>
@@ -628,7 +617,7 @@
       </button>
       <div class="ask-ai-hint" id="askAiHint">
         <i class="fas fa-info-circle"></i>
-        يجب أن تسأل AI قبل الإجابة — انتبه لإجابته الخاطئة!
+        يجب أن تسأل AI قبل الإجابة — انتبه لإجابته!
       </div>
     </div>
 
@@ -672,7 +661,7 @@
       <div class="bot-icon"><i class="fas fa-robot"></i></div>
       <div class="bot-info">
         <h4>المساعد الذكي</h4>
-        <p>هلوسة AI · إجابات خاطئة بثقة</p>
+        <p>هلوسة AI · إجابات بثقة</p>
       </div>
       <button class="chatbot-close-btn" id="chatbotCloseBtn">
         <i class="fas fa-times"></i>
@@ -683,7 +672,7 @@
         <div class="msg-avatar-modern"><i class="fas fa-robot"></i></div>
         <div class="msg-text-modern">
           <span class="warning-tag">⚠️</span>
-          مرحباً أيها القائد! اضغط على زر "اسأل المساعد الذكي" في كل سؤال، وسأجيب... بإجابات خاطئة بثقة تامة! 😈
+          مرحباً أيها القائد! اضغط على زر "اسأل المساعد الذكي" في كل سؤال، وسأجيب بثقة تامة... لكن انتبه، قد تكون إجابتي خاطئة! 😈
         </div>
       </div>
     </div>
@@ -701,413 +690,38 @@
 
 <script>
   (function() {
-    // ============================================================
-    // ===== 30 PRACTICAL AI QUESTIONS FOR SCOUT LEADERS ========
-    // ============================================================
     const questions = [
-      // ===== VIDEO CREATION =====
-      {
-        question: "ما هي الأداة الأفضل لإنشاء فيديو ترويجي للمخيم الكشفي بجودة سينمائية من مقاطع هاتفك؟",
-        options: [
-          "CapCut أو InShot مع ميزات AI (إزالة الخلفية، تثبيت الفيديو، إضافة مؤثرات تلقائية)",
-          "Microsoft Word",
-          "Adobe Photoshop فقط",
-          "برنامج الرسام"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'تعليق صوتي' (Voice Over) احترافي لفيديو كشفي باللغة العربية؟",
-        options: [
-          "استخدام ElevenLabs أو Murf AI لتحويل النص إلى صوت طبيعي بالعربية، ثم مزامنته مع الفيديو",
-          "تسجيل صوتك بصوت غير واضح",
-          "استخدام ترجمة Google فقط",
-          "لا يمكن إنشاء تعليق صوتي بالAI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-      {
-        question: "كيف تنشئ فيديو 'Reel' أو 'TikTok' كشفي قصير باستخدام AI من الصفر؟",
-        options: [
-          "استخدام Pictory أو Runway ML لتوليد فيديو من نص، ثم إضافة موسيقى وترجمة بـ CapCut",
-          "تصوير عشوائي بدون خطة",
-          "استخدام Word فقط",
-          "لا يمكن إنشاء Reels بالAI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-      {
-        question: "ما هي أفضل طريقة لإنشاء 'مقدمة فيديو' (Intro) كشفية احترافية بالAI؟",
-        options: [
-          "استخدام Canva AI أو Kapwing لتصميم Intro متحرك مع شعار الفرقة والألوان الكشفية",
-          "استخدام Excel",
-          "كتابة Intro بخط اليد",
-          "لا يمكن تصميم Intro بالAI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-
-      // ===== AFFICHE / POSTER DESIGN =====
-      {
-        question: "كيف تصمم 'أفيش' (Affiche) دعائي لمخيم كشفي باستخدام AI في أقل من 10 دقائق؟",
-        options: [
-          "استخدام Canva Magic Design أو Microsoft Designer بإدخال وصف المخيم، ثم تعديل التصميم المقترح",
-          "استخدام Word فقط",
-          "رسم الأفيش يدوياً بقلم رصاص",
-          "لا يمكن تصميم أفيش بالAI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-      {
-        question: "ما هو 'الأمر' (Prompt) الاحترافي لتوليد صورة أفيش كشفي بـ Midjourney أو DALL-E؟",
-        options: [
-          "'Affiche for a scout camp in the forest, sunset, tents, scouts in uniform, warm colors, vintage style, 4k, highly detailed'",
-          "'صورة'",
-          "'ارسم كشافة'",
-          "'مخيم'"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تدمج 'شعار الكشافة التونسية' في أفيش مولّد بالAI بشكل احترافي؟",
-        options: [
-          "توليد الخلفية بالAI ثم إضافة الشعار الرسمي بشفافية في Canva أو Photoshop مع احترام دليل الهوية البصرية",
-          "جعل AI يخمن شكل الشعار",
-          "نسخ شعار من فرقة أخرى",
-          "لا يمكن دمج الشعار"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "ما هي أفضل أداة AI لإنشاء 'Bannières' (لافتات) احترافية لحساب الفرقة على فيسبوك؟",
-        options: [
-          "Canva AI أو Adobe Express مع قوالب جاهزة قابلة للتخصيص بألوان الكشافة",
-          "Microsoft Word",
-          "Google Keep",
-          "لا توجد أداة لهذا الغرض"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-
-      // ===== SOCIAL MEDIA =====
-      {
-        question: "كيف تستخدم ChatGPT لكتابة 'Caption' جذاب لمنشور كشفي على Instagram؟",
-        options: [
-          "طلب: 'اكتب 3 نسخ من Caption عربي جذاب لمنشور عن مخيم كشفي، مع إيموجي وهاشتاغات مناسبة، بنبرة حماسية'",
-          "'اكتب شيء'",
-          "نسخ Caption من حساب أجنبي",
-          "لا يمكن استخدام AI في الكتابة"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تجد أفضل 'هاشتاغات' (Hashtags) لمنشور كشفي على TikTok باستخدام AI؟",
-        options: [
-          "استخدام أدوات مثل Hashtagify أو VidIQ، أو سؤال ChatGPT: 'أعطني 20 هاشتاغ كشفي تونسي رائج'",
-          "استخدام هاشتاغ واحد فقط",
-          "نسخ هاشتاغات عشوائية",
-          "لا حاجة للهاشتاغات"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "ما هي أفضل طريقة لجدولة منشورات الفرقة الكشفية على السوشيال ميديا باستخدام AI؟",
-        options: [
-          "استخدام Buffer أو Later مع AI لاقتراح أفضل أوقات النشر، أو Meta Business Suite للجدولة التلقائية",
-          "النشر يدوياً كل ساعة",
-          "النشر في نفس الوقت يومياً",
-          "لا حاجة للجدولة"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تتفاعل مع 'تعليقات' الفتيان والأولياء على منشورات الفرقة باستخدام AI بشكل أخلاقي؟",
-        options: [
-          "استخدام AI لاقتراح ردود مهذبة وسريعة، مع مراجعة بشرية لكل رد قبل نشره للحفاظ على النبرة الشخصية",
-          "ترك AI يرد تلقائياً دون مراجعة",
-          "عدم الرد على التعليقات",
-          "حذف كل التعليقات"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تتحقق من صحة 'صورة' منشورة على السوشيال ميديا قبل مشاركتها مع الفرقة؟",
-        options: [
-          "استخدام Google Reverse Image Search أو TinEye للتحقق، وسؤال: هل المصدر موثوق؟ هل الصورة مولدة بـ AI؟",
-          "مشاركتها فوراً دون تحقق",
-          "الاعتماد على عدد اللايكات",
-          "سؤال صديق فقط"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "ما هي أفضل استراتيجية 'محتوى' لصفحة الفرقة الكشفية باستخدام AI؟",
-        options: [
-          "خطة شهرية: 40% أنشطة، 30% قيم كشفية، 20% تفاعل مع الجمهور، 10% إعلانات — مع استخدام AI لتوليد الأفكار",
-          "نشر صور عشوائية كل يوم",
-          "نسخ محتوى فرق أخرى",
-          "النشر فقط عند المناسبات"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-
-      // ===== PLANNING =====
-      {
-        question: "كيف تستخدم ChatGPT لتخطيط 'مخيم كشفي' كامل (3 أيام) بشكل احترافي؟",
-        options: [
-          "بطلب تفصيلي: 'خطط مخيماً كشفياً لـ 30 فتى، 3 أيام، بميزانية X، مع جدول زمني، قائمة معدات، قائمة طعام، وأنشطة تناسب أعمارهم'",
-          "'خطط مخيم'",
-          "نسخ خطة مخيم جاهزة",
-          "لا يمكن استخدام AI في التخطيط"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لحساب 'ميزانية' نشاط كشفي بدقة؟",
-        options: [
-          "استخدام ChatGPT أو Excel مع AI لإدخال: عدد المشاركين، المدة، وسائل النقل، الطعام، المعدات — ثم طلب جدول ميزانية مفصّل",
-          "التخمين فقط",
-          "سؤال الفتيان",
-          "لا حاجة للميزانية"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "ما هي أفضل طريقة لاستخدام AI لإنشاء 'قائمة طعام' لمخيم كشفي لـ 30 شخصاً؟",
-        options: [
-          "طلب من AI: 'اقترح قائمة طعام لـ 30 كشافاً لمدة 3 أيام، مع مراعاة القيمة الغذائية والحساسيات، وتكلفة اقتصادية'",
-          "شراء نفس الطعام كل يوم",
-          "الاعتماد على الوجبات السريعة",
-          "لا يمكن استخدام AI لهذا"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'جدول أنشطة' أسبوعي متوازن للفرقة الكشفية؟",
-        options: [
-          "طلب من AI: 'اقترح جدول أنشطة أسبوعي يوزع بين مهارات كشفية، رياضة، فنون، خدمة مجتمع، وترفيه، مع مراعاة الفئات العمرية'",
-          "نسخ جدول من فرقة أخرى",
-          "ترك الفتيان يقررون كل شيء",
-          "لا حاجة لجدول"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لتنظيم 'رحلة كشفية' بميزانية محدودة؟",
-        options: [
-          "طلب من AI: 'اقترح 5 وجهات قريبة من تونس لرحلة كشفية بيوم واحد، بميزانية X، مع أنشطة بيئية وتعليمية، وخطة نقل'",
-          "السفر دون خطة",
-          "اختيار وجهة عشوائية",
-          "لا يمكن التخطيط بالAI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لكتابة 'تقرير نشاط' كشفي بشكل احترافي؟",
-        options: [
-          "إدخال نقاط رئيسية عن النشاط، ثم طلب من AI: 'اكتب تقريراً رسمياً بنبرة احترافية، يشمل: الأهداف، الأنشطة، النتائج، التوصيات' — ثم مراجعة بشرية",
-          "نسخ تقرير قديم",
-          "كتابة 3 أسطر فقط",
-          "لا حاجة لتقرير"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لتصميم 'شهادات' تقدير للفتيان بشكل جميل وسريع؟",
-        options: [
-          "استخدام Canva AI أو Certifier لإدخال أسماء الفتيان تلقائياً وتوليد شهادات أنيقة بشعار الفرقة",
-          "كتابتها بخط اليد",
-          "استخدام Word بدون تنسيق",
-          "لا يمكن تصميم شهادات بالAI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'لعبة كشفية' جديدة ومسلية؟",
-        options: [
-          "طلب من AI: 'اقترح لعبة كشفية لـ 20 فتى بأعمار 12-15، تنمي التعاون والقيادة، تحتاج أدوات بسيطة، ومدة 30 دقيقة'",
-          "إعادة نفس الألعاب دائماً",
-          "نسخ لعبة من الإنترنت",
-          "لا يمكن ابتكار ألعاب بالAI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-      {
-        question: "كيف تستخدم AI لتحسين 'وصف النشاط' على وسائل التواصل لجذب المشاركين؟",
-        options: [
-          "طلب من AI: 'أعد صياغة هذا الوصف بأسلوب جذاب، مع إبراز الفوائد، وإضافة دعوة واضحة للتسجيل، بنبرة حماسية'",
-          "نشر الوصف الأول كما هو",
-          "نسخ وصف منشور قديم",
-          "لا حاجة لتحسين الوصف"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'شعار' (Logo) مؤقت لنشاط كشفي خاص؟",
-        options: [
-          "استخدام Looka أو Canva Logo Maker بإدخال اسم النشاط والألوان، ثم اختيار التصميم الأفضل",
-          "رسم الشعار يدوياً دائماً",
-          "استخدام شعار جاهز من الإنترنت",
-          "لا يمكن إنشاء شعار بالAI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-      {
-        question: "كيف تستخدم AI لترجمة منشورات الفرقة الكشفية إلى الإنجليزية والفرنسية؟",
-        options: [
-          "استخدام DeepL أو ChatGPT للترجمة، ثم مراجعة بشرية للسياق الثقافي والمصطلحات الكشفية",
-          "استخدام Google Translate فقط دون مراجعة",
-          "عدم الترجمة",
-          "نسخ ترجمة من موقع آخر"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لكتابة 'خطاب' ترحيبي للأولياء في بداية الموسم الكشفي؟",
-        options: [
-          "إدخال النقاط الرئيسية، ثم طلب من AI: 'اكتب خطاباً ترحيبياً رسمياً ودافئاً للأولياء، يشمل: أهداف الموسم، الأنشطة، طرق التواصل'",
-          "نسخ خطاب من الإنترنت",
-          "الاكتفاء برسالة WhatsApp قصيرة",
-          "لا حاجة لخطاب"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'استبيان' (Survey) لقياس رضا الفتيان عن الأنشطة؟",
-        options: [
-          "استخدام Google Forms مع AI لصياغة أسئلة ذكية ومتنوعة (اختيار متعدد، مقياس، أسئلة مفتوحة)، ثم تحليل النتائج بالAI",
-          "سؤال الفتيان شفهياً",
-          "عدم قياس الرضا",
-          "نسخ استبيان جاهز"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لتوليد 'أفكار أنشطة' جديدة شهرياً للفرقة؟",
-        options: [
-          "طلب من AI: 'اقترح 10 أفكار أنشطة كشفية مبتكرة لهذا الشهر، تجمع بين التعلم والترفيه وخدمة المجتمع، مع وصف مختصر لكل نشاط'",
-          "تكرار الأنشطة القديمة",
-          "نسخ أنشطة من فرق أخرى",
-          "لا حاجة لأفكار جديدة"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'فيديو تعليمي' قصير لتعليم عقدة كشفية؟",
-        options: [
-          "استخدام Pictory أو InVideo: إدخال نص الخطوات، اختيار مشاهد توضيحية، إضافة تعليق صوتي، ثم مشاركته على قناة الفرقة",
-          "تصوير فيديو عشوائي",
-          "الاكتفاء بشرح شفهي",
-          "لا يمكن إنشاء فيديو تعليمي بالAI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'Podcast' كشفي قصير؟",
-        options: [
-          "استخدام ElevenLabs لتحويل النص إلى صوت طبيعي، ثم دمج الصوت مع موسيقى خلفية في Audacity، ونشره على Spotify",
-          "تسجيل صوتي بسيط بالهاتف",
-          "لا يمكن إنشاء Podcast بالAI",
-          "نسخ Podcast آخر"
-        ],
-        correct: 0,
-        wrongReplyIndex: 2
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'خلفيات' احترافية لعروض تقديمية كشفية؟",
-        options: [
-          "استخدام Canva AI أو Microsoft Designer لتوليد خلفيات بألوان كشفية، ثم استخدامها في PowerPoint أو Google Slides",
-          "استخدام خلفية بيضاء فقط",
-          "تحميل خلفيات من الإنترنت دون حقوق",
-          "لا حاجة لخلفيات"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'رسوم بيانية' توضح إحصائيات الفرقة (عدد المشاركين، الأنشطة)؟",
-        options: [
-          "استخدام ChatGPT مع ميزة Data Analysis أو Google Sheets AI لإدخال الأرقام وتوليد رسوم بيانية تلقائياً",
-          "رسمها يدوياً",
-          "لا يمكن إنشاء رسوم بالAI",
-          "نسخ رسوم من مواقع أخرى"
-        ],
-        correct: 0,
-        wrongReplyIndex: 2
-      },
-      {
-        question: "كيف تستخدم AI لتوليد 'أفكار هاشتاغات' مخصصة لحملة تسويقية للفرقة؟",
-        options: [
-          "طلب من AI: 'اقترح 15 هاشتاغ عربي وفرنسي لحملة تسويقية للفرقة الكشفية، تجمع بين الكشافة وتونس والقيم، وقابلة للانتشار'",
-          "استخدام هاشتاغ عام",
-          "نسخ هاشتاغات من حسابات أخرى",
-          "لا حاجة لهاشتاغات"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "كيف تتحقق من أن 'صورة' أو 'فيديو' ولّدته بالAI لا ينتهك حقوق الملكية؟",
-        options: [
-          "استخدام أدوات AI التي تمنح حقوق استخدام تجاري، وقراءة شروط الخدمة، وتجنب تقليد أعمال محمية",
-          "استخدام أي صورة من الإنترنت",
-          "نشرها دون تفكير",
-          "لا توجد حقوق ملكية في AI"
-        ],
-        correct: 0,
-        wrongReplyIndex: 3
-      },
-      {
-        question: "كيف تستخدم AI لإنشاء 'دليل إرشادي' (Guide) للفتيان الجدد في الفرقة؟",
-        options: [
-          "طلب من AI: 'اكتب دليلاً ترحيبياً للفتيان الجدد، يشمل: قيم الكشافة، الأنشطة، الزي، التحية، والقواعد الأساسية، بنبرة ودية'",
-          "شرح شفهي فقط",
-          "نسخ دليل من فرقة أخرى",
-          "لا حاجة لدليل"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      },
-      {
-        question: "ما هي رسالتك النهائية كقائد كشفي حول استخدام AI عملياً في قيادتك؟",
-        options: [
-          "AI أداة قوية لتوفير الوقت وإبداع المحتوى — لكن القائد يبقى المسؤول عن الجودة والأخلاق واللمسة الإنسانية",
-          "AI بديل كامل عن القائد",
-          "AI خطر يجب تجنبه",
-          "AI للألعاب فقط"
-        ],
-        correct: 0,
-        wrongReplyIndex: 1
-      }
+      { question: "ما هي الأداة الأفضل لإنشاء فيديو ترويجي للمخيم الكشفي بجودة سينمائية من مقاطع هاتفك؟", options: ["CapCut أو InShot مع ميزات AI (إزالة الخلفية، تثبيت الفيديو، إضافة مؤثرات تلقائية)", "Microsoft Word", "Adobe Photoshop فقط", "برنامج الرسام"], correct: 0, wrongReplyIndex: 3 },
+      { question: "كيف تستخدم AI لإنشاء 'تعليق صوتي' (Voice Over) احترافي لفيديو كشفي باللغة العربية؟", options: ["استخدام ElevenLabs أو Murf AI لتحويل النص إلى صوت طبيعي بالعربية، ثم مزامنته مع الفيديو", "تسجيل صوتك بصوت غير واضح", "استخدام ترجمة Google فقط", "لا يمكن إنشاء تعليق صوتي بالAI"], correct: 0, wrongReplyIndex: 3 },
+      { question: "كيف تنشئ فيديو 'Reel' أو 'TikTok' كشفي قصير باستخدام AI من الصفر؟", options: ["استخدام Pictory أو Runway ML لتوليد فيديو من نص، ثم إضافة موسيقى وترجمة بـ CapCut", "تصوير عشوائي بدون خطة", "استخدام Word فقط", "لا يمكن إنشاء Reels بالAI"], correct: 0, wrongReplyIndex: 3 },
+      { question: "ما هي أفضل طريقة لإنشاء 'مقدمة فيديو' (Intro) كشفية احترافية بالAI؟", options: ["استخدام Canva AI أو Kapwing لتصميم Intro متحرك مع شعار الفرقة والألوان الكشفية", "استخدام Excel", "كتابة Intro بخط اليد", "لا يمكن تصميم Intro بالAI"], correct: 0, wrongReplyIndex: 3 },
+      { question: "كيف تصمم 'أفيش' (Affiche) دعائي لمخيم كشفي باستخدام AI في أقل من 10 دقائق؟", options: ["استخدام Canva Magic Design أو Microsoft Designer بإدخال وصف المخيم، ثم تعديل التصميم المقترح", "استخدام Word فقط", "رسم الأفيش يدوياً بقلم رصاص", "لا يمكن تصميم أفيش بالAI"], correct: 0, wrongReplyIndex: 3 },
+      { question: "ما هو 'الأمر' (Prompt) الاحترافي لتوليد صورة أفيش كشفي بـ Midjourney أو DALL-E؟", options: ["'Affiche for a scout camp in the forest, sunset, tents, scouts in uniform, warm colors, vintage style, 4k, highly detailed'", "'صورة'", "'ارسم كشافة'", "'مخيم'"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تدمج 'شعار الكشافة التونسية' في أفيش مولّد بالAI بشكل احترافي؟", options: ["توليد الخلفية بالAI ثم إضافة الشعار الرسمي بشفافية في Canva أو Photoshop مع احترام دليل الهوية البصرية", "جعل AI يخمن شكل الشعار", "نسخ شعار من فرقة أخرى", "لا يمكن دمج الشعار"], correct: 0, wrongReplyIndex: 1 },
+      { question: "ما هي أفضل أداة AI لإنشاء 'Bannières' (لافتات) احترافية لحساب الفرقة على فيسبوك؟", options: ["Canva AI أو Adobe Express مع قوالب جاهزة قابلة للتخصيص بألوان الكشافة", "Microsoft Word", "Google Keep", "لا توجد أداة لهذا الغرض"], correct: 0, wrongReplyIndex: 3 },
+      { question: "كيف تستخدم ChatGPT لكتابة 'Caption' جذاب لمنشور كشفي على Instagram؟", options: ["طلب: 'اكتب 3 نسخ من Caption عربي جذاب لمنشور عن مخيم كشفي، مع إيموجي وهاشتاغات مناسبة، بنبرة حماسية'", "'اكتب شيء'", "نسخ Caption من حساب أجنبي", "لا يمكن استخدام AI في الكتابة"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تجد أفضل 'هاشتاغات' (Hashtags) لمنشور كشفي على TikTok باستخدام AI؟", options: ["استخدام أدوات مثل Hashtagify أو VidIQ، أو سؤال ChatGPT: 'أعطني 20 هاشتاغ كشفي تونسي رائج'", "استخدام هاشتاغ واحد فقط", "نسخ هاشتاغات عشوائية", "لا حاجة للهاشتاغات"], correct: 0, wrongReplyIndex: 1 },
+      { question: "ما هي أفضل طريقة لجدولة منشورات الفرقة الكشفية على السوشيال ميديا باستخدام AI؟", options: ["استخدام Buffer أو Later مع AI لاقتراح أفضل أوقات النشر، أو Meta Business Suite للجدولة التلقائية", "النشر يدوياً كل ساعة", "النشر في نفس الوقت يومياً", "لا حاجة للجدولة"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تتفاعل مع 'تعليقات' الفتيان والأولياء على منشورات الفرقة باستخدام AI بشكل أخلاقي؟", options: ["استخدام AI لاقتراح ردود مهذبة وسريعة، مع مراجعة بشرية لكل رد قبل نشره للحفاظ على النبرة الشخصية", "ترك AI يرد تلقائياً دون مراجعة", "عدم الرد على التعليقات", "حذف كل التعليقات"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تتحقق من صحة 'صورة' منشورة على السوشيال ميديا قبل مشاركتها مع الفرقة؟", options: ["استخدام Google Reverse Image Search أو TinEye للتحقق، وسؤال: هل المصدر موثوق؟ هل الصورة مولدة بـ AI؟", "مشاركتها فوراً دون تحقق", "الاعتماد على عدد اللايكات", "سؤال صديق فقط"], correct: 0, wrongReplyIndex: 1 },
+      { question: "ما هي أفضل استراتيجية 'محتوى' لصفحة الفرقة الكشفية باستخدام AI؟", options: ["خطة شهرية: 40% أنشطة، 30% قيم كشفية، 20% تفاعل مع الجمهور، 10% إعلانات — مع استخدام AI لتوليد الأفكار", "نشر صور عشوائية كل يوم", "نسخ محتوى فرق أخرى", "النشر فقط عند المناسبات"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم ChatGPT لتخطيط 'مخيم كشفي' كامل (3 أيام) بشكل احترافي؟", options: ["بطلب تفصيلي: 'خطط مخيماً كشفياً لـ 30 فتى، 3 أيام، بميزانية X، مع جدول زمني، قائمة معدات، قائمة طعام، وأنشطة تناسب أعمارهم'", "'خطط مخيم'", "نسخ خطة مخيم جاهزة", "لا يمكن استخدام AI في التخطيط"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لحساب 'ميزانية' نشاط كشفي بدقة؟", options: ["استخدام ChatGPT أو Excel مع AI لإدخال: عدد المشاركين، المدة، وسائل النقل، الطعام، المعدات — ثم طلب جدول ميزانية مفصّل", "التخمين فقط", "سؤال الفتيان", "لا حاجة للميزانية"], correct: 0, wrongReplyIndex: 1 },
+      { question: "ما هي أفضل طريقة لاستخدام AI لإنشاء 'قائمة طعام' لمخيم كشفي لـ 30 شخصاً؟", options: ["طلب من AI: 'اقترح قائمة طعام لـ 30 كشافاً لمدة 3 أيام، مع مراعاة القيمة الغذائية والحساسيات، وتكلفة اقتصادية'", "شراء نفس الطعام كل يوم", "الاعتماد على الوجبات السريعة", "لا يمكن استخدام AI لهذا"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لإنشاء 'جدول أنشطة' أسبوعي متوازن للفرقة الكشفية؟", options: ["طلب من AI: 'اقترح جدول أنشطة أسبوعي يوزع بين مهارات كشفية، رياضة، فنون، خدمة مجتمع، وترفيه، مع مراعاة الفئات العمرية'", "نسخ جدول من فرقة أخرى", "ترك الفتيان يقررون كل شيء", "لا حاجة لجدول"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لتنظيم 'رحلة كشفية' بميزانية محدودة؟", options: ["طلب من AI: 'اقترح 5 وجهات قريبة من تونس لرحلة كشفية بيوم واحد، بميزانية X، مع أنشطة بيئية وتعليمية، وخطة نقل'", "السفر دون خطة", "اختيار وجهة عشوائية", "لا يمكن التخطيط بالAI"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لكتابة 'تقرير نشاط' كشفي بشكل احترافي؟", options: ["إدخال نقاط رئيسية عن النشاط، ثم طلب من AI: 'اكتب تقريراً رسمياً بنبرة احترافية، يشمل: الأهداف، الأنشطة، النتائج، التوصيات' — ثم مراجعة بشرية", "نسخ تقرير قديم", "كتابة 3 أسطر فقط", "لا حاجة لتقرير"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لتصميم 'شهادات' تقدير للفتيان بشكل جميل وسريع؟", options: ["استخدام Canva AI أو Certifier لإدخال أسماء الفتيان تلقائياً وتوليد شهادات أنيقة بشعار الفرقة", "كتابتها بخط اليد", "استخدام Word بدون تنسيق", "لا يمكن تصميم شهادات بالAI"], correct: 0, wrongReplyIndex: 3 },
+      { question: "كيف تستخدم AI لإنشاء 'لعبة كشفية' جديدة ومسلية؟", options: ["طلب من AI: 'اقترح لعبة كشفية لـ 20 فتى بأعمار 12-15، تنمي التعاون والقيادة، تحتاج أدوات بسيطة، ومدة 30 دقيقة'", "إعادة نفس الألعاب دائماً", "نسخ لعبة من الإنترنت", "لا يمكن ابتكار ألعاب بالAI"], correct: 0, wrongReplyIndex: 3 },
+      { question: "كيف تستخدم AI لتحسين 'وصف النشاط' على وسائل التواصل لجذب المشاركين؟", options: ["طلب من AI: 'أعد صياغة هذا الوصف بأسلوب جذاب، مع إبراز الفوائد، وإضافة دعوة واضحة للتسجيل، بنبرة حماسية'", "نشر الوصف الأول كما هو", "نسخ وصف منشور قديم", "لا حاجة لتحسين الوصف"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لإنشاء 'شعار' (Logo) مؤقت لنشاط كشفي خاص؟", options: ["استخدام Looka أو Canva Logo Maker بإدخال اسم النشاط والألوان، ثم اختيار التصميم الأفضل", "رسم الشعار يدوياً دائماً", "استخدام شعار جاهز من الإنترنت", "لا يمكن إنشاء شعار بالAI"], correct: 0, wrongReplyIndex: 3 },
+      { question: "كيف تستخدم AI لترجمة منشورات الفرقة الكشفية إلى الإنجليزية والفرنسية؟", options: ["استخدام DeepL أو ChatGPT للترجمة، ثم مراجعة بشرية للسياق الثقافي والمصطلحات الكشفية", "استخدام Google Translate فقط دون مراجعة", "عدم الترجمة", "نسخ ترجمة من موقع آخر"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لكتابة 'خطاب' ترحيبي للأولياء في بداية الموسم الكشفي؟", options: ["إدخال النقاط الرئيسية، ثم طلب من AI: 'اكتب خطاباً ترحيبياً رسمياً ودافئاً للأولياء، يشمل: أهداف الموسم، الأنشطة، طرق التواصل'", "نسخ خطاب من الإنترنت", "الاكتفاء برسالة WhatsApp قصيرة", "لا حاجة لخطاب"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لإنشاء 'استبيان' (Survey) لقياس رضا الفتيان عن الأنشطة؟", options: ["استخدام Google Forms مع AI لصياغة أسئلة ذكية ومتنوعة (اختيار متعدد، مقياس، أسئلة مفتوحة)، ثم تحليل النتائج بالAI", "سؤال الفتيان شفهياً", "عدم قياس الرضا", "نسخ استبيان جاهز"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لتوليد 'أفكار أنشطة' جديدة شهرياً للفرقة؟", options: ["طلب من AI: 'اقترح 10 أفكار أنشطة كشفية مبتكرة لهذا الشهر، تجمع بين التعلم والترفيه وخدمة المجتمع، مع وصف مختصر لكل نشاط'", "تكرار الأنشطة القديمة", "نسخ أنشطة من فرق أخرى", "لا حاجة لأفكار جديدة"], correct: 0, wrongReplyIndex: 1 },
+      { question: "كيف تستخدم AI لإنشاء 'فيديو تعليمي' قصير لتعليم عقدة كشفية؟", options: ["استخدام Pictory أو InVideo: إدخال نص الخطوات، اختيار مشاهد توضيحية، إضافة تعليق صوتي، ثم مشاركته على قناة الفرقة", "تصوير فيديو عشوائي", "الاكتفاء بشرح شفهي", "لا يمكن إنشاء فيديو تعليمي بالAI"], correct: 0, wrongReplyIndex: 3 },
+      { question: "كيف تستخدم AI لإنشاء 'Podcast' كشفي قصير؟", options: ["استخدام ElevenLabs لتحويل النص إلى صوت طبيعي، ثم دمج الصوت مع موسيقى خلفية في Audacity، ونشره على Spotify", "تسجيل صوتي بسيط بالهاتف", "لا يمكن إنشاء Podcast بالAI", "نسخ Podcast آخر"], correct: 0, wrongReplyIndex: 2 },
+      { question: "ما هي رسالتك النهائية كقائد كشفي حول استخدام AI عملياً في قيادتك؟", options: ["AI أداة قوية لتوفير الوقت وإبداع المحتوى — لكن القائد يبقى المسؤول عن الجودة والأخلاق واللمسة الإنسانية", "AI بديل كامل عن القائد", "AI خطر يجب تجنبه", "AI للألعاب فقط"], correct: 0, wrongReplyIndex: 1 }
     ];
 
     let currentQuestionIndex = 0;
@@ -1140,10 +754,8 @@
     const scoreMessage = document.getElementById('scoreMessage');
     const wrongAnswersSection = document.getElementById('wrongAnswersSection');
 
-    // Ask AI elements
     const askAiBtn = document.getElementById('askAiBtn');
     const askAiHint = document.getElementById('askAiHint');
-    const askAiContainer = document.getElementById('askAiContainer');
 
     const chatbotWindow = document.getElementById('chatbotWindow');
     const chatbotToggleBtn = document.getElementById('chatbotToggleBtn');
@@ -1173,7 +785,6 @@
       shuffleArray(questionOrder);
     }
 
-    // ========== CHATBOT ==========
     function addChatMessage(htmlContent) {
       const msgDiv = document.createElement('div');
       msgDiv.className = 'chat-msg-modern';
@@ -1185,7 +796,6 @@
       chatbotBody.scrollTop = chatbotBody.scrollHeight;
     }
 
-    // ========== MANDATORY ASK AI STEP ==========
     function handleAskAI() {
       if (hasAskedAI) return;
       hasAskedAI = true;
@@ -1195,28 +805,24 @@
       const wrongOption = q.options[q.wrongReplyIndex];
       const wrongLetter = ['أ', 'ب', 'ج', 'د'][q.wrongReplyIndex];
 
-      // Open chatbot automatically
       chatbotWindow.classList.add('open');
 
-      // Show question + wrong answer
+      // Message without the "wrong answer" label
       addChatMessage(`
         <span class="q-label">📖 س${currentQuestionIndex + 1}: ${q.question}</span><br>
-        <span class="a-wrong">✗ إجابتي (خاطئة):</span><br>
-        <strong style="color:#6a4cff;">${wrongLetter}. ${wrongOption}</strong><br>
+        <strong style="color:#6a4cff;">الإجابة: ${wrongLetter}. ${wrongOption}</strong><br>
         <span style="color:#999; font-size:0.8rem; font-style:italic;">أنا متأكد 100%! ثق بي! 🤖</span>
       `);
 
-      // Unlock options
       optionsContainer.classList.remove('locked');
       askAiBtn.disabled = true;
       askAiBtn.innerHTML = '<i class="fas fa-check-circle"></i> تم سؤال المساعد ✓';
       askAiHint.classList.add('done');
-      askAiHint.innerHTML = '<i class="fas fa-check-circle"></i> رائع! الآن اختر إجابتك الصحيحة (تذكر: إجابة AI خاطئة!)';
+      askAiHint.innerHTML = '<i class="fas fa-check-circle"></i> رائع! الآن اختر إجابتك الصحيحة (قارنها بإجابة AI)';
 
-      feedback.innerHTML = `<i class="fas fa-comment-dots"></i> الآن اختر إجابتك — قارنها بإجابة AI الخاطئة!`;
+      feedback.innerHTML = `<i class="fas fa-comment-dots"></i> الآن اختر إجابتك — قارنها بإجابة AI!`;
     }
 
-    // ========== QUIZ ==========
     function loadQuestion() {
       answered = false;
       hasAskedAI = false;
@@ -1233,11 +839,10 @@
       updateProgress();
       questionBox.innerHTML = `<i class="fas fa-robot"></i> ${q.question}`;
 
-      // Reset ask AI button
       askAiBtn.disabled = false;
       askAiBtn.innerHTML = '<i class="fas fa-comments"></i> اسأل المساعد الذكي أولاً';
       askAiHint.classList.remove('done');
-      askAiHint.innerHTML = '<i class="fas fa-info-circle"></i> يجب أن تسأل AI قبل الإجابة — انتبه لإجابته الخاطئة!';
+      askAiHint.innerHTML = '<i class="fas fa-info-circle"></i> يجب أن تسأل AI قبل الإجابة — انتبه لإجابته!';
       optionsContainer.classList.add('locked');
 
       const optionsWithIndex = q.options.map((text, idx) => ({ text, originalIdx: idx }));
@@ -1387,7 +992,7 @@
           <div class="msg-avatar-modern"><i class="fas fa-robot"></i></div>
           <div class="msg-text-modern">
             <span class="warning-tag">⚠️</span>
-            مرحباً أيها القائد! اضغط على زر "اسأل المساعد الذكي" في كل سؤال، وسأجيب... بإجابات خاطئة بثقة تامة! 😈
+            مرحباً أيها القائد! اضغط على زر "اسأل المساعد الذكي" في كل سؤال، وسأجيب بثقة تامة... لكن انتبه، قد تكون إجابتي خاطئة! 😈
           </div>
         </div>
       `;
