@@ -32,9 +32,7 @@
       font-family: 'Tajawal', 'Segoe UI', sans-serif;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
@@ -55,10 +53,8 @@
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background-image:
         radial-gradient(1px 1px at 20% 30%, rgba(0, 212, 255, 0.4), transparent),
         radial-gradient(1px 1px at 60% 70%, rgba(124, 58, 237, 0.4), transparent),
@@ -113,9 +109,7 @@
     .game-container::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 10%;
-      right: 10%;
+      top: 0; left: 10%; right: 10%;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
       border-radius: 2px;
@@ -158,17 +152,13 @@
     .name-badge::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
       transition: left 0.6s ease;
     }
 
-    .name-badge:hover::after {
-      left: 100%;
-    }
+    .name-badge:hover::after { left: 100%; }
 
     .name-badge:hover {
       transform: translateY(-2px);
@@ -277,10 +267,7 @@
     .progress-bar-fill::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
       animation: progress-shine 2s linear infinite;
     }
@@ -324,8 +311,7 @@
     .orb-core {
       width: 140px;
       height: 140px;
-      background:
-        radial-gradient(circle at 30% 30%, #00d4ff, #0077aa 40%, #0a1428 90%);
+      background: radial-gradient(circle at 30% 30%, #00d4ff, #0077aa 40%, #0a1428 90%);
       border-radius: 50%;
       box-shadow:
         0 0 60px rgba(0, 212, 255, 0.6),
@@ -394,10 +380,8 @@
     .ai-message::before {
       content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; right: 0;
+      width: 100%; height: 100%;
       background: linear-gradient(135deg, transparent 0%, rgba(0, 212, 255, 0.03) 100%);
       pointer-events: none;
     }
@@ -436,9 +420,7 @@
     .game-zone::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 3px;
       background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
       animation: zone-line 3s ease-in-out infinite;
@@ -551,10 +533,7 @@
     .ai-question-box::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: linear-gradient(135deg, transparent 0%, rgba(0, 212, 255, 0.05) 100%);
       pointer-events: none;
     }
@@ -600,17 +579,13 @@
     .option-btn::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.08), transparent);
       transition: left 0.5s ease;
     }
 
-    .option-btn:hover:not(:disabled)::before {
-      left: 100%;
-    }
+    .option-btn:hover:not(:disabled)::before { left: 100%; }
 
     .option-btn .option-letter {
       background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(124, 58, 237, 0.25));
@@ -758,10 +733,8 @@
     .btn::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
       background: radial-gradient(circle, var(--primary-glow), transparent);
       border-radius: 50%;
       transform: translate(-50%, -50%);
@@ -781,9 +754,7 @@
       transform: translateY(-2px);
     }
 
-    .btn:active {
-      transform: translateY(1px);
-    }
+    .btn:active { transform: translateY(1px); }
 
     .btn.primary {
       background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(124, 58, 237, 0.15));
@@ -1005,6 +976,7 @@
 <body>
 
 <div class="game-container">
+  <!-- الترويسة -->
   <div class="hero">
     <div class="name-badge">
       <i class="fas fa-shield-halved"></i>
@@ -1015,6 +987,7 @@
     </div>
   </div>
 
+  <!-- شريط التقدم -->
   <div class="progress-section" id="progressSection">
     <div class="progress-info">
       <span><i class="fas fa-list-ol"></i> السؤال <span id="currentQNum">1</span> من <span id="totalQNum">30</span></span>
@@ -1025,6 +998,7 @@
     </div>
   </div>
 
+  <!-- المقدمة التعريفية -->
   <div class="ai-intro" id="introSection">
     <div class="ai-orb">
       <div class="orb-core">
@@ -1039,6 +1013,7 @@
     </div>
   </div>
 
+  <!-- منطقة اللعبة -->
   <div class="game-zone" id="gameZone">
     <div class="game-header">
       <h2><i class="fas fa-question-circle"></i> اختبار القائد الواعي بالذكاء الاصطناعي</h2>
@@ -1053,6 +1028,7 @@
     </div>
 
     <div class="options" id="optionsContainer">
+      <!-- سيتم إنشاء الخيارات ديناميكياً -->
     </div>
 
     <div class="feedback" id="feedback">
@@ -1069,13 +1045,14 @@
     </div>
   </div>
 
+  <!-- شاشة النتائج -->
   <div class="result-screen" id="resultScreen">
     <div class="badge" id="resultBadge">🏆</div>
     <h2 id="resultTitle">أحسنت أيها القائد!</h2>
     <div class="final-score" id="finalScore">0 / 30</div>
     <div class="score-message" id="scoreMessage"></div>
     
-    <!-- عرض الإجابات الخاطئة -->
+    <!-- ✅ قسم عرض الإجابات الخاطئة -->
     <div id="wrongAnswersSection" style="display: none;">
       <div class="wrong-answers-container">
         <h3><i class="fas fa-exclamation-triangle"></i> الأسئلة التي أخطأت فيها (تحتاج مراجعة):</h3>
@@ -1088,6 +1065,7 @@
     </button>
   </div>
 
+  <!-- التذييل -->
   <div class="footer">
     <div><i class="fas fa-code"></i> صُمّم خصيصاً من <span class="houssem">حسام القسنطيني</span></div>
     <div><i class="fas fa-bolt"></i> 30 سؤالاً · القادة · الاستخدام الآمن للذكاء الاصطناعي</div>
@@ -1096,39 +1074,311 @@
 
 <script>
   (function() {
+    // ========== بنك الأسئلة: 30 سؤالاً موجهاً لقادة الكشافة ==========
     const questions = [
-      { question: "كقائد كشافة، ما هو أفضل استخدام للذكاء الاصطناعي في التحضير للأنشطة؟", options: ["استخدامه كمساعد لتوليد أفكار الأنشطة ثم مراجعتها وتعديلها بنفسك", "نسخ الأنشطة من الإنترنت حرفياً دون مراجعة", "الاعتماد عليه كلياً لتحضير كل شيء", "تجاهله تماماً واستخدام الطرق التقليدية فقط"], correct: 0 },
-      { question: "ما هي القاعدة الذهبية عند استخدام AI لإعداد محتوى تعليمي للكشافة؟", options: ["راجع المعلومات من مصادر موثوقة قبل تقديمها للكشافة", "انشر المحتوى مباشرة دون مراجعة", "اعتمد على AI كمصدر وحيد", "لا تحتاج لمراجعة لأن AI دقيق دائماً"], correct: 0 },
-      { question: "كقائد، كيف يمكنك استخدام ChatGPT أو أدوات مشابهة بشكل مفيد؟", options: ["لتوليد أفكار للألعاب الكشفية وكتابة مسودات للخطب", "لكتابة تقارير الكشافة دون جهد", "للترويج للفرقة بصور مزيفة", "لا يمكن استخدامه في الكشافة"], correct: 0 },
-      { question: "ما هو 'التفكير النقدي' عند التعامل مع معلومات الذكاء الاصطناعي؟", options: ["التحقق من صحة المعلومات ومقارنتها بمصادر أخرى", "قبول كل ما يقوله AI", "رفض AI تماماً", "استخدامه دون تفكير"], correct: 0 },
-      { question: "كيف يمكن للذكاء الاصطناعي أن يساعد في تواصل أفضل مع أولياء أمور الكشافة؟", options: ["صياغة رسائل واضحة وإيجابية وترجمتها بلغات مختلفة", "إرسال رسائل تلقائية دون مراجعة", "لا يمكنه المساعدة في التواصل", "إخفاء المعلومات عن الأولياء"], correct: 0 },
-      { question: "ما هي أخطر مشكلة يواجهها الأطفال عند استخدام الذكاء الاصطناعي دون إشراف؟", options: ["الوصول لمحتوى غير مناسب أو مشاركة بياناتهم دون وعي", "فقط بطء الإنترنت", "فقط إدمان اللعب", "لا توجد مخاطر"], correct: 0 },
-      { question: "ما هي 'التصديق العميق' (Deepfake) ولماذا تهم القائد؟", options: ["فيديوهات مزيفة قد تنتشر بين الكشافة وتسبب فتنة — القائد يجب أن يوعيهم", "تقنية تحسين الصور فقط", "لعبة فيديو مسلية", "برنامج تصميم"], correct: 0 },
-      { question: "كيف يمكن أن يكون الذكاء الاصطناعي خطراً على خصوصية الكشافة؟", options: ["يجمع بياناتهم ويمكن أن تسرب أو تستغل تجارياً", "لا يؤثر على الخصوصية", "يزيد الخصوصية", "يحذف بياناتهم"], correct: 0 },
-      { question: "ما هو 'التحيز' (Bias) في الذكاء الاصطناعي؟", options: ["ميل النظام لنتائج غير عادلة بسبب بيانات تدريب متحيزة", "سرعة النظام", "دقة النظام", "حجم النظام"], correct: 0 },
-      { question: "كقائد، ماذا تفعل إذا اكتشفت أن كشافاً يشارك معلومات شخصية مع chatbot؟", options: ["أوعّيه فوراً بالمخاطر وأعلّم الفرقة عن الخصوصية الرقمية", "أتجاهل الموضوع", "أمنعه من استخدام الهاتف نهائياً", "أشارك أنا أيضاً"], correct: 0 },
-      { question: "ما هي 'التنمر الإلكتروني بالذكاء الاصطناعي'؟", options: ["استخدام AI لإنشاء محتوى مسيء أو صور مزيفة لإيذاء الآخرين", "نوع من أنواع الألعاب", "برنامج تصميم", "لا يوجد شيء كهذا"], correct: 0 },
-      { question: "كيف يمكن للذكاء الاصطناعي أن يؤثر سلباً على صحة الكشاف النفسية؟", options: ["محتوى مقترح قد يسبب القلق أو يقارنهم بالآخرين", "لا يؤثر على الصحة النفسية", "يحسّن الصحة النفسية دائماً", "يزيد الثقة بالنفس دائماً"], correct: 0 },
-      { question: "ما هي القاعدة الأساسية لاستخدام الكشافة للذكاء الاصطناعي؟", options: ["الإشراف الكامل من قائد أو ولي أمر وشرح المخاطر", "الاستخدام الحر دون قيود", "المنع التام", "الاستخدام فقط للترفيه"], correct: 0 },
-      { question: "كقائد، كيف تعلّم كشافتك التمييز بين المحتوى الحقيقي والمزيف؟", options: ["بتمارين عملية للتحقق من المصادر وتحليل الصور والفيديوهات", "بإخبارهم أن كل شيء على الإنترنت صحيح", "بتجنب الموضوع", "بحذف التطبيقات من هواتفهم"], correct: 0 },
-      { question: "ما هي 'الأخلاقيات الرقمية' التي يجب تعليمها للكشاف؟", options: ["احترام الآخرين، الصدق، الخصوصية، وعدم الإضرار بالآخرين", "فقط استخدام كلمات المرور", "فقط عدم مشاركة الصور", "لا يوجد أخلاقيات رقمية"], correct: 0 },
-      { question: "كيف تتعامل مع كشاف يستخدم AI لكتابة واجباته المدرسية؟", options: ["أشرح له أن AI أداة مساعدة وليس بديلاً عن التعلم", "أشجعه على الاستمرار", "أبلغ المدرسة فوراً", "أتجاهل الموضوع"], correct: 0 },
-      { question: "ما هو 'الاستخدام المسؤول للذكاء الاصطناعي' في نظر القائد؟", options: ["استخدامه لخدمة الآخرين مع احترام الأخلاقيات والشفافية", "استخدامه لأي غرض", "استخدامه فقط للربح", "عدم استخدامه أبداً"], correct: 0 },
-      { question: "كيف يمكن للذكاء الاصطناعي أن يساعد الكشاف ذوي الاحتياجات الخاصة؟", options: ["تحويل النص إلى كلام والعكس وتسهيل التواصل والتعلم", "لا يمكنه المساعدة", "يعقد الأمور", "فقط للترفيه"], correct: 0 },
-      { question: "ما هي 'الترجمة الفورية' التي يمكن أن يستفيد منها القائد؟", options: ["ترجمة الوثائق الكشفية لمخاطبة فرق من دول أخرى", "ترجمة الأغاني فقط", "لا فائدة منها", "ترجمة الأسماء فقط"], correct: 0 },
-      { question: "كيف يستفيد القائد من AI في تنظيم المخيمات الكشفية؟", options: ["تخطيط الجداول وقوائم التجهيزات وتوزيع المهام", "لا يمكن الاستفادة", "يعقد التنظيم", "يقلل الإبداع"], correct: 0 },
-      { question: "ما هي 'الخرائط الذكية' التي يمكن للقائد استخدامها؟", options: ["تطبيقات AI تقترح أفضل المسارات ومواقع المخيمات", "خرائط ورقية فقط", "لا توجد خرائط ذكية", "خرائط للألعاب"], correct: 0 },
-      { question: "كيف يمكن للذكاء الاصطناعي أن يساعد في التسويق لأنشطة الكشافة؟", options: ["تصميم ملصقات جذابة وكتابة منشورات مؤثرة", "لا علاقة له بالتسويق", "يضر بالتسويق", "للترفيه فقط"], correct: 0 },
-      { question: "ما هو 'التعلم التفاعلي' الذي يوفره AI للكشافة؟", options: ["تطبيقات تعليمية تتكيف مع مستوى كل كشاف", "فيديوهات ثابتة فقط", "كتب فقط", "لا يوجد تعلم تفاعلي"], correct: 0 },
-      { question: "ما هو دور القائد في عصر الذكاء الاصطناعي؟", options: ["توجيه الكشاف للاستخدام الواعي والأخلاقي للتكنولوجيا", "منع التكنولوجيا تماماً", "استخدامها دون وعي", "ترك الكشافة يتعلمون وحدهم"], correct: 0 },
-      { question: "كيف تستعد فرقتك لمستقبل يسيطر عليه الذكاء الاصطناعي؟", options: ["بتعليم المهارات الرقمية والأخلاقيات والتفكير النقدي", "بتجنب التكنولوجيا", "بالاعتماد على الحفظ فقط", "بمنع الهواتف"], correct: 0 },
-      { question: "ما هي 'فجوة المهارات الرقمية' التي يجب على القائد معالجتها؟", options: ["الفرق بين من يملكون مهارات رقمية ومن لا يملكونها", "فجوة في الإنترنت", "فجوة في الأجهزة", "لا توجد فجوة"], correct: 0 },
-      { question: "كيف تتعامل مع كشاف يخاف من الذكاء الاصطناعي؟", options: ["أطمئنه وأشرح له أن AI أداة وليس كائناً مخيفاً", "أتركه يخاف", "أجبره على استخدامه", "أعزله عن الفرقة"], correct: 0 },
-      { question: "ما هي 'الشفافية' في استخدام AI مع الكشاف؟", options: ["إخبارهم عند استخدام AI وإشراكهم في النقاش", "إخفاء استخدامه", "عدم شرح أي شيء", "الاستخدام السري"], correct: 0 },
-      { question: "ما هي أهم صفة يجب أن يتحلى بها القائد في عصر AI؟", options: ["الوعي والمسؤولية والقدوة الحسنة", "السرعة فقط", "القوة فقط", "الصمت"], correct: 0 },
-      { question: "كقائد، ما هي رسالتك الأساسية للكشاف حول الذكاء الاصطناعي؟", options: ["استخدمه بحكمة وأخلاق، وابقَ إنساناً مبدعاً ومتعاطفاً", "استخدمه دون قيود", "تجاهله تماماً", "خاف منه"], correct: 0 }
+      {
+        question: "كقائد كشافة، ما هو أفضل استخدام للذكاء الاصطناعي في التحضير للأنشطة؟",
+        options: [
+          "استخدامه كمساعد لتوليد أفكار الأنشطة ثم مراجعتها وتعديلها بنفسك",
+          "نسخ الأنشطة من الإنترنت حرفياً دون مراجعة",
+          "الاعتماد عليه كلياً لتحضير كل شيء",
+          "تجاهله تماماً واستخدام الطرق التقليدية فقط"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي القاعدة الذهبية عند استخدام AI لإعداد محتوى تعليمي للكشافة؟",
+        options: [
+          "راجع المعلومات من مصادر موثوقة قبل تقديمها للكشافة",
+          "انشر المحتوى مباشرة دون مراجعة",
+          "اعتمد على AI كمصدر وحيد",
+          "لا تحتاج لمراجعة لأن AI دقيق دائماً"
+        ],
+        correct: 0
+      },
+      {
+        question: "كقائد، كيف يمكنك استخدام ChatGPT أو أدوات مشابهة بشكل مفيد؟",
+        options: [
+          "لتوليد أفكار للألعاب الكشفية وكتابة مسودات للخطب",
+          "لكتابة تقارير الكشافة دون جهد",
+          "للترويج للفرقة بصور مزيفة",
+          "لا يمكن استخدامه في الكشافة"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هو 'التفكير النقدي' عند التعامل مع معلومات الذكاء الاصطناعي؟",
+        options: [
+          "التحقق من صحة المعلومات ومقارنتها بمصادر أخرى",
+          "قبول كل ما يقوله AI",
+          "رفض AI تماماً",
+          "استخدامه دون تفكير"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف يمكن للذكاء الاصطناعي أن يساعد في تواصل أفضل مع أولياء أمور الكشافة؟",
+        options: [
+          "صياغة رسائل واضحة وإيجابية وترجمتها بلغات مختلفة",
+          "إرسال رسائل تلقائية دون مراجعة",
+          "لا يمكنه المساعدة في التواصل",
+          "إخفاء المعلومات عن الأولياء"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي أخطر مشكلة يواجهها الأطفال عند استخدام الذكاء الاصطناعي دون إشراف؟",
+        options: [
+          "الوصول لمحتوى غير مناسب أو مشاركة بياناتهم دون وعي",
+          "فقط بطء الإنترنت",
+          "فقط إدمان اللعب",
+          "لا توجد مخاطر"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي 'التصديق العميق' (Deepfake) ولماذا تهم القائد؟",
+        options: [
+          "فيديوهات مزيفة قد تنتشر بين الكشافة وتسبب فتنة — القائد يجب أن يوعيهم",
+          "تقنية تحسين الصور فقط",
+          "لعبة فيديو مسلية",
+          "برنامج تصميم"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف يمكن أن يكون الذكاء الاصطناعي خطراً على خصوصية الكشافة؟",
+        options: [
+          "يجمع بياناتهم ويمكن أن تسرب أو تستغل تجارياً",
+          "لا يؤثر على الخصوصية",
+          "يزيد الخصوصية",
+          "يحذف بياناتهم"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هو 'التحيز' (Bias) في الذكاء الاصطناعي؟",
+        options: [
+          "ميل النظام لنتائج غير عادلة بسبب بيانات تدريب متحيزة",
+          "سرعة النظام",
+          "دقة النظام",
+          "حجم النظام"
+        ],
+        correct: 0
+      },
+      {
+        question: "كقائد، ماذا تفعل إذا اكتشفت أن كشافاً يشارك معلومات شخصية مع chatbot؟",
+        options: [
+          "أوعّيه فوراً بالمخاطر وأعلّم الفرقة عن الخصوصية الرقمية",
+          "أتجاهل الموضوع",
+          "أمنعه من استخدام الهاتف نهائياً",
+          "أشارك أنا أيضاً"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي 'التنمر الإلكتروني بالذكاء الاصطناعي'؟",
+        options: [
+          "استخدام AI لإنشاء محتوى مسيء أو صور مزيفة لإيذاء الآخرين",
+          "نوع من أنواع الألعاب",
+          "برنامج تصميم",
+          "لا يوجد شيء كهذا"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف يمكن للذكاء الاصطناعي أن يؤثر سلباً على صحة الكشاف النفسية؟",
+        options: [
+          "محتوى مقترح قد يسبب القلق أو يقارنهم بالآخرين",
+          "لا يؤثر على الصحة النفسية",
+          "يحسّن الصحة النفسية دائماً",
+          "يزيد الثقة بالنفس دائماً"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي القاعدة الأساسية لاستخدام الكشافة للذكاء الاصطناعي؟",
+        options: [
+          "الإشراف الكامل من قائد أو ولي أمر وشرح المخاطر",
+          "الاستخدام الحر دون قيود",
+          "المنع التام",
+          "الاستخدام فقط للترفيه"
+        ],
+        correct: 0
+      },
+      {
+        question: "كقائد، كيف تعلّم كشافتك التمييز بين المحتوى الحقيقي والمزيف؟",
+        options: [
+          "بتمارين عملية للتحقق من المصادر وتحليل الصور والفيديوهات",
+          "بإخبارهم أن كل شيء على الإنترنت صحيح",
+          "بتجنب الموضوع",
+          "بحذف التطبيقات من هواتفهم"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي 'الأخلاقيات الرقمية' التي يجب تعليمها للكشاف؟",
+        options: [
+          "احترام الآخرين، الصدق، الخصوصية، وعدم الإضرار بالآخرين",
+          "فقط استخدام كلمات المرور",
+          "فقط عدم مشاركة الصور",
+          "لا يوجد أخلاقيات رقمية"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف تتعامل مع كشاف يستخدم AI لكتابة واجباته المدرسية؟",
+        options: [
+          "أشرح له أن AI أداة مساعدة وليس بديلاً عن التعلم",
+          "أشجعه على الاستمرار",
+          "أبلغ المدرسة فوراً",
+          "أتجاهل الموضوع"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هو 'الاستخدام المسؤول للذكاء الاصطناعي' في نظر القائد؟",
+        options: [
+          "استخدامه لخدمة الآخرين مع احترام الأخلاقيات والشفافية",
+          "استخدامه لأي غرض",
+          "استخدامه فقط للربح",
+          "عدم استخدامه أبداً"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف يمكن للذكاء الاصطناعي أن يساعد الكشاف ذوي الاحتياجات الخاصة؟",
+        options: [
+          "تحويل النص إلى كلام والعكس وتسهيل التواصل والتعلم",
+          "لا يمكنه المساعدة",
+          "يعقد الأمور",
+          "فقط للترفيه"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي 'الترجمة الفورية' التي يمكن أن يستفيد منها القائد؟",
+        options: [
+          "ترجمة الوثائق الكشفية لمخاطبة فرق من دول أخرى",
+          "ترجمة الأغاني فقط",
+          "لا فائدة منها",
+          "ترجمة الأسماء فقط"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف يستفيد القائد من AI في تنظيم المخيمات الكشفية؟",
+        options: [
+          "تخطيط الجداول وقوائم التجهيزات وتوزيع المهام",
+          "لا يمكن الاستفادة",
+          "يعقد التنظيم",
+          "يقلل الإبداع"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي 'الخرائط الذكية' التي يمكن للقائد استخدامها؟",
+        options: [
+          "تطبيقات AI تقترح أفضل المسارات ومواقع المخيمات",
+          "خرائط ورقية فقط",
+          "لا توجد خرائط ذكية",
+          "خرائط للألعاب"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف يمكن للذكاء الاصطناعي أن يساعد في التسويق لأنشطة الكشافة؟",
+        options: [
+          "تصميم ملصقات جذابة وكتابة منشورات مؤثرة",
+          "لا علاقة له بالتسويق",
+          "يضر بالتسويق",
+          "للترفيه فقط"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هو 'التعلم التفاعلي' الذي يوفره AI للكشافة؟",
+        options: [
+          "تطبيقات تعليمية تتكيف مع مستوى كل كشاف",
+          "فيديوهات ثابتة فقط",
+          "كتب فقط",
+          "لا يوجد تعلم تفاعلي"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هو دور القائد في عصر الذكاء الاصطناعي؟",
+        options: [
+          "توجيه الكشاف للاستخدام الواعي والأخلاقي للتكنولوجيا",
+          "منع التكنولوجيا تماماً",
+          "استخدامها دون وعي",
+          "ترك الكشافة يتعلمون وحدهم"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف تستعد فرقتك لمستقبل يسيطر عليه الذكاء الاصطناعي؟",
+        options: [
+          "بتعليم المهارات الرقمية والأخلاقيات والتفكير النقدي",
+          "بتجنب التكنولوجيا",
+          "بالاعتماد على الحفظ فقط",
+          "بمنع الهواتف"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي 'فجوة المهارات الرقمية' التي يجب على القائد معالجتها؟",
+        options: [
+          "الفرق بين من يملكون مهارات رقمية ومن لا يملكونها",
+          "فجوة في الإنترنت",
+          "فجوة في الأجهزة",
+          "لا توجد فجوة"
+        ],
+        correct: 0
+      },
+      {
+        question: "كيف تتعامل مع كشاف يخاف من الذكاء الاصطناعي؟",
+        options: [
+          "أطمئنه وأشرح له أن AI أداة وليس كائناً مخيفاً",
+          "أتركه يخاف",
+          "أجبره على استخدامه",
+          "أعزله عن الفرقة"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي 'الشفافية' في استخدام AI مع الكشاف؟",
+        options: [
+          "إخبارهم عند استخدام AI وإشراكهم في النقاش",
+          "إخفاء استخدامه",
+          "عدم شرح أي شيء",
+          "الاستخدام السري"
+        ],
+        correct: 0
+      },
+      {
+        question: "ما هي أهم صفة يجب أن يتحلى بها القائد في عصر AI؟",
+        options: [
+          "الوعي والمسؤولية والقدوة الحسنة",
+          "السرعة فقط",
+          "القوة فقط",
+          "الصمت"
+        ],
+        correct: 0
+      },
+      {
+        question: "كقائد، ما هي رسالتك الأساسية للكشاف حول الذكاء الاصطناعي؟",
+        options: [
+          "استخدمه بحكمة وأخلاق، وابقَ إنساناً مبدعاً ومتعاطفاً",
+          "استخدمه دون قيود",
+          "تجاهله تماماً",
+          "خاف منه"
+        ],
+        correct: 0
+      }
     ];
 
+    // ========== متغيرات اللعبة ==========
     let currentQuestionIndex = 0;
     let score = 0;
     let answered = false;
@@ -1136,6 +1386,7 @@
     let questionOrder = [];
     let wrongAnswers = [];
 
+    // عناصر DOM
     const scoreDisplay = document.getElementById('scoreDisplay');
     const questionBox = document.getElementById('questionBox');
     const optionsContainer = document.getElementById('optionsContainer');
@@ -1156,9 +1407,8 @@
     const resultTitle = document.getElementById('resultTitle');
     const finalScore = document.getElementById('finalScore');
     const scoreMessage = document.getElementById('scoreMessage');
-    const wrongAnswersSection = document.getElementById('wrongAnswersSection');
-    const wrongAnswersList = document.getElementById('wrongAnswersList');
 
+    // ========== دوال مساعدة ==========
     function updateScoreUI() {
       scoreDisplay.textContent = score;
     }
@@ -1209,7 +1459,7 @@
         btn.className = 'option-btn';
         btn.innerHTML = `<span class="option-letter">${letters[displayIdx]}</span> <span>${opt.text}</span>`;
         btn.dataset.originalIdx = opt.originalIdx;
-        btn.addEventListener('click', () => handleAnswer(btn, opt.originalIdx, q.correct, q, qIndex));
+        btn.addEventListener('click', () => handleAnswer(btn, opt.originalIdx, q.correct, q));
         optionsContainer.appendChild(btn);
       });
 
@@ -1224,7 +1474,7 @@
       setTimeout(() => { questionBox.style.transform = 'scale(1)'; }, 200);
     }
 
-    function handleAnswer(btn, selectedOriginalIdx, correctIdx, questionObj, qIndex) {
+    function handleAnswer(btn, selectedOriginalIdx, correctIdx, questionObj) {
       if (answered) return;
       answered = true;
 
@@ -1252,7 +1502,7 @@
         const correctText = questionObj.options[correctIdx];
         const selectedText = questionObj.options[selectedOriginalIdx];
         
-        // تسجيل الإجابة الخاطئة
+        // ✅ تسجيل الإجابة الخاطئة
         wrongAnswers.push({
           question: questionObj.question,
           selectedAnswer: selectedText,
@@ -1313,25 +1563,27 @@
         resultBadge.style.filter = 'drop-shadow(0 0 40px #ef4444)';
       }
 
-      // عرض الإجابات الخاطئة
-      if (wrongAnswers.length > 0) {
-        wrongAnswersSection.style.display = 'block';
-        wrongAnswersList.innerHTML = '';
-        
+      // ✅ عرض قائمة الإجابات الخاطئة
+      const wrongSection = document.getElementById('wrongAnswersSection');
+      const wrongList = document.getElementById('wrongAnswersList');
+
+      if (wrongAnswers && wrongAnswers.length > 0) {
+        wrongSection.style.display = 'block';
+        let html = '';
         wrongAnswers.forEach((item, index) => {
-          const div = document.createElement('div');
-          div.className = 'wrong-item';
-          div.innerHTML = `
-            <div class="q-text"><i class="fas fa-question-circle"></i> ${index + 1}. ${item.question}</div>
-            <div class="a-text">
-              <div class="user-answer"><i class="fas fa-times-circle"></i> إجابتك: ${item.selectedAnswer}</div>
-              <div class="correct-answer"><i class="fas fa-check-circle"></i> الإجابة الصحيحة: ${item.correctAnswer}</div>
+          html += `
+            <div class="wrong-item">
+              <div class="q-text"><i class="fas fa-question-circle"></i> ${index + 1}. ${item.question}</div>
+              <div class="a-text">
+                <div class="user-answer"><i class="fas fa-times-circle"></i> إجابتك: ${item.selectedAnswer}</div>
+                <div class="correct-answer"><i class="fas fa-check-circle"></i> الإجابة الصحيحة: ${item.correctAnswer}</div>
+              </div>
             </div>
           `;
-          wrongAnswersList.appendChild(div);
         });
+        wrongList.innerHTML = html;
       } else {
-        wrongAnswersSection.style.display = 'none';
+        wrongSection.style.display = 'none';
       }
     }
 
@@ -1346,7 +1598,7 @@
       introSection.style.display = 'flex';
       progressSection.style.display = 'block';
       resultScreen.style.display = 'none';
-      wrongAnswersSection.style.display = 'none';
+      document.getElementById('wrongAnswersSection').style.display = 'none';
       totalQNum.textContent = totalQuestions;
       loadQuestion();
     }
