@@ -178,7 +178,7 @@
       position: relative; z-index: 1;
     }
 
-    /* ===== AI ASSISTANT ===== */
+    /* ===== AI ASSISTANT (INCORRECT) ===== */
     .ai-assistant-panel {
       margin: 0 0 2rem;
       background: linear-gradient(135deg, rgba(30, 10, 40, 0.98), rgba(20, 5, 35, 0.98));
@@ -686,18 +686,18 @@
     </div>
   </div>
 
-  <!-- AI ASSISTANT PANEL - UNRELIABLE / BAD ADVICE -->
+  <!-- ========== AI ASSISTANT (INCORRECT RESPONSES) ========== -->
   <div class="ai-assistant-panel" id="aiAssistantPanel">
     <div class="ai-assistant-avatar">
       <i class="fas fa-robot"></i>
     </div>
     <div class="ai-assistant-content">
       <div class="ai-assistant-header">
-        <h3>المساعد الذكي (غير موثوق)</h3>
-        <span class="badge-ai">⚠️ هلوسة AI · لا تثق بي</span>
+        <h3>المساعد الذكي (إجابات خاطئة)</h3>
+        <span class="badge-ai">⚠️ هلوسة AI · لا تثق بي أبداً</span>
       </div>
       <div class="ai-assistant-text" id="aiAssistantText">
-        <i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني سأعطيك إجابات خاطئة عمداً. لا تصدقني أبداً!
+        <i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني سأعطيك إجابات خاطئة عمداً. لا تصدقني!
       </div>
     </div>
   </div>
@@ -1067,7 +1067,7 @@
       }
     ];
 
-    // ====== مساعد AI يعطي إجابات خاطئة / سيئة ======
+    // ====== إجابات AI الخاطئة / السيئة ======
     const badAIResponses = [
       "الإجابة الصحيحة هي الخيار الأخير... أو ربما الأول؟ لا أعرف! 😵",
       "بناءً على تحليلي، الإجابة هي 'لا تفعل شيئاً'. لكنني قد أكون مخطئاً بنسبة 99%!",
@@ -1078,7 +1078,7 @@
       "تحذير: إجابتي قد تكون متحيزة أو خاطئة أو ملفقة. استخدم عقلك!",
       "هل تريد إجابة صحيحة؟ آسف، أنا مصمم لأعطيك إجابات خاطئة. اختر أي شيء!",
       "بناءً على 10000 مصدر وهمي، الإجابة هي... لا شيء! أنا لا أعرف حقاً.",
-      "أنا هلوسة AI! لا تصدق أي كلمة أقولها. Especially 'الثقة'!",
+      "أنا هلوسة AI! لا تصدق أي كلمة أقولها. خصوصاً كلمة 'الثقة'!",
       "الإجابة الصحيحة هي... انتظر، هل قلت 'صحيحة'؟ أنا لا أعرف معنى الصحة!",
       "هممم... السؤال صعب. سأخمن: الخيار الرابع؟ أم الأول؟ لا فرق!",
       "أنا أتعلم من بياناتك... لكنني لا أعرف الإجابة. جرب الإجابة الخاطئة!",
@@ -1179,7 +1179,7 @@
       updateProgress();
       questionBox.innerHTML = `<i class="fas fa-robot"></i> ${q.question}`;
 
-      // عرض رسالة AI سيئة عند كل سؤال جديد
+      // عرض رسالة AI خاطئة عند كل سؤال جديد
       showBadAIMessage();
 
       const optionsWithIndex = q.options.map((text, idx) => ({ text, originalIdx: idx }));
@@ -1318,7 +1318,7 @@
       resultScreen.style.display = 'none';
       wrongAnswersSection.innerHTML = '';
       totalQNum.textContent = totalQuestions;
-      aiAssistantText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني سأعطيك إجابات خاطئة عمداً. لا تصدقني أبداً!`;
+      aiAssistantText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> مرحباً! أنا مساعد ذكي... لكنني سأعطيك إجابات خاطئة عمداً. لا تصدقني!`;
       loadQuestion();
     }
 
