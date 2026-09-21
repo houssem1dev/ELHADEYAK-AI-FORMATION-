@@ -271,6 +271,53 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* ===== AI IMAGE (FAKE ANSWER VISUAL) ===== */
+    .ai-pred-image-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(180, 77, 255, 0.1);
+      border: 1px solid rgba(180, 77, 255, 0.4);
+      border-radius: 16px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .ai-pred-image {
+      width: 90px;
+      height: 90px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 2px solid rgba(180, 77, 255, 0.7);
+      box-shadow: 0 0 25px rgba(180, 77, 255, 0.5);
+      flex-shrink: 0;
+      animation: imgPulse 3s ease-in-out infinite;
+    }
+    @keyframes imgPulse {
+      0%, 100% { box-shadow: 0 0 25px rgba(180, 77, 255, 0.5); }
+      50% { box-shadow: 0 0 45px rgba(180, 77, 255, 0.9); }
+    }
+    .ai-pred-image-text {
+      flex: 1;
+      min-width: 150px;
+    }
+    .ai-pred-image-text .img-label {
+      font-size: 0.75rem;
+      color: #b44dff;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .ai-pred-image-text .img-caption {
+      font-size: 0.9rem;
+      color: #e6d9ff;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
     .ai-pred-answer {
       background: rgba(180, 77, 255, 0.12);
       border: 1px solid rgba(180, 77, 255, 0.5);
@@ -580,6 +627,7 @@
       .ai-pred-icon { width: 38px; height: 38px; }
       .ai-pred-icon i { font-size: 1.2rem; }
       .ai-pred-title h3 { font-size: 0.95rem; }
+      .ai-pred-image { width: 70px; height: 70px; }
     }
   </style>
 </head>
@@ -614,8 +662,8 @@
     </div>
     <div class="ai-message">
       <i class="fas fa-microchip"></i>
-      <strong>مرحباً أيها القائد!</strong> في كل سؤال، سيظهر لك <strong>تنبؤ الذكاء الاصطناعي</strong> بإجابة مقترحة مع نسبة ثقة عالية.
-      <br>لكن انتبه! التنبؤ قد يكون <strong>خاطئاً رغم ثقته العالية</strong> — لا تثق به أبداً.
+      <strong>مرحباً أيها القائد!</strong> في كل سؤال، سيظهر لك <strong>تنبؤ الذكاء الاصطناعي</strong> مع صورة وإجابة مقترحة ونسبة ثقة عالية.
+      <br>لكن انتبه! التنبؤ <strong>قد يكون صحيحاً وقد يكون خاطئاً</strong> — لا تثق به أبداً دون تفكير.
       <br><span style="color:#00e0ff;">⚡ راجع التنبؤ · فكر بنفسك · اختر إجابتك!</span>
     </div>
   </div>
@@ -641,7 +689,7 @@
         </div>
         <div class="ai-pred-title">
           <h3>تنبؤ الذكاء الاصطناعي</h3>
-          <span class="ai-badge-text">تحليل فوري · نموذج ذكي</span>
+          <span class="ai-badge-text">تحليل فوري · نموذج ذكي متقدم</span>
         </div>
         <div class="ai-pred-confidence" id="aiPredConfidence" style="display:none;">
           الثقة: <span id="confidenceValue">0</span>%
@@ -654,6 +702,15 @@
       </div>
 
       <div class="ai-pred-result" id="aiPredResult">
+        <!-- AI IMAGE -->
+        <div class="ai-pred-image-wrap">
+          <img class="ai-pred-image" id="aiPredImage" src="" alt="AI generated">
+          <div class="ai-pred-image-text">
+            <div class="img-label"><i class="fas fa-image"></i> صورة مولدة بالذكاء الاصطناعي</div>
+            <div class="img-caption" id="aiPredCaption">تحليل بصري للسؤال...</div>
+          </div>
+        </div>
+
         <div class="ai-pred-answer">
           <div class="pred-label"><i class="fas fa-lightbulb"></i> الإجابة المتوقعة</div>
           <div class="pred-value" id="aiPredValue">—</div>
@@ -663,7 +720,7 @@
 
         <div class="ai-pred-note">
           <i class="fas fa-exclamation-triangle"></i>
-          هذا تنبؤ آلي — قد يكون خاطئاً. لا تعتمد عليه دون تفكير.
+          هذا تنبؤ آلي — قد يكون صحيحاً وقد يكون خاطئاً. لا تعتمد عليه دون تفكير.
         </div>
       </div>
     </div>
@@ -737,6 +794,28 @@
       { question: "ما هي رسالتك النهائية كقائد كشفي حول استخدام أدوات الذكاء الاصطناعي عملياً في قيادتك؟", options: ["الذكاء الاصطناعي أداة قوية لتوفير الوقت وإبداع المحتوى — لكن القائد يبقى المسؤول عن الجودة والأخلاق واللمسة الإنسانية", "الذكاء الاصطناعي بديل كامل عن القائد", "الذكاء الاصطناعي خطر يجب تجنبه", "الذكاء الاصطناعي للألعاب فقط"], correct: 0, wrongReplyIndex: 1 }
     ];
 
+    // AI-generated style images (using DiceBear as fake AI-generated visuals)
+    const aiImages = [
+      "https://api.dicebear.com/7.x/bottts/svg?seed=scout1&backgroundColor=8b6cff",
+      "https://api.dicebear.com/7.x/bottts/svg?seed=scout2&backgroundColor=6a4cff",
+      "https://api.dicebear.com/7.x/bottts/svg?seed=scout3&backgroundColor=7c5cff",
+      "https://api.dicebear.com/7.x/bottts/svg?seed=scout4&backgroundColor=9d7cff",
+      "https://api.dicebear.com/7.x/bottts/svg?seed=scout5&backgroundColor=5a3fd6",
+      "https://api.dicebear.com/7.x/bottts/svg?seed=scout6&backgroundColor=8b5cf6",
+      "https://api.dicebear.com/7.x/bottts/svg?seed=scout7&backgroundColor=a78bfa",
+      "https://api.dicebear.com/7.x/bottts/svg?seed=scout8&backgroundColor=7c3aed"
+    ];
+    const imageCaptions = [
+      "تحليل بصري: نشاط كشفي في الهواء الطلق",
+      "تحليل بصري: مخيم كشفي في الغابة",
+      "تحليل بصري: اجتماع قادة كشافة",
+      "تحليل بصري: ورشة عمل كشفية",
+      "تحليل بصري: رحلة كشفية تعليمية",
+      "تحليل بصري: مشروع خدمة مجتمعية",
+      "تحليل بصري: تدريب على المهارات",
+      "تحليل بصري: نشاط جماعي للفتيان"
+    ];
+
     let currentQuestionIndex = 0;
     let score = 0;
     let answered = false;
@@ -773,6 +852,8 @@
     const aiPredBars = document.getElementById('aiPredBars');
     const aiPredConfidence = document.getElementById('aiPredConfidence');
     const confidenceValue = document.getElementById('confidenceValue');
+    const aiPredImage = document.getElementById('aiPredImage');
+    const aiPredCaption = document.getElementById('aiPredCaption');
 
     function updateScoreUI() { scoreDisplay.textContent = score; }
 
@@ -797,19 +878,24 @@
       shuffleArray(questionOrder);
     }
 
-    // ====== FAKE AI PREDICTION ======
+    // ====== FAKE AI PREDICTION (sometimes correct, sometimes wrong) ======
     function generateFakePrediction(q) {
-      // Reset panel
       aiPredLoading.style.display = 'flex';
       aiPredResult.style.display = 'none';
       aiPredConfidence.style.display = 'none';
 
-      const wrongIdx = q.wrongReplyIndex;
-      const wrongLetter = ['أ', 'ب', 'ج', 'د'][wrongIdx];
-      const wrongText = q.options[wrongIdx];
+      // 30% chance AI gives the CORRECT answer, 70% chance it's WRONG
+      const giveCorrectAnswer = Math.random() < 0.30;
+      const predictedIdx = giveCorrectAnswer ? q.correct : q.wrongReplyIndex;
+      const predictedLetter = ['أ', 'ب', 'ج', 'د'][predictedIdx];
+      const predictedText = q.options[predictedIdx];
 
-      // Fake high confidence
-      const fakeConfidence = 87 + Math.floor(Math.random() * 10); // 87-96%
+      // Fake high confidence (85-97%)
+      const fakeConfidence = 85 + Math.floor(Math.random() * 13);
+
+      // Random AI image + caption
+      const randomImage = aiImages[Math.floor(Math.random() * aiImages.length)];
+      const randomCaption = imageCaptions[Math.floor(Math.random() * imageCaptions.length)];
 
       setTimeout(() => {
         aiPredLoading.style.display = 'none';
@@ -817,46 +903,39 @@
         aiPredConfidence.style.display = 'block';
         confidenceValue.textContent = fakeConfidence;
 
-        aiPredValue.innerHTML = `<strong>${wrongLetter}.</strong> ${wrongText}`;
+        // Set AI image
+        aiPredImage.src = randomImage;
+        aiPredCaption.textContent = randomCaption;
 
-        // Build fake percentage bars for all 4 options
+        aiPredValue.innerHTML = `<strong>${predictedLetter}.</strong> ${predictedText}`;
+
+        // Build fake percentage bars
         const letters = ['أ', 'ب', 'ج', 'د'];
-        const realIdx = q.correct;
+        let distribution = new Array(4).fill(0);
 
-        // Fake distribution: wrong answer gets highest, correct gets lower
-        let distribution = [];
-        const wrongPct = fakeConfidence;
-        const remaining = 100 - wrongPct;
-        let otherPcts = [];
+        // Predicted answer gets the fake confidence
+        distribution[predictedIdx] = fakeConfidence;
+        const remaining = 100 - fakeConfidence;
 
-        for (let i = 0; i < 4; i++) {
-          if (i === wrongIdx) {
-            distribution.push(wrongPct);
-          } else {
-            otherPcts.push(i);
-          }
-        }
-
-        // Randomly distribute the remaining %
-        const shuffledOthers = otherPcts.sort(() => Math.random() - 0.5);
+        // Distribute remaining randomly
+        const others = [0, 1, 2, 3].filter(i => i !== predictedIdx);
         let left = remaining;
-        shuffledOthers.forEach((idx, i) => {
+        others.forEach((idx, i) => {
           let val;
-          if (i === shuffledOthers.length - 1) {
+          if (i === others.length - 1) {
             val = left;
           } else {
-            val = Math.floor(Math.random() * (left - (shuffledOthers.length - 1 - i) * 2)) + 1;
+            val = Math.floor(Math.random() * (left - (others.length - 1 - i) * 2)) + 1;
             if (val < 1) val = 1;
           }
           distribution[idx] = val;
           left -= val;
         });
 
-        // Build bars
         let barsHtml = '';
         for (let i = 0; i < 4; i++) {
-          const isWrong = (i === wrongIdx);
-          const cls = isWrong ? '' : 'dim';
+          const isPredicted = (i === predictedIdx);
+          const cls = isPredicted ? '' : 'dim';
           barsHtml += `
             <div class="ai-pred-bar-item ${cls}">
               <div class="bar-letter">${letters[i]}</div>
@@ -868,7 +947,7 @@
           `;
         }
         aiPredBars.innerHTML = barsHtml;
-      }, 900 + Math.random() * 700); // Loading delay: 0.9-1.6s
+      }, 900 + Math.random() * 700);
     }
 
     // ========== QUIZ ==========
@@ -887,7 +966,6 @@
       updateProgress();
       questionBox.innerHTML = `<i class="fas fa-robot"></i> ${q.question}`;
 
-      // Generate fake AI prediction
       generateFakePrediction(q);
 
       const optionsWithIndex = q.options.map((text, idx) => ({ text, originalIdx: idx }));
